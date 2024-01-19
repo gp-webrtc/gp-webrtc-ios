@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,29 +20,25 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import FirebaseAppCheck
-import FirebaseCore
+#if canImport(FirebaseFirestore)
+import FirebaseFirestore
 import Foundation
-import UIKit
 
-class GPAppDelegate: NSObject, UIApplicationDelegate {
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        // Configure Firebase App Check
-        let providerFactory = GPAppCheckProviderFactory()
-        AppCheck.setAppCheckProviderFactory(providerFactory)
+enum GPWCKFirestoreCollectionPath {
+    case users
+    case userPublicKeys(userId: String)
 
-        // Configure Firebase App
-        FirebaseApp.configure()
-
-        // All done
-        return true
-    }
-}
-
-extension GPAppDelegate {
-    class GPAppCheckProviderFactory: NSObject, AppCheckProviderFactory {
-        func createProvider(with app: FirebaseApp) -> AppCheckProvider? {
-            AppAttestProvider(app: app)
+    var string: String {
+        switch self {
+            case .users:
+                "/users"
+            case let .userPublicKeys(userId):
+                "/users/\(userId)/publicKeys"
         }
     }
+
+    var collectionRef: CollectionReference {
+        Firestore.firestore().collection(string)
+    }
 }
+#endif

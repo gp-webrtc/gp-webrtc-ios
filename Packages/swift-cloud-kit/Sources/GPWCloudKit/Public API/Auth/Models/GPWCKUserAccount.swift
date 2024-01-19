@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,15 +20,19 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import SwiftUI
+#if canImport(FirebaseAuth)
+import FirebaseAuth
+import Foundation
 
-struct GPCallSheet: View {
-    var body: some View {
-        GPCameraView()
-            .ignoresSafeArea()
+public struct GPWCKUserAccount: Identifiable, Equatable {
+    public let userId: String
+
+    @inlinable public var id: String {
+        userId
+    }
+
+    public init(from user: User) throws {
+        userId = user.uid
     }
 }
-
-#Preview {
-    GPCallSheet()
-}
+#endif

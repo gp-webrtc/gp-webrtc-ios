@@ -22,17 +22,17 @@
 
 import SwiftUI
 
-struct GPContentView: View {
+struct GPWContentView: View {
     @State private var path = NavigationPath()
     var body: some View {
         NavigationStack(path: $path) {
-            GPMainView()
+            GPWMainView()
         }
     }
 }
 
 #Preview {
-    GPContentView()
+    GPWContentView()
 }
 
 // import SwiftUI

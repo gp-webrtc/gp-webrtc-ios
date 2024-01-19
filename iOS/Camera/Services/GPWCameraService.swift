@@ -25,7 +25,7 @@ import CoreImage
 import os.log
 import UIKit
 
-class GPCameraService: NSObject {
+class GPWCameraService: NSObject {
     private let captureSession = AVCaptureSession()
     private var isCaptureSessionConfigured = false
     private var deviceInput: AVCaptureDeviceInput?
@@ -372,7 +372,7 @@ class GPCameraService: NSObject {
 //    }
 // }
 
-extension GPCameraService: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension GPWCameraService: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = sampleBuffer.imageBuffer else { return }
 

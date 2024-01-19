@@ -22,21 +22,11 @@
 
 import SwiftUI
 
-struct GPViewfinderView: View {
-    @Binding var image: Image?
-
-    var body: some View {
-        GeometryReader { geometry in
-            if let image {
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-            }
+@main
+struct GPWApp: App {
+    var body: some Scene {
+        WindowGroup {
+            GPContentView()
         }
     }
-}
-
-#Preview {
-    GPViewfinderView(image: .constant(Image(systemName: "pencil")))
 }

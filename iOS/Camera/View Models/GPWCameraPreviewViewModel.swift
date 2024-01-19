@@ -24,8 +24,8 @@ import AVFoundation
 import os.log
 import SwiftUI
 
-final class GPCameraPreviewViewModel: ObservableObject {
-    private let cameraService = GPCameraService()
+final class GPWCameraPreviewViewModel: ObservableObject {
+    private let cameraService = GPWCameraService()
 
     @Published var viewfinderImage: Image?
     @Published var thumbnailImage: Image?

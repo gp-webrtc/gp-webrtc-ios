@@ -22,8 +22,8 @@
 
 import SwiftUI
 
-struct GPCameraView: View {
-    @StateObject private var camera = GPCameraPreviewViewModel()
+struct GPWCameraView: View {
+    @StateObject private var camera = GPWCameraPreviewViewModel()
 
     private static let barHeightFactor = 0.15
 
@@ -46,7 +46,7 @@ struct GPCameraView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            GPViewfinderView(image: $camera.viewfinderImage)
+            GPWViewfinderView(image: $camera.viewfinderImage)
                 .overlay(alignment: .bottom) {
                     buttonsView
                         .frame(height: geometry.size.height * Self.barHeightFactor)
@@ -60,5 +60,5 @@ struct GPCameraView: View {
 }
 
 #Preview {
-    GPCameraView()
+    GPWCameraView()
 }

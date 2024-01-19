@@ -1,6 +1,6 @@
 //
-//  gp-webrtc-ios
-//  Copyright (c) 2024, Greg PFISTER. MIT License
+// gp-webrtc/ios
+// Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
 // this software and associated documentation files (the “Software”), to deal in
@@ -26,15 +26,14 @@ import Foundation
 import UIKit
 
 class GPAppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         // Configure Firebase App Check
         let providerFactory = GPAppCheckProviderFactory()
         AppCheck.setAppCheckProviderFactory(providerFactory)
-        
+
         // Configure Firebase App
         FirebaseApp.configure()
-        
+
         // All done
         return true
     }
@@ -43,7 +42,7 @@ class GPAppDelegate: NSObject, UIApplicationDelegate {
 extension GPAppDelegate {
     class GPAppCheckProviderFactory: NSObject, AppCheckProviderFactory {
         func createProvider(with app: FirebaseApp) -> AppCheckProvider? {
-            return AppAttestProvider(app: app)
+            AppAttestProvider(app: app)
         }
     }
 }

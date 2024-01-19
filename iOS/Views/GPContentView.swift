@@ -1,6 +1,6 @@
 //
-//  gp-webrtc-ios
-//  Copyright (c) 2024, Greg PFISTER. MIT License
+// gp-webrtc/ios
+// Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
 // this software and associated documentation files (the “Software”), to deal in
@@ -35,10 +35,10 @@ struct GPContentView: View {
     GPContentView()
 }
 
-//import SwiftUI
-//import SwiftData
+// import SwiftUI
+// import SwiftData
 //
-//struct GPContentView: View {
+// struct GPContentView: View {
 //    @Environment(\.modelContext) private var modelContext
 //    @Query private var items: [GPItem]
 //
@@ -54,15 +54,15 @@ struct GPContentView: View {
 //                }
 //                .onDelete(perform: deleteItems)
 //            }
-//#if os(macOS)
+// #if os(macOS)
 //            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-//#endif
+// #endif
 //            .toolbar {
-//#if os(iOS)
+// #if os(iOS)
 //                ToolbarItem(placement: .navigationBarTrailing) {
 //                    EditButton()
 //                }
-//#endif
+// #endif
 //                ToolbarItem {
 //                    Button(action: addItem) {
 //                        Label("Add Item", systemImage: "plus")
@@ -88,9 +88,9 @@ struct GPContentView: View {
 //            }
 //        }
 //    }
-//}
+// }
 //
-//#Preview {
+// #Preview {
 //    GPContentView()
 //        .modelContainer(for: GPItem.self, inMemory: true)
-//}
+// }

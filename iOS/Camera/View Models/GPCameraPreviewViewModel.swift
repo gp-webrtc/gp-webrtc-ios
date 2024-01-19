@@ -1,6 +1,6 @@
 //
-//  gp-webrtc-ios
-//  Copyright (c) 2024, Greg PFISTER. MIT License
+// gp-webrtc/ios
+// Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
 // this software and associated documentation files (the “Software”), to deal in
@@ -21,17 +21,17 @@
 //
 
 import AVFoundation
-import SwiftUI
 import os.log
+import SwiftUI
 
 final class GPCameraPreviewViewModel: ObservableObject {
     private let cameraService = GPCameraService()
-    
+
     @Published var viewfinderImage: Image?
     @Published var thumbnailImage: Image?
-    
+
     var isPhotosLoaded = false
-    
+
     init() {
         Task {
 //            while !cameraService.isUsingBackCaptureDevice {
@@ -40,31 +40,30 @@ final class GPCameraPreviewViewModel: ObservableObject {
             await handleCameraPreviews()
         }
     }
-    
+
     func start() async {
         await cameraService.start()
     }
-    
+
     func switchCaptureDevice() {
         cameraService.switchCaptureDevice()
     }
-    
+
     func handleCameraPreviews() async {
         let imageStream = cameraService.previewStream
-            .map { $0.image }
-        
-        
+            .map(\.image)
+
         for await image in imageStream {
             Task { @MainActor in
                 viewfinderImage = image
             }
         }
     }
-    
+
 //    func handleCameraPhotos() async {
 //        let unpackedPhotoStream = camera.photoStream
 //            .compactMap { self.unpackPhoto($0) }
-//        
+//
 //        for await photoData in unpackedPhotoStream {
 //            Task { @MainActor in
 //                thumbnailImage = photoData.thumbnailImage
@@ -72,25 +71,25 @@ final class GPCameraPreviewViewModel: ObservableObject {
 //            savePhoto(imageData: photoData.imageData)
 //        }
 //    }
-    
+
 //    private func unpackPhoto(_ photo: AVCapturePhoto) -> PhotoData? {
 //        guard let imageData = photo.fileDataRepresentation() else { return nil }
-//        
-//        
+//
+//
 //        guard let previewCGImage = photo.previewCGImageRepresentation(),
 //              let metadataOrientation = photo.metadata[String(kCGImagePropertyOrientation)] as? UInt32,
 //              let cgImageOrientation = CGImagePropertyOrientation(rawValue: metadataOrientation) else { return nil }
 //        let imageOrientation = Image.Orientation(cgImageOrientation)
 //        let thumbnailImage = Image(decorative: previewCGImage, scale: 1, orientation: imageOrientation)
-//        
+//
 //        let photoDimensions = photo.resolvedSettings.photoDimensions
 //        let imageSize = (width: Int(photoDimensions.width), height: Int(photoDimensions.height))
 //        let previewDimensions = photo.resolvedSettings.previewDimensions
 //        let thumbnailSize = (width: Int(previewDimensions.width), height: Int(previewDimensions.height))
-//        
+//
 //        return PhotoData(thumbnailImage: thumbnailImage, thumbnailSize: thumbnailSize, imageData: imageData, imageSize: imageSize)
 //    }
-    
+
 //    func savePhoto(imageData: Data) {
 //        Task {
 //            do {
@@ -101,16 +100,16 @@ final class GPCameraPreviewViewModel: ObservableObject {
 //            }
 //        }
 //    }
-    
+
 //    func loadPhotos() async {
 //        guard !isPhotosLoaded else { return }
-//        
+//
 //        let authorized = await PhotoLibrary.checkAuthorization()
 //        guard authorized else {
 //            logger.error("Photo library access was not authorized.")
 //            return
 //        }
-//        
+//
 //        Task {
 //            do {
 //                try await self.photoCollection.load()
@@ -121,7 +120,7 @@ final class GPCameraPreviewViewModel: ObservableObject {
 //            self.isPhotosLoaded = true
 //        }
 //    }
-    
+
 //    func loadThumbnail() async {
 //        guard let asset = photoCollection.photoAssets.first  else { return }
 //        await photoCollection.cache.requestImage(for: asset, targetSize: CGSize(width: 256, height: 256))  { result in
@@ -134,25 +133,22 @@ final class GPCameraPreviewViewModel: ObservableObject {
 //    }
 }
 
-
-fileprivate struct PhotoData {
+private struct PhotoData {
     var thumbnailImage: Image
     var thumbnailSize: (width: Int, height: Int)
     var imageData: Data
     var imageSize: (width: Int, height: Int)
 }
 
-
-fileprivate extension CIImage {
+private extension CIImage {
     var image: Image? {
         let ciContext = CIContext()
-        guard let cgImage = ciContext.createCGImage(self, from: self.extent) else { return nil }
+        guard let cgImage = ciContext.createCGImage(self, from: extent) else { return nil }
         return Image(decorative: cgImage, scale: 1, orientation: .up)
     }
 }
 
-
-fileprivate extension Image.Orientation {
+private extension Image.Orientation {
     init(_ cgImageOrientation: CGImagePropertyOrientation) {
         switch cgImageOrientation {
             case .up: self = .up
@@ -167,5 +163,4 @@ fileprivate extension Image.Orientation {
     }
 }
 
-
-fileprivate let logger = Logger(subsystem: "com.apple.swiftplaygroundscontent.capturingphotos", category: "DataModel")
+private let logger = Logger(subsystem: "com.apple.swiftplaygroundscontent.capturingphotos", category: "DataModel")

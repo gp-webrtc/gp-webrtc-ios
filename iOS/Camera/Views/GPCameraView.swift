@@ -1,6 +1,6 @@
 //
-//  gp-webrtc-ios
-//  Copyright (c) 2024, Greg PFISTER. MIT License
+// gp-webrtc/ios
+// Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
 // this software and associated documentation files (the “Software”), to deal in
@@ -24,9 +24,9 @@ import SwiftUI
 
 struct GPCameraView: View {
     @StateObject private var camera = GPCameraPreviewViewModel()
-    
+
     private static let barHeightFactor = 0.15
-    
+
     private var buttonsView: some View {
         HStack(spacing: 60) {
             Spacer()
@@ -43,10 +43,10 @@ struct GPCameraView: View {
         .labelStyle(.iconOnly)
         .padding()
     }
-    
+
     var body: some View {
         GeometryReader { geometry in
-            GPViewfinderView(image:  $camera.viewfinderImage)
+            GPViewfinderView(image: $camera.viewfinderImage)
                 .overlay(alignment: .bottom) {
                     buttonsView
                         .frame(height: geometry.size.height * Self.barHeightFactor)

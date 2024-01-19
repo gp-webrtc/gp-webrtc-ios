@@ -12,15 +12,15 @@
 		793385752B5413660060CC95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 793385742B5413660060CC95 /* Assets.xcassets */; };
 		793385782B5413660060CC95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 793385772B5413660060CC95 /* Preview Assets.xcassets */; };
 		7933857B2B5413660060CC95 /* WebRTC.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7933856E2B5413650060CC95 /* WebRTC.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		793E7B0B2B5AE4A9000CC08A /* GPWebRTCCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 793E7B0A2B5AE4A9000CC08A /* GPWebRTCCloudKit */; };
+		793E7B0D2B5AE4B5000CC08A /* GPWebRTCCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 793E7B0C2B5AE4B5000CC08A /* GPWebRTCCloudKit */; };
 		795464072B53FFF500618ACA /* GPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464062B53FFF500618ACA /* GPApp.swift */; };
 		795464092B53FFF500618ACA /* GPContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464082B53FFF500618ACA /* GPContentView.swift */; };
 		7954640B2B53FFF500618ACA /* GPItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954640A2B53FFF500618ACA /* GPItem.swift */; };
 		7954640D2B53FFF600618ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7954640C2B53FFF600618ACA /* Assets.xcassets */; };
 		795464112B53FFF600618ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 795464102B53FFF600618ACA /* Preview Assets.xcassets */; };
-		79ABECED2B5518EC00C15D0C /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 79ABECEC2B5518EC00C15D0C /* FirebaseFunctions */; };
 		79ABECF22B5519EA00C15D0C /* GPAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABECF12B5519EA00C15D0C /* GPAppDelegate.swift */; };
 		79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79ABECFD2B552ABE00C15D0C /* GoogleService-Info.plist */; };
-		79ABED012B552C0F00C15D0C /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 79ABED002B552C0F00C15D0C /* FirebaseAppCheck */; };
 		79ABED0B2B55457400C15D0C /* GPMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED0A2B55457400C15D0C /* GPMainView.swift */; };
 		79ABED0D2B5547CD00C15D0C /* GPCallSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED0C2B5547CD00C15D0C /* GPCallSheet.swift */; };
 		79ABED0F2B554D2E00C15D0C /* GPCameraPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED0E2B554D2E00C15D0C /* GPCameraPreviewViewModel.swift */; };
@@ -59,6 +59,7 @@
 		793385722B5413650060CC95 /* GPContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPContentView.swift; sourceTree = "<group>"; };
 		793385742B5413660060CC95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		793385772B5413660060CC95 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		793E7B082B5ACE1A000CC08A /* swift-cloud-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "swift-cloud-kit"; sourceTree = "<group>"; };
 		795464032B53FFF500618ACA /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		795464062B53FFF500618ACA /* GPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPApp.swift; sourceTree = "<group>"; };
 		795464082B53FFF500618ACA /* GPContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPContentView.swift; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				793E7B0D2B5AE4B5000CC08A /* GPWebRTCCloudKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,8 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79ABECED2B5518EC00C15D0C /* FirebaseFunctions in Frameworks */,
-				79ABED012B552C0F00C15D0C /* FirebaseAppCheck in Frameworks */,
+				793E7B0B2B5AE4A9000CC08A /* GPWebRTCCloudKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,9 +121,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		793E7B072B5ACC6B000CC08A /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				793E7B082B5ACE1A000CC08A /* swift-cloud-kit */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
 		795463FA2B53FFF500618ACA = {
 			isa = PBXGroup;
 			children = (
+				793E7B072B5ACC6B000CC08A /* Packages */,
 				79ABECFB2B551B9B00C15D0C /* LICENSE.md */,
 				79ABECF92B551B7300C15D0C /* CODE_OF_CONDUCT.md */,
 				79ABECF82B551B6100C15D0C /* README.md */,
@@ -268,6 +278,9 @@
 			dependencies = (
 			);
 			name = watchOS;
+			packageProductDependencies = (
+				793E7B0C2B5AE4B5000CC08A /* GPWebRTCCloudKit */,
+			);
 			productName = "watchOS Watch App";
 			productReference = 7933856E2B5413650060CC95 /* WebRTC.app */;
 			productType = "com.apple.product-type.application";
@@ -288,8 +301,7 @@
 			);
 			name = iOS;
 			packageProductDependencies = (
-				79ABECEC2B5518EC00C15D0C /* FirebaseFunctions */,
-				79ABED002B552C0F00C15D0C /* FirebaseAppCheck */,
+				793E7B0A2B5AE4A9000CC08A /* GPWebRTCCloudKit */,
 			);
 			productName = WebRTC;
 			productReference = 795464032B53FFF500618ACA /* iOS.app */;
@@ -323,8 +335,8 @@
 			);
 			mainGroup = 795463FA2B53FFF500618ACA;
 			packageReferences = (
-				79ABECEB2B5518EC00C15D0C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				793E7B062B5A72AC000CC08A /* XCRemoteSwiftPackageReference "WebRTC" */,
+				793E7B092B5AE4A9000CC08A /* XCLocalSwiftPackageReference "Packages/swift-cloud-kit" */,
 			);
 			productRefGroup = 795464042B53FFF500618ACA /* Products */;
 			projectDirPath = "";
@@ -705,6 +717,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		793E7B092B5AE4A9000CC08A /* XCLocalSwiftPackageReference "Packages/swift-cloud-kit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "Packages/swift-cloud-kit";
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		793E7B062B5A72AC000CC08A /* XCRemoteSwiftPackageReference "WebRTC" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -714,26 +733,16 @@
 				minimumVersion = 120.0.0;
 			};
 		};
-		79ABECEB2B5518EC00C15D0C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.20.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		79ABECEC2B5518EC00C15D0C /* FirebaseFunctions */ = {
+		793E7B0A2B5AE4A9000CC08A /* GPWebRTCCloudKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 79ABECEB2B5518EC00C15D0C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFunctions;
+			productName = GPWebRTCCloudKit;
 		};
-		79ABED002B552C0F00C15D0C /* FirebaseAppCheck */ = {
+		793E7B0C2B5AE4B5000CC08A /* GPWebRTCCloudKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 79ABECEB2B5518EC00C15D0C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAppCheck;
+			productName = GPWebRTCCloudKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

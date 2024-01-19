@@ -17,6 +17,13 @@
 		7954640B2B53FFF500618ACA /* GPItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954640A2B53FFF500618ACA /* GPItem.swift */; };
 		7954640D2B53FFF600618ACA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7954640C2B53FFF600618ACA /* Assets.xcassets */; };
 		795464112B53FFF600618ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 795464102B53FFF600618ACA /* Preview Assets.xcassets */; };
+		796F03612B5B15E200F44E26 /* GPWUserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F03602B5B15E200F44E26 /* GPWUserAccountViewModel.swift */; };
+		796F03662B5B18D900F44E26 /* Shared Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796F03652B5B18D900F44E26 /* Shared Assets.xcassets */; };
+		796F03672B5B18DC00F44E26 /* Shared Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796F03652B5B18D900F44E26 /* Shared Assets.xcassets */; };
+		796F03692B5B241400F44E26 /* GPWContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F03682B5B241400F44E26 /* GPWContactView.swift */; };
+		796F036B2B5B243A00F44E26 /* GPWChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F036A2B5B243A00F44E26 /* GPWChatListView.swift */; };
+		796F036D2B5B245500F44E26 /* GPWProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F036C2B5B245500F44E26 /* GPWProfileView.swift */; };
+		796F03722B5B257400F44E26 /* GPWUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F03712B5B257400F44E26 /* GPWUserViewModel.swift */; };
 		79ABCEBC2B5B0C6E00823B28 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79ABCEBB2B5B0C6E00823B28 /* GPWCloudKit */; };
 		79ABCEBE2B5B0C7B00823B28 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79ABCEBD2B5B0C7B00823B28 /* GPWCloudKit */; };
 		79ABECF22B5519EA00C15D0C /* GPWAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */; };
@@ -68,6 +75,12 @@
 		7954640E2B53FFF600618ACA /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		795464102B53FFF600618ACA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		795464172B5400C200618ACA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		796F03602B5B15E200F44E26 /* GPWUserAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserAccountViewModel.swift; sourceTree = "<group>"; };
+		796F03652B5B18D900F44E26 /* Shared Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Shared Assets.xcassets"; sourceTree = "<group>"; };
+		796F03682B5B241400F44E26 /* GPWContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWContactView.swift; sourceTree = "<group>"; };
+		796F036A2B5B243A00F44E26 /* GPWChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWChatListView.swift; sourceTree = "<group>"; };
+		796F036C2B5B245500F44E26 /* GPWProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWProfileView.swift; sourceTree = "<group>"; };
+		796F03712B5B257400F44E26 /* GPWUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserViewModel.swift; sourceTree = "<group>"; };
 		79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWAppDelegate.swift; sourceTree = "<group>"; };
 		79ABECF82B551B6100C15D0C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		79ABECF92B551B7300C15D0C /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
@@ -176,9 +189,60 @@
 		795464182B5400FC00618ACA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				79ABECF62B551A6F00C15D0C /* Models */,
+				796F03622B5B15F000F44E26 /* Auth */,
+				796F03632B5B15FF00F44E26 /* Local Storage */,
+				796F03642B5B18C900F44E26 /* Resources */,
+				796F036E2B5B254500F44E26 /* User */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		796F03622B5B15F000F44E26 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				796F036F2B5B255400F44E26 /* View Models */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		796F03632B5B15FF00F44E26 /* Local Storage */ = {
+			isa = PBXGroup;
+			children = (
+				79ABECF62B551A6F00C15D0C /* Models */,
+			);
+			path = "Local Storage";
+			sourceTree = "<group>";
+		};
+		796F03642B5B18C900F44E26 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				796F03652B5B18D900F44E26 /* Shared Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		796F036E2B5B254500F44E26 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				796F03702B5B256500F44E26 /* View Models */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		796F036F2B5B255400F44E26 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				796F03602B5B15E200F44E26 /* GPWUserAccountViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		796F03702B5B256500F44E26 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				796F03712B5B257400F44E26 /* GPWUserViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		79ABECF32B551A5800C15D0C /* App */ = {
@@ -196,6 +260,9 @@
 				79ABED0C2B5547CD00C15D0C /* GPWCallSheet.swift */,
 				795464082B53FFF500618ACA /* GPWContentView.swift */,
 				79ABED0A2B55457400C15D0C /* GPWMainView.swift */,
+				796F03682B5B241400F44E26 /* GPWContactView.swift */,
+				796F036A2B5B243A00F44E26 /* GPWChatListView.swift */,
+				796F036C2B5B245500F44E26 /* GPWProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,6 +420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				796F03672B5B18DC00F44E26 /* Shared Assets.xcassets in Resources */,
 				793385782B5413660060CC95 /* Preview Assets.xcassets in Resources */,
 				793385752B5413660060CC95 /* Assets.xcassets in Resources */,
 			);
@@ -362,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				796F03662B5B18D900F44E26 /* Shared Assets.xcassets in Resources */,
 				795464112B53FFF600618ACA /* Preview Assets.xcassets in Resources */,
 				7954640D2B53FFF600618ACA /* Assets.xcassets in Resources */,
 				79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */,
@@ -384,6 +453,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				796F03692B5B241400F44E26 /* GPWContactView.swift in Sources */,
+				796F036B2B5B243A00F44E26 /* GPWChatListView.swift in Sources */,
 				795464092B53FFF500618ACA /* GPWContentView.swift in Sources */,
 				79ABED112B55517700C15D0C /* GPWCameraService.swift in Sources */,
 				79ABED162B55541900C15D0C /* GPWViewfinderView.swift in Sources */,
@@ -393,7 +464,10 @@
 				79ABED0D2B5547CD00C15D0C /* GPWCallSheet.swift in Sources */,
 				79ABED0B2B55457400C15D0C /* GPWMainView.swift in Sources */,
 				79ABED0F2B554D2E00C15D0C /* GPWCameraPreviewViewModel.swift in Sources */,
+				796F03612B5B15E200F44E26 /* GPWUserAccountViewModel.swift in Sources */,
 				79ABED142B5552DE00C15D0C /* GPWCameraView.swift in Sources */,
+				796F036D2B5B245500F44E26 /* GPWProfileView.swift in Sources */,
+				796F03722B5B257400F44E26 /* GPWUserViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +667,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -642,6 +717,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

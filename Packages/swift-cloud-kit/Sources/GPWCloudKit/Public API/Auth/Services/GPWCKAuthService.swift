@@ -60,8 +60,8 @@ public class GPWCKAuthService {
         }
     }
 
-    public func removeStateDidChangeListener(_ listener: GPWCKIDTokenDidChangeListener) {
-        auth.removeStateDidChangeListener(listener)
+    public func removeStateDidChangeListener(_ authStateDidChangeListener: GPWCKIDTokenDidChangeListener) {
+        auth.removeStateDidChangeListener(authStateDidChangeListener)
     }
 
     public func addIDTokenDidChangeListener(onChanges callback: @escaping GPWCKIDTokenDidChangeBlock = { _ in }) -> GPWCKIDTokenDidChangeListener {
@@ -77,8 +77,8 @@ public class GPWCKAuthService {
         }
     }
 
-    public func removeIDTokenDidChangeListener(_ listener: GPWCKIDTokenDidChangeListener) {
-        auth.removeIDTokenDidChangeListener(listener)
+    public func removeIDTokenDidChangeListener(_ authStateDidChangeListener: GPWCKIDTokenDidChangeListener) {
+        auth.removeIDTokenDidChangeListener(authStateDidChangeListener)
     }
 
     public func idTokenForcingRefresh(_ forceRefresh: Bool) async throws -> String? {
@@ -109,7 +109,7 @@ public class GPWCKAuthService {
         try? auth.signOut()
     }
 
-    public func deleteUser(reauthenticatingWithLink _: String) async throws {
+    public func deleteUser() async throws {
         if let user = auth.currentUser {
             try await user.delete()
         }

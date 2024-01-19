@@ -20,47 +20,34 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import SwiftUI
+import Combine
+import Foundation
+import GPWCloudKit
+import os.log
 
-struct GPWMainView: View {
-    @StateObject private var user = GPWUserViewModel()
+class GPWUserViewModel: ObservableObject {
+    @Published var userId: String?
+    @Published var displayName: String = ""
 
-    @EnvironmentObject private var userAccount: GPWUserAccountViewModel
+    private let userService = GPWCKUserService.shared
 
-    private var content: some View {
-        ZStack {
-            if let userId = userAccount.userId {
-                TabView {
-                    GPWContactView()
-                        .tabItem {
-                            Label("Contacts", systemImage: "person.3.fill")
-                        }
-                    GPWChatListView()
-                        .tabItem {
-                            Label("Chats", systemImage: "rectangle.3.group.bubble.fill")
-                        }
-                    GPWProfileView()
-                        .tabItem {
-                            Label("Profile", systemImage: "person.crop.circle.fill")
-                        }
+    private var snapshotListner: GPWCKSnapshotListener?
+
+    func subscribe(userId: String) {
+        if snapshotListner == nil {
+            snapshotListner = userService.documentSnapshot(userId) { user, error in
+                if let error {
+                    Logger().error("GPWUserViewModel: Unable to subscribe to user profile changes: \(error.localizedDescription)")
+                    return
                 }
-                .onAppear {
-                    user.subscribe(userId: userId)
+
+                guard let user else {
+                    Logger().error("GPWUserViewModel: Received not user data")
+                    return
                 }
-            } else {
-                ProgressView {
-                    Text("Loading ...")
-                }
+                self.userId = user.userId
+                self.displayName = user.displayName
             }
         }
     }
-
-    var body: some View {
-        content
-            .environmentObject(user)
-    }
-}
-
-#Preview {
-    GPWMainView()
 }

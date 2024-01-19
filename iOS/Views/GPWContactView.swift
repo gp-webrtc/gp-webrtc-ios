@@ -22,45 +22,12 @@
 
 import SwiftUI
 
-struct GPWMainView: View {
-    @StateObject private var user = GPWUserViewModel()
-
-    @EnvironmentObject private var userAccount: GPWUserAccountViewModel
-
-    private var content: some View {
-        ZStack {
-            if let userId = userAccount.userId {
-                TabView {
-                    GPWContactView()
-                        .tabItem {
-                            Label("Contacts", systemImage: "person.3.fill")
-                        }
-                    GPWChatListView()
-                        .tabItem {
-                            Label("Chats", systemImage: "rectangle.3.group.bubble.fill")
-                        }
-                    GPWProfileView()
-                        .tabItem {
-                            Label("Profile", systemImage: "person.crop.circle.fill")
-                        }
-                }
-                .onAppear {
-                    user.subscribe(userId: userId)
-                }
-            } else {
-                ProgressView {
-                    Text("Loading ...")
-                }
-            }
-        }
-    }
-
+struct GPWContactView: View {
     var body: some View {
-        content
-            .environmentObject(user)
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    GPWMainView()
+    GPWContactView()
 }

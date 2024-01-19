@@ -20,13 +20,61 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+import os.log
 import SwiftUI
 
 struct GPWContentView: View {
     @State private var path = NavigationPath()
+
+    @StateObject private var userAccount = GPWUserAccountViewModel()
+
+    private func signInAnonymously() {
+        Task {
+            do {
+                try await userAccount.signInAnonymously()
+            } catch {
+                Logger().error("GPWContentView: Unable to sign in anonymously: \(error.localizedDescription)")
+            }
+        }
+    }
+
     var body: some View {
-        NavigationStack(path: $path) {
-            GPWMainView()
+        ZStack {
+            if userAccount.authState == .signedIn {
+                GPWMainView()
+                    .environmentObject(userAccount)
+            } else {
+                VStack {
+                    Spacer()
+                    ZStack {
+                        if userAccount.authState == .signedOut {
+                            Button(action: signInAnonymously) {
+                                HStack {
+                                    Spacer()
+                                    Text("Sign in anonymously")
+                                        .bold()
+                                    Spacer()
+                                }
+                                .padding()
+                            }
+                            .buttonStyle(.borderedProminent)
+                        } else {
+                            ProgressView {
+                                Text("Loading ...")
+                                    .foregroundStyle(.white)
+                            }
+                        }
+                    }
+
+                    .padding()
+                    .padding(.bottom)
+                }
+                .background(Image("GPWSplashScreen").resizable().scaledToFill())
+                .ignoresSafeArea()
+            }
+        }
+        .onAppear {
+            userAccount.subscribe()
         }
     }
 }

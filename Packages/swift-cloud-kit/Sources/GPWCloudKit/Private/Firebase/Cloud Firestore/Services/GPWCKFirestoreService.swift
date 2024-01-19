@@ -140,8 +140,8 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
         }
     }
 
-    func removeListener(_ listener: GPWCKSnapshotListener) {
-        listener.remove()
+    func removeListener(_ authStateDidChangeListener: GPWCKSnapshotListener) {
+        authStateDidChangeListener.remove()
     }
 
     // MARK: - Create

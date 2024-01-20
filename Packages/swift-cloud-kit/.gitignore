@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# gp-webrtc/ios
+# gp-webrtc/swift-cloud-kit
 # Copyright (c) 2024, Greg PFISTER. MIT License
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -60,14 +60,14 @@ playground.xcworkspace
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-# Package.resolved
-# *.xcodeproj
-#
+Packages/
+Package.pins
+Package.resolved
+*.xcodeproj
+
 # Xcode automatically generates this directory with a .xcworkspacedata file and xcuserdata
 # hence it is not needed unless you have added a package configuration file to your project
-# .swiftpm
+.swiftpm
 
 .build/
 
@@ -112,12 +112,10 @@ fastlane/test_output
 
 iOSInjectionProject/
 
-# As per my usual habits
-tmp/
-old/
-
-# Google GCP & Firebase
-GoogleService-info*.plist
-
-# Mac files
 .DS_Store
+#/.build
+#/Packages
+#/*.xcodeproj
+#xcuserdata/
+#DerivedData/
+#.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata

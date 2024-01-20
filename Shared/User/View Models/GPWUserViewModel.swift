@@ -45,8 +45,11 @@ class GPWUserViewModel: ObservableObject {
                     Logger().error("GPWUserViewModel: Received not user data")
                     return
                 }
-                self.userId = user.userId
-                self.displayName = user.displayName
+
+                DispatchQueue.main.async {
+                    self.userId = user.userId
+                    self.displayName = user.displayName
+                }
             }
         }
     }

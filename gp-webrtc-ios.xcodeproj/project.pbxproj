@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		793385712B5413650060CC95 /* GPWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793385702B5413650060CC95 /* GPWApp.swift */; };
-		793385732B5413650060CC95 /* GPContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793385722B5413650060CC95 /* GPContentView.swift */; };
-		793385752B5413660060CC95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 793385742B5413660060CC95 /* Assets.xcassets */; };
-		793385782B5413660060CC95 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 793385772B5413660060CC95 /* Preview Assets.xcassets */; };
-		7933857B2B5413660060CC95 /* WebRTC.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7933856E2B5413650060CC95 /* WebRTC.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		795464072B53FFF500618ACA /* GPWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464062B53FFF500618ACA /* GPWApp.swift */; };
 		795464092B53FFF500618ACA /* GPWContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464082B53FFF500618ACA /* GPWContentView.swift */; };
 		7954640B2B53FFF500618ACA /* GPItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954640A2B53FFF500618ACA /* GPItem.swift */; };
@@ -19,13 +14,11 @@
 		795464112B53FFF600618ACA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 795464102B53FFF600618ACA /* Preview Assets.xcassets */; };
 		796F03612B5B15E200F44E26 /* GPWUserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F03602B5B15E200F44E26 /* GPWUserAccountViewModel.swift */; };
 		796F03662B5B18D900F44E26 /* Shared Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796F03652B5B18D900F44E26 /* Shared Assets.xcassets */; };
-		796F03672B5B18DC00F44E26 /* Shared Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796F03652B5B18D900F44E26 /* Shared Assets.xcassets */; };
 		796F03692B5B241400F44E26 /* GPWContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F03682B5B241400F44E26 /* GPWContactView.swift */; };
 		796F036B2B5B243A00F44E26 /* GPWChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F036A2B5B243A00F44E26 /* GPWChatListView.swift */; };
 		796F036D2B5B245500F44E26 /* GPWProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F036C2B5B245500F44E26 /* GPWProfileView.swift */; };
 		796F03722B5B257400F44E26 /* GPWUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F03712B5B257400F44E26 /* GPWUserViewModel.swift */; };
 		79ABCEBC2B5B0C6E00823B28 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79ABCEBB2B5B0C6E00823B28 /* GPWCloudKit */; };
-		79ABCEBE2B5B0C7B00823B28 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79ABCEBD2B5B0C7B00823B28 /* GPWCloudKit */; };
 		79ABECF22B5519EA00C15D0C /* GPWAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */; };
 		79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79ABECFD2B552ABE00C15D0C /* GoogleService-Info.plist */; };
 		79ABED0B2B55457400C15D0C /* GPWMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED0A2B55457400C15D0C /* GPWMainView.swift */; };
@@ -36,16 +29,6 @@
 		79ABED162B55541900C15D0C /* GPWViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED152B55541900C15D0C /* GPWViewfinderView.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		793385792B5413660060CC95 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 795463FB2B53FFF500618ACA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7933856D2B5413650060CC95;
-			remoteInfo = "watchOS Watch App";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		7933857F2B5413660060CC95 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -53,7 +36,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				7933857B2B5413660060CC95 /* WebRTC.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,13 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7933856E2B5413650060CC95 /* WebRTC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebRTC.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		793385702B5413650060CC95 /* GPWApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWApp.swift; sourceTree = "<group>"; };
-		793385722B5413650060CC95 /* GPContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPContentView.swift; sourceTree = "<group>"; };
-		793385742B5413660060CC95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		793385772B5413660060CC95 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		793E7B082B5ACE1A000CC08A /* swift-cloud-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "swift-cloud-kit"; sourceTree = "<group>"; };
-		795464032B53FFF500618ACA /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		795464032B53FFF500618ACA /* Republik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Republik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		795464062B53FFF500618ACA /* GPWApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWApp.swift; sourceTree = "<group>"; };
 		795464082B53FFF500618ACA /* GPWContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWContentView.swift; sourceTree = "<group>"; };
 		7954640A2B53FFF500618ACA /* GPItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPItem.swift; sourceTree = "<group>"; };
@@ -96,14 +73,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7933856B2B5413650060CC95 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				79ABCEBE2B5B0C7B00823B28 /* GPWCloudKit in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		795464002B53FFF500618ACA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,25 +84,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7933856F2B5413650060CC95 /* watchOS */ = {
-			isa = PBXGroup;
-			children = (
-				793385702B5413650060CC95 /* GPWApp.swift */,
-				793385722B5413650060CC95 /* GPContentView.swift */,
-				793385742B5413660060CC95 /* Assets.xcassets */,
-				793385762B5413660060CC95 /* Preview Content */,
-			);
-			path = watchOS;
-			sourceTree = "<group>";
-		};
-		793385762B5413660060CC95 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				793385772B5413660060CC95 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		793E7B072B5ACC6B000CC08A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +102,6 @@
 				793E7B072B5ACC6B000CC08A /* Packages */,
 				795464182B5400FC00618ACA /* Shared */,
 				795464052B53FFF500618ACA /* iOS */,
-				7933856F2B5413650060CC95 /* watchOS */,
 				795464042B53FFF500618ACA /* Products */,
 				79ABECFF2B552C0F00C15D0C /* Frameworks */,
 			);
@@ -161,8 +110,7 @@
 		795464042B53FFF500618ACA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				795464032B53FFF500618ACA /* iOS.app */,
-				7933856E2B5413650060CC95 /* WebRTC.app */,
+				795464032B53FFF500618ACA /* Republik.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,29 +280,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7933856D2B5413650060CC95 /* watchOS */ = {
+		795464022B53FFF500618ACA /* Republik (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7933857C2B5413660060CC95 /* Build configuration list for PBXNativeTarget "watchOS" */;
-			buildPhases = (
-				7933856A2B5413650060CC95 /* Sources */,
-				7933856B2B5413650060CC95 /* Frameworks */,
-				7933856C2B5413650060CC95 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = watchOS;
-			packageProductDependencies = (
-				79ABCEBD2B5B0C7B00823B28 /* GPWCloudKit */,
-			);
-			productName = "watchOS Watch App";
-			productReference = 7933856E2B5413650060CC95 /* WebRTC.app */;
-			productType = "com.apple.product-type.application";
-		};
-		795464022B53FFF500618ACA /* iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 795464142B53FFF600618ACA /* Build configuration list for PBXNativeTarget "iOS" */;
+			buildConfigurationList = 795464142B53FFF600618ACA /* Build configuration list for PBXNativeTarget "Republik (iOS)" */;
 			buildPhases = (
 				795463FF2B53FFF500618ACA /* Sources */,
 				795464002B53FFF500618ACA /* Frameworks */,
@@ -364,14 +292,13 @@
 			buildRules = (
 			);
 			dependencies = (
-				7933857A2B5413660060CC95 /* PBXTargetDependency */,
 			);
-			name = iOS;
+			name = "Republik (iOS)";
 			packageProductDependencies = (
 				79ABCEBB2B5B0C6E00823B28 /* GPWCloudKit */,
 			);
 			productName = WebRTC;
-			productReference = 795464032B53FFF500618ACA /* iOS.app */;
+			productReference = 795464032B53FFF500618ACA /* Republik.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -384,9 +311,6 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
-					7933856D2B5413650060CC95 = {
-						CreatedOnToolsVersion = 15.2;
-					};
 					795464022B53FFF500618ACA = {
 						CreatedOnToolsVersion = 15.1;
 					};
@@ -399,6 +323,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 795463FA2B53FFF500618ACA;
 			packageReferences = (
@@ -409,23 +334,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				795464022B53FFF500618ACA /* iOS */,
-				7933856D2B5413650060CC95 /* watchOS */,
+				795464022B53FFF500618ACA /* Republik (iOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7933856C2B5413650060CC95 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				796F03672B5B18DC00F44E26 /* Shared Assets.xcassets in Resources */,
-				793385782B5413660060CC95 /* Preview Assets.xcassets in Resources */,
-				793385752B5413660060CC95 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		795464012B53FFF500618ACA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -440,15 +354,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		7933856A2B5413650060CC95 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				793385732B5413650060CC95 /* GPContentView.swift in Sources */,
-				793385712B5413650060CC95 /* GPWApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		795463FF2B53FFF500618ACA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -473,78 +378,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		7933857A2B5413660060CC95 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7933856D2B5413650060CC95 /* watchOS */;
-			targetProxy = 793385792B5413660060CC95 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		7933857D2B5413660060CC95 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"watchOS/Preview Content\"";
-				DEVELOPMENT_TEAM = DE65J7Y35D;
-				ENABLE_PREVIEWS = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = org.gpfister.webrtc;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.webrtc.watchkitapp;
-				PRODUCT_NAME = WebRTC;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.2;
-			};
-			name = Debug;
-		};
-		7933857E2B5413660060CC95 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"watchOS/Preview Content\"";
-				DEVELOPMENT_TEAM = DE65J7Y35D;
-				ENABLE_PREVIEWS = YES;
-				EXECUTABLE_EXTENSION = "";
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = org.gpfister.webrtc;
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.webrtc.watchkitapp;
-				PRODUCT_NAME = WebRTC;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.2;
-			};
-			name = Release;
-		};
 		795464122B53FFF600618ACA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -598,12 +432,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -654,10 +490,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -667,7 +505,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -679,7 +517,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = WebRTC;
+				INFOPLIST_KEY_CFBundleDisplayName = Republik;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is been used during conference calls to stream your face :)";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone is been used during conference calls to stream your voice :)";
@@ -693,13 +531,13 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.webrtc;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik;
+				PRODUCT_NAME = Republik;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -707,7 +545,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -717,7 +555,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -729,7 +567,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOS/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = WebRTC;
+				INFOPLIST_KEY_CFBundleDisplayName = Republik;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "The camera is been used during conference calls to stream your face :)";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone is been used during conference calls to stream your voice :)";
@@ -743,13 +581,13 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.webrtc;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik;
+				PRODUCT_NAME = Republik;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -757,22 +595,13 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7933857C2B5413660060CC95 /* Build configuration list for PBXNativeTarget "watchOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7933857D2B5413660060CC95 /* Debug */,
-				7933857E2B5413660060CC95 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		795463FE2B53FFF500618ACA /* Build configuration list for PBXProject "gp-webrtc-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -782,7 +611,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		795464142B53FFF600618ACA /* Build configuration list for PBXNativeTarget "iOS" */ = {
+		795464142B53FFF600618ACA /* Build configuration list for PBXNativeTarget "Republik (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				795464152B53FFF600618ACA /* Debug */,
@@ -813,10 +642,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		79ABCEBB2B5B0C6E00823B28 /* GPWCloudKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GPWCloudKit;
-		};
-		79ABCEBD2B5B0C7B00823B28 /* GPWCloudKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GPWCloudKit;
 		};

@@ -20,16 +20,46 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#if canImport(FirebaseFirestore)
+import FirebaseFirestore
+#endif
 import Foundation
 
-public struct GPWCKUserOnboardingStatus: GPWCKDataProtocol {
-    public let setPinCode: GPWCKStatus
-}
+struct GPWCKEncryptedUser: GPWCKDocumentProtocol {
+    #if canImport(FirebaseFirestore)
+    @DocumentID public var id: String?
+    #else
+    var id: String?
+    #endif
 
-public extension GPWCKUserOnboardingStatus {
-    enum GPWCKStatus: String, Codable {
-        case notDone
-        case done
-        case skipped
+    let userId: String
+    let isEncrypted: Bool
+    let encrypted: String
+    let pinHash: String?
+
+    #if canImport(FirebaseFirestore)
+    @ServerTimestamp var creationDate: Date?
+    @ServerTimestamp var modificationDate: Date?
+    #else
+    let creationDate: Date?
+    let modificationDate: Date?
+    #endif
+
+    init(from user: GPWCKUser) throws {
+        let encryptedData = GPWCKEncryptedUserData(
+            displayName: user.displayName,
+            profilePicture: user.profilePicture
+        )
+
+        guard let encrypted = try? JSONEncoder().encode(encryptedData).base64EncodedString()
+        else { throw GPWCKEncryptionError.unableToEncryptData }
+
+        id = user.id
+        userId = user.userId
+        isEncrypted = false
+        self.encrypted = encrypted
+        pinHash = user.pinHash
+        creationDate = user.creationDate
+        modificationDate = user.modificationDate
     }
 }

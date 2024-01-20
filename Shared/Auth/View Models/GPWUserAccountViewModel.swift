@@ -30,6 +30,7 @@ class GPWUserAccountViewModel: ObservableObject {
     @Published var authState: GPWAuthState = .unknown
 
     private let authService = GPWCKAuthService.shared
+    private let userService = GPWCKUserService.shared
 
     private var authStateDidChangeListener: GPWCKAuthStateDidChangeListener?
     private var idTokenDidChangeListener: GPWCKIDTokenDidChangeListener?
@@ -37,27 +38,30 @@ class GPWUserAccountViewModel: ObservableObject {
     func subscribe() {
         if authStateDidChangeListener == nil {
             authStateDidChangeListener = authService.addStateDidChangeListener { userAccount in
-                self.authState = userAccount != nil ? .signedIn : .signedOut
+                DispatchQueue.main.async {
+                    self.authState = userAccount != nil ? .signedIn : .signedOut
+                }
             }
         }
         if idTokenDidChangeListener == nil {
             idTokenDidChangeListener = authService.addIDTokenDidChangeListener { userAccount in
-                self.userId = userAccount?.userId
+                DispatchQueue.main.async {
+                    self.userId = userAccount?.userId
+                }
             }
         }
     }
 
     func signInAnonymously() async throws {
-        let _ = try await authService.signInAnonymously()
+        let userAccount = try await authService.signInAnonymously()
     }
 
-    func signOut() {
-        authService.signOut()
+    func signOut() throws {
+        try authService.signOut()
     }
 
     func delete() async throws {
         try await authService.deleteUser()
-        userId = nil
     }
 }
 

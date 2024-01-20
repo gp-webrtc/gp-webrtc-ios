@@ -20,91 +20,62 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-// TODO: Upgrade to new error management
-
 #if canImport(FirebaseFirestore)
 import FirebaseFirestore
 import Foundation
 
-public struct GPWCKFirestoreError: Error {
-    public let code: FirestoreErrorCode.Code
+public enum GPWCKFirestoreError: Error {
+    case firestore(error: Error)
+    case `internal`
+    case unableToReadData
+    case unknown
+}
 
-    public init(_ code: FirestoreErrorCode.Code = .internal) {
-        self.code = code
+extension GPWCKFirestoreError {
+    init(from error: Error) {
+        self = .firestore(error: error)
     }
 
-    public init(from error: Error) {
-        code = FirestoreErrorCode.Code(rawValue: (error as NSError).code) ?? .internal
-    }
+    var isFatal: Bool { false }
+}
 
-    public var localizedDescription: String {
-        switch code {
-            case .aborted:
-                NSLocalizedString(
-                    "Operation aborted",
-                    comment: "Operation aborted error"
-                )
-            case .alreadyExists:
-                NSLocalizedString(
-                    "A document already exists",
-                    comment: "A document already exists error"
-                )
-            case .cancelled:
-                NSLocalizedString(
-                    "Operation cancelled",
-                    comment: "Operation cancelled error"
-                )
-            case .dataLoss:
-                NSLocalizedString(
-                    "Unrecoverable data lost",
-                    comment: "Unrecoverable data lost error"
-                )
-            case .failedPrecondition:
-                NSLocalizedString(
-                    "Wrong state",
-                    comment: "Wrong state error"
+extension GPWCKFirestoreError: CustomStringConvertible {
+    public var description: String {
+        switch self {
+            case .firestore(error: _):
+                "Cloud Firestore error"
+            case .internal:
+                "Internal error"
+            case .unableToReadData:
+                "Unable to read data"
+            case .unknown:
+                "Unkown error"
+        }
+    }
+}
+
+extension GPWCKFirestoreError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+            case let .firestore(error: error):
+                String(
+                    format: NSLocalizedString(
+                        "Cloud Firestore error '%s'",
+                        comment: "Cloud Firestore error"
+                    ),
+                    error.localizedDescription
                 )
             case .internal:
                 NSLocalizedString(
                     "Internal error",
                     comment: "Internal error"
                 )
-            case .invalidArgument:
+            case .unableToReadData:
                 NSLocalizedString(
-                    "Invalid argument",
-                    comment: "Invalid argument error"
+                    "Unable to read data",
+                    comment: "Unable to read data error"
                 )
-            case .notFound:
-                NSLocalizedString(
-                    "Document not found",
-                    comment: "Document not found error"
-                )
-            case .outOfRange:
-                NSLocalizedString(
-                    "Out of range",
-                    comment: "Out of range error"
-                )
-            case .permissionDenied:
-                NSLocalizedString(
-                    "Permission denied",
-                    comment: "Permission denied error"
-                )
-            case .resourceExhausted:
-                NSLocalizedString(
-                    "Quota reached",
-                    comment: "Quota reached error"
-                )
-            case .unauthenticated:
-                NSLocalizedString(
-                    "Not authenticated",
-                    comment: "Not authenticated error"
-                )
-            case .unimplemented:
-                NSLocalizedString(
-                    "Operation not implemented or supported",
-                    comment: "Operation not implemented or supported error"
-                )
-            default:
+            case .unknown:
                 NSLocalizedString(
                     "Unknown error",
                     comment: "Unknown error"

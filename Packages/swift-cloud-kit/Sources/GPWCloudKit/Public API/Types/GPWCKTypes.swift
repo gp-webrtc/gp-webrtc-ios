@@ -24,8 +24,8 @@ import Foundation
 #if canImport(FirebaseFirestore)
 import FirebaseFirestore
 
-public typealias GPWCKDocumentSnapshotChangesHandler<GPWCKDocument: GPWCKDocumentProtocol> = (GPWCKDocument?, GPWCKFirestoreError?) -> Void
-public typealias GPWCKQuerySnapshotChangesHandler<GPWCKDocument: GPWCKDocumentProtocol> = ([GPWCKDocument], GPWCKFirestoreError?) -> Void
+public typealias GPWCKDocumentSnapshotChangesHandler<GPWCKDocument: GPWCKDocumentProtocol> = (GPWCKDocument?, Error?) -> Void
+public typealias GPWCKQuerySnapshotChangesHandler<GPWCKDocument: GPWCKDocumentProtocol> = ([GPWCKDocument], Error?) -> Void
 public typealias GPWCKSnapshotListener = ListenerRegistration
 
 #endif

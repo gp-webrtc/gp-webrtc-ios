@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,13 +20,9 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import SwiftUI
+import Foundation
 
-@main
-struct GPWApp: App {
-    var body: some Scene {
-        WindowGroup {
-            GPContentView()
-        }
-    }
+struct GPWCKEncryptedUserData: GPWCKDataProtocol {
+    let displayName: String
+    let profilePicture: String?
 }

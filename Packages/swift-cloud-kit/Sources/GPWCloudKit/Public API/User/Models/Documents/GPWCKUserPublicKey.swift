@@ -45,19 +45,16 @@ public struct GPWCKUserPublicKey: GPWCKDocumentProtocol {
     #endif
 
     public init(
-        id: String? = nil,
         userId: String,
         keyType: GPWCKUserPublicKey.GPWCKKeyType,
-        publicKey: String,
-        creationDate: Date? = nil,
-        modificationDate: Date? = nil
+        publicKey: String
     ) {
-        self.id = id
+        id = nil
         self.userId = userId
         self.keyType = keyType
         self.publicKey = publicKey
-        self.creationDate = creationDate
-        self.modificationDate = modificationDate
+        creationDate = nil
+        modificationDate = nil
     }
 }
 

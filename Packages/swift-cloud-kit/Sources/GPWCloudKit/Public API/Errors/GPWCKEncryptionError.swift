@@ -20,46 +20,37 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
-#endif
 import Foundation
 
-struct GPWCKEncryptedUser: GPWCKDocumentProtocol {
-    #if canImport(FirebaseFirestore)
-    @DocumentID public var id: String?
-    #else
-    var id: String?
-    #endif
+public enum GPWCKEncryptionError: Error {
+    case unableToEncryptData
+    case unableToDecryptedData
+}
 
-    let userId: String
-    let encrypted: String
-    let pinHash: String?
-    let status: GPWCKUserStatus
+extension GPWCKEncryptionError: CustomStringConvertible {
+    public var description: String {
+        switch self {
+            case .unableToEncryptData:
+                "Unable to encrypt data"
+            case .unableToDecryptedData:
+                "Unable to decrypt data"
+        }
+    }
+}
 
-    #if canImport(FirebaseFirestore)
-    @ServerTimestamp var creationDate: Date?
-    @ServerTimestamp var modificationDate: Date?
-    #else
-    let creationDate: Date?
-    let modificationDate: Date?
-    #endif
-
-    init(
-        id: String? = nil,
-        userId: String,
-        encrypted: String,
-        pinHash: String? = nil,
-        status: GPWCKUserStatus,
-        creationDate: Date? = nil,
-        modificationDate: Date? = nil
-    ) {
-        self.id = id
-        self.userId = userId
-        self.encrypted = encrypted
-        self.pinHash = pinHash
-        self.status = status
-        self.creationDate = creationDate
-        self.modificationDate = modificationDate
+extension GPWCKEncryptionError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+            case .unableToEncryptData:
+                NSLocalizedString(
+                    "Unable to encrypt data error",
+                    comment: "Unable to encrypt data error"
+                )
+            case .unableToDecryptedData:
+                NSLocalizedString(
+                    "Unable to decrypt data",
+                    comment: "Unable to decrypt data error"
+                )
+        }
     }
 }

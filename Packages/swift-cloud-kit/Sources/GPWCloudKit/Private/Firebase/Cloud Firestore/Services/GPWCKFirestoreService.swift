@@ -65,9 +65,8 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
                 return
             }
 
-            // TODO: A specific error should be created when the snapshot is nil (internal error ?)
             guard let snapshot else {
-                callback(nil, GPWCKFirestoreError())
+                callback(nil, GPWCKFirestoreError.unableToReadData)
                 return
             }
 
@@ -78,7 +77,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
 
             // TODO: A specific error should be created when the document cannot be posted
             guard let document = try? snapshot.data(as: GPWCKDocument.self) else {
-                callback(nil, GPWCKFirestoreError())
+                callback(nil, GPWCKFirestoreError.unableToReadData)
                 return
             }
 
@@ -98,7 +97,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
 
             // TODO: A specific error should be created when the snapshot is nil (internal error ?)
             guard let snapshot else {
-                callback([], GPWCKFirestoreError())
+                callback([], GPWCKFirestoreError.unableToReadData)
                 return
             }
 
@@ -130,7 +129,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
 
             // TODO: A specific error should be created when the snapshot is nil (internal error ?)
             guard let snapshot else {
-                callback([], GPWCKFirestoreError())
+                callback([], GPWCKFirestoreError.unableToReadData)
                 return
             }
 

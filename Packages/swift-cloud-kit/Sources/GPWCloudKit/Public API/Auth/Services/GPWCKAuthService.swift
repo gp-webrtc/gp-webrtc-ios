@@ -105,8 +105,8 @@ public class GPWCKAuthService {
         return try GPWCKUserAccount(from: result.user)
     }
 
-    public func signOut() {
-        try? auth.signOut()
+    public func signOut() throws {
+        try auth.signOut()
     }
 
     public func deleteUser() async throws {

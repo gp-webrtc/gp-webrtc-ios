@@ -5,6 +5,7 @@
 //  Created by Greg PFISTER on 19/01/2024.
 //
 
+import os.log
 import SwiftUI
 
 struct GPWProfileView: View {
@@ -14,7 +15,21 @@ struct GPWProfileView: View {
     @State private var path = NavigationPath()
 
     private func signOut() {
-        userAccount.signOut()
+        do {
+            try userAccount.signOut()
+        } catch {
+            Logger().error("GPWProfileView: Unable to sign out: \(error.localizedDescription)")
+        }
+    }
+
+    private func deleteUserAccount() {
+        Task {
+            do {
+                try await userAccount.delete()
+            } catch {
+                Logger().error("GPWProfileView: Unable to delete user account: \(error.localizedDescription)")
+            }
+        }
     }
 
     var content: some View {
@@ -32,7 +47,17 @@ struct GPWProfileView: View {
             Button(action: signOut) {
                 HStack {
                     Spacer()
-                    Text("Sign out")
+                    Text("Sign-out")
+                    Spacer()
+                }
+                .padding()
+            }
+            .buttonStyle(.borderedProminent)
+
+            Button(role: .destructive, action: deleteUserAccount) {
+                HStack {
+                    Spacer()
+                    Text("Delete account")
                     Spacer()
                 }
                 .padding()

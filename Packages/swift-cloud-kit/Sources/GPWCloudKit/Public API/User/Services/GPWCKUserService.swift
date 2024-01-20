@@ -50,25 +50,33 @@ public struct GPWCKUserService {
         _ userId: String,
         onChanges callback: @escaping GPWCKDocumentSnapshotChangesHandler<GPWCKUser>
     ) -> GPWCKSnapshotListener {
-        let snapshotListener = firestoreService.documentSnapshotListener(.user(userId: userId)) { encryptedUser, error in
-            if let encryptedUser {
-                callback(
-                    GPWCKUser(
-                        id: encryptedUser.id,
-                        userId: encryptedUser.userId,
-                        displayName: "John Doe",
-                        profilePicture: nil,
-                        status: encryptedUser.status,
-                        creationDate: encryptedUser.creationDate,
-                        modificationDate: encryptedUser.modificationDate
-                    ),
-                    nil
-                )
-            } else {
+        let snapshotListener = firestoreService.documentSnapshotListener(
+            .user(userId: userId)
+        ) { encryptedUser, error in
+            if let error {
                 callback(nil, error)
+                return
+            } else {
+                if let encryptedUser {
+                    do {
+                        let user = try GPWCKUser(from: encryptedUser)
+                        callback(user, nil)
+                    } catch {
+                        callback(nil, error)
+                    }
+                    return
+                } else {
+                    callback(nil, nil)
+                    return
+                }
             }
         }
         return snapshotListener
+    }
+
+    public func create(_ user: GPWCKUser) async throws {
+        let encryptedUser = try GPWCKEncryptedUser(from: user)
+        try await firestoreService.create(encryptedUser, atPath: .user(userId: user.userId))
     }
 }
 #endif

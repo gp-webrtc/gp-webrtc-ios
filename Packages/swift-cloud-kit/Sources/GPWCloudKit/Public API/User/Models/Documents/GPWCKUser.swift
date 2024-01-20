@@ -31,27 +31,44 @@ public struct GPWCKUser: GPWCKDocumentProtocol {
     public let displayName: String
     public let profilePicture: String?
     public let pinHash: String?
-    public let status: GPWCKUserStatus
     public let creationDate: Date?
     public let modificationDate: Date?
 
-    public init(
-        id: String? = nil,
-        userId: String,
-        displayName: String,
-        profilePicture: String? = nil,
-        pinHash: String? = nil,
-        status: GPWCKUserStatus,
-        creationDate: Date? = nil,
-        modificationDate: Date? = nil
-    ) {
-        self.id = id
-        self.userId = userId
-        self.displayName = displayName
-        self.profilePicture = profilePicture
-        self.pinHash = pinHash
-        self.status = status
-        self.creationDate = creationDate
-        self.modificationDate = modificationDate
+//    public init(
+//        userId: String,
+//        displayName: String,
+//        profilePicture: String? = nil,
+//        pinHash: String? = nil,
+//    ) {
+//        self.id = nil
+//        self.userId = userId
+//        self.displayName = displayName
+//        self.profilePicture = profilePicture
+//        self.pinHash = pinHash
+//        self.creationDate = nil
+//        self.modificationDate = nil
+//        self.lastSignInDate = nil
+//    }
+
+    init(from user: GPWCKEncryptedUser) throws {
+        let decryptedData = user.isEncrypted
+            ? GPWCKEncryptedUserData(displayName: "Encrypted Joe", profilePicture: nil)
+            : try Self.base64Decode(encrypted: user.encrypted)
+
+        id = user.id
+        userId = user.userId
+        displayName = decryptedData.displayName
+        profilePicture = decryptedData.profilePicture
+        pinHash = user.pinHash
+        creationDate = user.creationDate
+        modificationDate = user.modificationDate
+    }
+
+    static func base64Decode(encrypted: String) throws -> GPWCKEncryptedUserData {
+        guard let data = Data(base64Encoded: encrypted),
+              let decryptedData = try? JSONDecoder().decode(GPWCKEncryptedUserData.self, from: data)
+        else { throw GPWCKEncryptionError.unableToDecryptedData }
+
+        return decryptedData
     }
 }

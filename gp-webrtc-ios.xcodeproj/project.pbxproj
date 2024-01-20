@@ -58,6 +58,7 @@
 		796F036A2B5B243A00F44E26 /* GPWChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWChatListView.swift; sourceTree = "<group>"; };
 		796F036C2B5B245500F44E26 /* GPWProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWProfileView.swift; sourceTree = "<group>"; };
 		796F03712B5B257400F44E26 /* GPWUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserViewModel.swift; sourceTree = "<group>"; };
+		797949E32B5C806900751A42 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
 		79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWAppDelegate.swift; sourceTree = "<group>"; };
 		79ABECF82B551B6100C15D0C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		79ABECF92B551B7300C15D0C /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 				79ABECFB2B551B9B00C15D0C /* LICENSE.md */,
 				79ABECF92B551B7300C15D0C /* CODE_OF_CONDUCT.md */,
 				79ABECF82B551B6100C15D0C /* README.md */,
+				797949E32B5C806900751A42 /* SECURITY.md */,
 				79ABECFC2B55293A00C15D0C /* Scripts */,
 				793E7B072B5ACC6B000CC08A /* Packages */,
 				795464182B5400FC00618ACA /* Shared */,

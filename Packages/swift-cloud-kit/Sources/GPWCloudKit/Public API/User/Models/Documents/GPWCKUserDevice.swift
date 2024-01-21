@@ -25,32 +25,32 @@ import FirebaseFirestore
 #endif
 import Foundation
 
-public struct GPWCKUser: GPWCKDocumentProtocol {
+public struct GPWCKUserDevice: GPWCKDocumentProtocol {
     public let id: String?
     public let userId: String
+    public let deviceId: String
     public let displayName: String
-    public let profilePicture: String?
-    public let pinHash: String?
+    public let ipAddresses: [String]
     public let creationDate: Date?
     public let modificationDate: Date?
 
-    init(from user: GPWCKEncryptedUser) throws {
-        let decryptedData = user.isEncrypted
-            ? GPWCKEncryptedUserData(displayName: "Encrypted Joe", profilePicture: nil)
-            : try Self.base64Decode(encrypted: user.encrypted)
+    init(from encryptedUserDevice: GPWCKEncryptedUserDevice) throws {
+        let decryptedUserDeviceData = encryptedUserDevice.isEncrypted
+            ? GPWCKEncryptedUserDeviceData(displayName: "Encrypted Device")
+            : try Self.base64Decode(encrypted: encryptedUserDevice.encrypted)
 
-        id = user.id
-        userId = user.userId
-        displayName = decryptedData.displayName
-        profilePicture = decryptedData.profilePicture
-        pinHash = user.pinHash
-        creationDate = user.creationDate
-        modificationDate = user.modificationDate
+        id = encryptedUserDevice.id
+        userId = encryptedUserDevice.userId
+        deviceId = encryptedUserDevice.deviceId
+        displayName = decryptedUserDeviceData.displayName
+        ipAddresses = encryptedUserDevice.ipAddresses
+        creationDate = encryptedUserDevice.creationDate
+        modificationDate = encryptedUserDevice.modificationDate
     }
 
-    static func base64Decode(encrypted: String) throws -> GPWCKEncryptedUserData {
+    static func base64Decode(encrypted: String) throws -> GPWCKEncryptedUserDeviceData {
         guard let data = Data(base64Encoded: encrypted),
-              let decryptedData = try? JSONDecoder().decode(GPWCKEncryptedUserData.self, from: data)
+              let decryptedData = try? JSONDecoder().decode(GPWCKEncryptedUserDeviceData.self, from: data)
         else { throw GPWCKEncryptionError.unableToDecryptedData }
 
         return decryptedData

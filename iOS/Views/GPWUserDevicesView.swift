@@ -1,5 +1,5 @@
 //
-// gp-webrtc/swift-cloud-kit
+// gp-webrtc/ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,28 +20,49 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
-import Foundation
+import SwiftUI
 
-enum GPWCKFirestoreDocumentPath {
-    case user(userId: String)
-    case userDevice(userId: String, deviceId: String)
-    case userPublicKey(userId: String, type: GPWCKUserPublicKey.GPWCKKeyType)
+struct GPWUserDevicesView: View {
+    @StateObject private var userDevices = GPWUserDeviceListViewModel()
 
-    var string: String {
-        switch self {
-            case let .user(userId):
-                "/users/\(userId)"
-            case let .userDevice(userId, deviceId):
-                "/users/\(userId)/devices/\(deviceId)"
-            case let .userPublicKey(userId, type):
-                "/users/\(userId)/publicKeys/\(type.rawValue)"
+    var body: some View {
+        List(userDevices.devices) { userDevice in
+            GPWCell(title: userDevice.displayName, image: Image(systemName: "iphone.gen3"))
+        }
+        .navigationTitle("Devices")
+    }
+}
+
+private extension GPWUserDevicesView {
+    struct GPWCell: View {
+        let title: String
+        let image: Image
+
+        var body: some View {
+            HStack(spacing: 16) {
+                image
+                    .frame(width: 32, alignment: .leading)
+                Text(title)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                Spacer()
+            }
         }
     }
 
-    var documentRef: DocumentReference {
-        Firestore.firestore().document(string)
+    struct GPWNavigationCell: View {
+        let title: String
+        let image: Image
+        let destination: GPWUserProfileView.GPWDestination
+
+        var body: some View {
+            NavigationLink(value: destination) {
+                GPWCell(title: title, image: image)
+            }
+        }
     }
 }
-#endif
+
+#Preview {
+    GPWUserDevicesView()
+}

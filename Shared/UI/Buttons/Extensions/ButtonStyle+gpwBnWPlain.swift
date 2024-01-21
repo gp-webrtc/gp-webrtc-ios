@@ -1,5 +1,5 @@
 //
-// gp-webrtc/swift-cloud-kit
+// gp-webrtc/ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,28 +20,8 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
-import Foundation
+import SwiftUI
 
-enum GPWCKFirestoreDocumentPath {
-    case user(userId: String)
-    case userDevice(userId: String, deviceId: String)
-    case userPublicKey(userId: String, type: GPWCKUserPublicKey.GPWCKKeyType)
-
-    var string: String {
-        switch self {
-            case let .user(userId):
-                "/users/\(userId)"
-            case let .userDevice(userId, deviceId):
-                "/users/\(userId)/devices/\(deviceId)"
-            case let .userPublicKey(userId, type):
-                "/users/\(userId)/publicKeys/\(type.rawValue)"
-        }
-    }
-
-    var documentRef: DocumentReference {
-        Firestore.firestore().document(string)
-    }
+public extension ButtonStyle where Self == GPWBnWPlainButtonStyle {
+    static var gpwBnWPlain: GPWBnWPlainButtonStyle { GPWBnWPlainButtonStyle() }
 }
-#endif

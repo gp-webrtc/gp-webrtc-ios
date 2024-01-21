@@ -26,12 +26,15 @@ import Foundation
 
 enum GPWCKFirestoreCollectionPath {
     case users
+    case userDevices(userId: String)
     case userPublicKeys(userId: String)
 
     var string: String {
         switch self {
             case .users:
                 "/users"
+            case let .userDevices(userId):
+                "/users/\(userId)/devices"
             case let .userPublicKeys(userId):
                 "/users/\(userId)/publicKeys"
         }

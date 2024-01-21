@@ -105,10 +105,6 @@ public class GPWCKAuthService {
         return try GPWCKUserAccount(from: result.user)
     }
 
-    public func signOut() throws {
-        try auth.signOut()
-    }
-
     public func deleteUser() async throws {
         if let user = auth.currentUser {
             try await user.delete()

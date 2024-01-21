@@ -56,27 +56,21 @@ public struct GPWCKUserService {
             if let error {
                 callback(nil, error)
                 return
-            } else {
-                if let encryptedUser {
-                    do {
-                        let user = try GPWCKUser(from: encryptedUser)
-                        callback(user, nil)
-                    } catch {
-                        callback(nil, error)
-                    }
-                    return
-                } else {
-                    callback(nil, nil)
-                    return
+            }
+            if let encryptedUser {
+                do {
+                    let user = try GPWCKUser(from: encryptedUser)
+                    callback(user, nil)
+                } catch {
+                    callback(nil, error)
                 }
+                return
+            } else {
+                callback(nil, nil)
+                return
             }
         }
         return snapshotListener
-    }
-
-    public func create(_ user: GPWCKUser) async throws {
-        let encryptedUser = try GPWCKEncryptedUser(from: user)
-        try await firestoreService.create(encryptedUser, atPath: .user(userId: user.userId))
     }
 }
 #endif

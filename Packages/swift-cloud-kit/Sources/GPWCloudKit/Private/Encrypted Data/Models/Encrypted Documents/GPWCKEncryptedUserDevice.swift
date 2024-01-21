@@ -25,34 +25,42 @@ import FirebaseFirestore
 #endif
 import Foundation
 
-public struct GPWCKUser: GPWCKDocumentProtocol {
-    public let id: String?
-    public let userId: String
-    public let displayName: String
-    public let profilePicture: String?
-    public let pinHash: String?
-    public let creationDate: Date?
-    public let modificationDate: Date?
+struct GPWCKEncryptedUserDevice: GPWCKDocumentProtocol {
+    #if canImport(FirebaseFirestore)
+    @DocumentID public var id: String?
+    #else
+    var id: String?
+    #endif
 
-    init(from user: GPWCKEncryptedUser) throws {
-        let decryptedData = user.isEncrypted
-            ? GPWCKEncryptedUserData(displayName: "Encrypted Joe", profilePicture: nil)
-            : try Self.base64Decode(encrypted: user.encrypted)
+    let userId: String
+    let deviceId: String
+    let isEncrypted: Bool
+    let encrypted: String
+    let ipAddresses: [String]
 
-        id = user.id
-        userId = user.userId
-        displayName = decryptedData.displayName
-        profilePicture = decryptedData.profilePicture
-        pinHash = user.pinHash
-        creationDate = user.creationDate
-        modificationDate = user.modificationDate
-    }
+    #if canImport(FirebaseFirestore)
+    @ServerTimestamp var creationDate: Date?
+    @ServerTimestamp var modificationDate: Date?
+    #else
+    let creationDate: Date?
+    let modificationDate: Date?
+    #endif
 
-    static func base64Decode(encrypted: String) throws -> GPWCKEncryptedUserData {
-        guard let data = Data(base64Encoded: encrypted),
-              let decryptedData = try? JSONDecoder().decode(GPWCKEncryptedUserData.self, from: data)
-        else { throw GPWCKEncryptionError.unableToDecryptedData }
+    init(from userDevice: GPWCKUserDevice) throws {
+        let encryptedData = GPWCKEncryptedUserDeviceData(
+            displayName: userDevice.displayName
+        )
 
-        return decryptedData
+        guard let encrypted = try? JSONEncoder().encode(encryptedData).base64EncodedString()
+        else { throw GPWCKEncryptionError.unableToEncryptData }
+
+        id = userDevice.id
+        userId = userDevice.userId
+        deviceId = userDevice.deviceId
+        isEncrypted = false
+        self.encrypted = encrypted
+        ipAddresses = userDevice.ipAddresses
+        creationDate = userDevice.creationDate
+        modificationDate = userDevice.modificationDate
     }
 }

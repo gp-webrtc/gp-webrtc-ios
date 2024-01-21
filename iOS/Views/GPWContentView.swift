@@ -41,7 +41,7 @@ struct GPWContentView: View {
     var body: some View {
         ZStack {
             if userAccount.authState == .signedIn {
-                GPWMainView()
+                GPWUserMainView()
                     .environmentObject(userAccount)
             } else {
                 VStack {

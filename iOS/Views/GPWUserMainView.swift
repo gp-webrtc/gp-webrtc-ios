@@ -100,6 +100,8 @@ private extension GPWUserMainView {
                             .background {
                                 Color.gray
                             }
+                            .shadow(radius: 1)
+                            .padding(.bottom, 8)
                     }
                 }
             }

@@ -25,30 +25,49 @@ import SwiftUI
 struct GPWUserMainView: View {
     @StateObject private var user = GPWUserViewModel()
 
+    @State private var selectedTab = GPWTab.contactList
+    @State private var path = NavigationPath()
+
     @EnvironmentObject private var userAccount: GPWUserAccountViewModel
+
+    private func tabView(userId: String) -> some View {
+        TabView(selection: $selectedTab) {
+            GPWTabItem(tag: .contactList) {
+                GPWUserContactListView()
+            } label: {
+                Label("Contacts", systemImage: "person.3.fill")
+            }
+            GPWTabItem(tag: .chatList) {
+                GPWUserChatListView()
+            } label: {
+                Label("Chats", systemImage: "rectangle.3.group.bubble.fill")
+            }
+            GPWTabItem(tag: .profile) {
+                GPWUserProfileView()
+            } label: {
+                Label("Profile", systemImage: "person.crop.circle.fill")
+            }
+        }
+        .onAppear {
+            user.subscribe(userId: userId)
+        }
+    }
 
     private var content: some View {
         ZStack {
             if let userId = userAccount.userId {
-                TabView {
-                    GPWTabItem {
-                        GPWUserContactListView()
-                    } label: {
-                        Label("Contacts", systemImage: "person.3.fill")
-                    }
-                    GPWTabItem {
-                        GPWUserChatListView()
-                    } label: {
-                        Label("Chats", systemImage: "rectangle.3.group.bubble.fill")
-                    }
-                    GPWTabItem {
-                        GPWUserProfileView()
-                    } label: {
-                        Label("Profile", systemImage: "person.crop.circle.fill")
-                    }
-                }
-                .onAppear {
-                    user.subscribe(userId: userId)
+                NavigationStack(path: $path) {
+                    tabView(userId: userId)
+                        .navigationTitle(selectedTab.rawValue)
+                        .toolbar(.hidden, for: .navigationBar)
+                        .navigationDestination(for: GPWDestination.self) { destination in
+                            switch destination {
+                                case .userAccount: GPWUserAccountView()
+                                case .userDevices: GPWUserDevicesView()
+                                case .settings: GPWSetttingsScreen()
+                                case .about: GPWAboutScreen()
+                            }
+                        }
                 }
             } else {
                 ProgressView {
@@ -66,22 +85,46 @@ struct GPWUserMainView: View {
 
 private extension GPWUserMainView {
     struct GPWTabItem<GPWContent: View, GPWLabel: View>: View {
+        let tag: GPWTab
+
         @ViewBuilder let content: () -> GPWContent
         @ViewBuilder let label: () -> GPWLabel
 
         var body: some View {
-            VStack {
-                content()
-                Spacer()
-                Divider()
-                    .background {
-                        Color.gray
+            ZStack {
+                ZStack {
+                    content()
+                    VStack {
+                        Spacer()
+                        Divider()
+                            .background {
+                                Color.gray
+                            }
                     }
+                }
             }
+            .tag(tag)
             .tabItem {
                 label()
             }
         }
+    }
+}
+
+extension GPWUserMainView {
+    enum GPWDestination: Hashable {
+        case userAccount
+        case userDevices
+        case settings
+        case about
+    }
+}
+
+extension GPWUserMainView {
+    enum GPWTab: String {
+        case contactList = "Contacts"
+        case chatList = "Chats"
+        case profile = "Profile"
     }
 }
 

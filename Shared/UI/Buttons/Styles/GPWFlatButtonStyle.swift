@@ -45,7 +45,7 @@ public struct GPWFlatButtonStyle: ButtonStyle {
 
         func button(configuration: ButtonStyle.Configuration) -> some View {
             configuration.label
-                .font(.body.weight(.semibold))
+                .font(.gpwBody.weight(.semibold))
                 .foregroundColor(foregroundColor)
         }
 

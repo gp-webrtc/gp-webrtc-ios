@@ -18,6 +18,9 @@
 		796F036B2B5B243A00F44E26 /* GPWUserChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F036A2B5B243A00F44E26 /* GPWUserChatListView.swift */; };
 		796F036D2B5B245500F44E26 /* GPWUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F036C2B5B245500F44E26 /* GPWUserProfileView.swift */; };
 		796F03722B5B257400F44E26 /* GPWUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F03712B5B257400F44E26 /* GPWUserViewModel.swift */; };
+		79700E1A2B6AE5460066F68C /* Saira.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E182B6AE5460066F68C /* Saira.ttf */; };
+		79700E1B2B6AE5460066F68C /* Saira-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E192B6AE5460066F68C /* Saira-Italic.ttf */; };
+		79700E212B6AEC5F0066F68C /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79700E202B6AEC5F0066F68C /* Font.swift */; };
 		79ABCEBC2B5B0C6E00823B28 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79ABCEBB2B5B0C6E00823B28 /* GPWCloudKit */; };
 		79ABECF22B5519EA00C15D0C /* GPWAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */; };
 		79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79ABECFD2B552ABE00C15D0C /* GoogleService-Info.plist */; };
@@ -74,6 +77,9 @@
 		796F036A2B5B243A00F44E26 /* GPWUserChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserChatListView.swift; sourceTree = "<group>"; };
 		796F036C2B5B245500F44E26 /* GPWUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserProfileView.swift; sourceTree = "<group>"; };
 		796F03712B5B257400F44E26 /* GPWUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserViewModel.swift; sourceTree = "<group>"; };
+		79700E182B6AE5460066F68C /* Saira.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Saira.ttf; sourceTree = "<group>"; };
+		79700E192B6AE5460066F68C /* Saira-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-Italic.ttf"; sourceTree = "<group>"; };
+		79700E202B6AEC5F0066F68C /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		797949E32B5C806900751A42 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
 		79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWAppDelegate.swift; sourceTree = "<group>"; };
 		79ABECF82B551B6100C15D0C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -230,6 +236,32 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		79700E1C2B6AEBFA0066F68C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				79700E1F2B6AEC430066F68C /* Resources */,
+				79700E1E2B6AEC3D0066F68C /* Extensions */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		79700E1E2B6AEC3D0066F68C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				79700E202B6AEC5F0066F68C /* Font.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79700E1F2B6AEC430066F68C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				79700E192B6AE5460066F68C /* Saira-Italic.ttf */,
+				79700E182B6AE5460066F68C /* Saira.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		79ABECF32B551A5800C15D0C /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +353,7 @@
 		79DFFB782B5D4D810052AB59 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				79700E1C2B6AEBFA0066F68C /* Fonts */,
 				79DFFB792B5D4D8A0052AB59 /* Buttons */,
 			);
 			path = UI;
@@ -352,9 +385,9 @@
 			children = (
 				79DFFB812B5D4E210052AB59 /* GPWBnWBorderedButtonStyle.swift */,
 				79DFFB822B5D4E210052AB59 /* GPWBnWFlatButtonStyle.swift */,
-				79DFFB832B5D4E210052AB59 /* GPWPlainButtonStyle.swift */,
-				79DFFB842B5D4E210052AB59 /* GPWFlatButtonStyle.swift */,
 				79DFFB852B5D4E210052AB59 /* GPWBnWPlainButtonStyle.swift */,
+				79DFFB842B5D4E210052AB59 /* GPWFlatButtonStyle.swift */,
+				79DFFB832B5D4E210052AB59 /* GPWPlainButtonStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -435,9 +468,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				796F03662B5B18D900F44E26 /* Shared Assets.xcassets in Resources */,
+				79700E1B2B6AE5460066F68C /* Saira-Italic.ttf in Resources */,
 				795464112B53FFF600618ACA /* Preview Assets.xcassets in Resources */,
 				7954640D2B53FFF600618ACA /* Assets.xcassets in Resources */,
 				79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */,
+				79700E1A2B6AE5460066F68C /* Saira.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +511,7 @@
 				79DFFB8C2B5D4E210052AB59 /* GPWBnWFlatButtonStyle.swift in Sources */,
 				796F036D2B5B245500F44E26 /* GPWUserProfileView.swift in Sources */,
 				79DFFB8A2B5D4E210052AB59 /* ButtonStyle+gpwBnWPlain.swift in Sources */,
+				79700E212B6AEC5F0066F68C /* Font.swift in Sources */,
 				79DFFB862B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift in Sources */,
 				796F03722B5B257400F44E26 /* GPWUserViewModel.swift in Sources */,
 				79DFFB872B5D4E210052AB59 /* ButtonStyle+gpwBnWFlat.swift in Sources */,

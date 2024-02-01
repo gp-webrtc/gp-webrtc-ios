@@ -26,6 +26,9 @@ public struct GPWPlainButtonStyle: ButtonStyle {
     struct GPWButton: View {
         let configuration: ButtonStyle.Configuration
 
+        @ScaledMetric(relativeTo: .body) private var scaledButtonHPadding = 32
+        @ScaledMetric(relativeTo: .body) private var scaledButtonVPadding = 16
+
         @Environment(\.isEnabled) private var isEnabled: Bool
 
         var foregroundColor: Color {
@@ -58,10 +61,10 @@ public struct GPWPlainButtonStyle: ButtonStyle {
 
         func button(configuration: ButtonStyle.Configuration) -> some View {
             configuration.label
-                .font(.body.weight(.semibold))
+                .font(.gpwBody.weight(.semibold))
                 .foregroundColor(foregroundColor)
-                .padding(.horizontal, 32)
-                .padding(.vertical)
+                .padding(.horizontal, scaledButtonHPadding)
+                .padding(.vertical, scaledButtonVPadding)
                 .background(backgroundColor)
                 .cornerRadius(8)
         }

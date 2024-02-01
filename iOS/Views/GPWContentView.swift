@@ -51,13 +51,11 @@ struct GPWContentView: View {
                             Button(action: signInAnonymously) {
                                 HStack {
                                     Spacer()
-                                    Text("Sign in anonymously")
-                                        .bold()
+                                    Text("Join the republik")
                                     Spacer()
                                 }
-                                .padding()
                             }
-                            .buttonStyle(.borderedProminent)
+                            .buttonStyle(.gpwPlain)
                         } else {
                             ProgressView {
                                 Text("Loading ...")

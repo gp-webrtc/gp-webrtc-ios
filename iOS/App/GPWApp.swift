@@ -43,6 +43,7 @@ struct GPWApp: App {
     var body: some Scene {
         WindowGroup {
             GPWContentView()
+                .environment(\.font, .gpwBody)
         }
         .modelContainer(sharedModelContainer)
     }

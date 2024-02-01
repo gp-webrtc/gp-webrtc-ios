@@ -82,7 +82,7 @@ private extension GPWUserAccountView {
                 image
                     .frame(width: 32, alignment: .leading)
                 Text(title)
-                    .font(.headline)
+                    .font(.gpwHeadline)
                     .fontWeight(.semibold)
                 Spacer()
             }
@@ -92,7 +92,7 @@ private extension GPWUserAccountView {
     struct GPWNavigationCell: View {
         let title: String
         let image: Image
-        let destination: GPWUserProfileView.GPWDestination
+        let destination: GPWUserMainView.GPWDestination
 
         var body: some View {
             NavigationLink(value: destination) {

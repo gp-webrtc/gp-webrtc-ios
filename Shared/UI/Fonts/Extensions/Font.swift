@@ -22,13 +22,16 @@
 
 import SwiftUI
 
-struct GPWUserChatListView: View {
-    var body: some View {
-        Text("Chats")
-            .navigationTitle("Chats")
-    }
-}
-
-#Preview {
-    GPWUserChatListView()
+extension Font {
+    static let gpwLargeTitle = Font.custom("Saira", size: 34, relativeTo: .largeTitle)
+    static let gpwTitle = Font.custom("Saira", size: 28, relativeTo: .title)
+    static let gpwTitle2 = Font.custom("Saira", size: 22, relativeTo: .title2)
+    static let gpwTitle3 = Font.custom("Saira", size: 20, relativeTo: .title3)
+    static let gpwHeadline = Font.custom("Saira", size: 17, relativeTo: .headline)
+    static let gpwSubheadline = Font.custom("Saira", size: 15, relativeTo: .subheadline)
+    static let gpwBody = Font.custom("Saira", size: 17, relativeTo: .body)
+    static let gpwCallout = Font.custom("Saira", size: 16, relativeTo: .callout)
+    static let gpwFootnote = Font.custom("Saira", size: 13, relativeTo: .footnote)
+    static let gpwCaption = Font.custom("Saira", size: 12, relativeTo: .caption)
+    static let gpwCaption2 = Font.custom("Saira", size: 11, relativeTo: .caption2)
 }

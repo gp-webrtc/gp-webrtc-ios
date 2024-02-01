@@ -26,8 +26,6 @@ import SwiftUI
 struct GPWUserProfileView: View {
     @EnvironmentObject private var user: GPWUserViewModel
 
-    @State private var path = NavigationPath()
-
     private var userMenu: some View {
         VStack(spacing: 0) {
             GPWCell(title: "Account", image: Image(systemName: "person"), destination: .userAccount)
@@ -38,7 +36,7 @@ struct GPWUserProfileView: View {
                 .background(Color.gray)
                 .padding(.horizontal)
 
-//            GPWCell(title: "Help", image: Image(systemName: "questionmark.circle"), destination: .help)
+            //            GPWCell(title: "Help", image: Image(systemName: "questionmark.circle"), destination: .help)
             GPWCell(title: "About", image: Image(systemName: "info.circle"), destination: .about)
         }
         .overlay {
@@ -57,6 +55,8 @@ struct GPWUserProfileView: View {
                 .foregroundColor(.accentColor)
 
             Text(user.displayName)
+                .font(.gpwTitle)
+                .bold()
 
             Spacer()
 
@@ -65,21 +65,9 @@ struct GPWUserProfileView: View {
     }
 
     var body: some View {
-        NavigationStack(path: $path) {
-            content
-                .padding()
-                .padding(.vertical)
-                .navigationTitle("Profile")
-                .navigationBarHidden(true)
-                .navigationDestination(for: GPWDestination.self) { destination in
-                    switch destination {
-                        case .userAccount: GPWUserAccountView()
-                        case .userDevices: GPWUserDevicesView()
-                        case .settings: GPWSetttingsScreen()
-                        case .about: GPWAboutScreen()
-                    }
-                }
-        }
+        content
+            .padding()
+            .padding(.vertical)
     }
 }
 
@@ -87,7 +75,7 @@ extension GPWUserProfileView {
     private struct GPWCell: View {
         let title: String
         let image: Image
-        let destination: GPWDestination
+        let destination: GPWUserMainView.GPWDestination
 
         var body: some View {
             NavigationLink(value: destination) {
@@ -95,7 +83,7 @@ extension GPWUserProfileView {
                     image
                         .frame(width: 32, alignment: .leading)
                     Text(title)
-                        .font(.headline)
+                        .font(.gpwHeadline)
                         .fontWeight(.semibold)
                     Spacer()
                     Image(systemName: "chevron.right")
@@ -105,15 +93,6 @@ extension GPWUserProfileView {
             }
             .tint(.black)
         }
-    }
-}
-
-extension GPWUserProfileView {
-    enum GPWDestination: Hashable {
-        case userAccount
-        case userDevices
-        case settings
-        case about
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79506B6C2B6D0860009AFD76 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79506B6B2B6D0860009AFD76 /* GPWCloudKit */; };
 		795464072B53FFF500618ACA /* GPWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464062B53FFF500618ACA /* GPWApp.swift */; };
 		795464092B53FFF500618ACA /* GPWContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464082B53FFF500618ACA /* GPWContentView.swift */; };
 		7954640B2B53FFF500618ACA /* GPItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954640A2B53FFF500618ACA /* GPItem.swift */; };
@@ -21,7 +22,6 @@
 		79700E1A2B6AE5460066F68C /* Saira.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E182B6AE5460066F68C /* Saira.ttf */; };
 		79700E1B2B6AE5460066F68C /* Saira-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E192B6AE5460066F68C /* Saira-Italic.ttf */; };
 		79700E212B6AEC5F0066F68C /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79700E202B6AEC5F0066F68C /* Font.swift */; };
-		79ABCEBC2B5B0C6E00823B28 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79ABCEBB2B5B0C6E00823B28 /* GPWCloudKit */; };
 		79ABECF22B5519EA00C15D0C /* GPWAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */; };
 		79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79ABECFD2B552ABE00C15D0C /* GoogleService-Info.plist */; };
 		79ABED0B2B55457400C15D0C /* GPWUserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED0A2B55457400C15D0C /* GPWUserMainView.swift */; };
@@ -30,6 +30,7 @@
 		79ABED112B55517700C15D0C /* GPWCameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED102B55517700C15D0C /* GPWCameraService.swift */; };
 		79ABED142B5552DE00C15D0C /* GPWCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED132B5552DE00C15D0C /* GPWCameraView.swift */; };
 		79ABED162B55541900C15D0C /* GPWViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED152B55541900C15D0C /* GPWViewfinderView.swift */; };
+		79C06F312B6CDBAD00C90DC3 /* GPStorageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79C06F302B6CDBAD00C90DC3 /* GPStorageKit */; };
 		79DFFB862B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB7B2B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift */; };
 		79DFFB872B5D4E210052AB59 /* ButtonStyle+gpwBnWFlat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB7C2B5D4E210052AB59 /* ButtonStyle+gpwBnWFlat.swift */; };
 		79DFFB882B5D4E210052AB59 /* ButtonStyle+gpwFlat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB7D2B5D4E210052AB59 /* ButtonStyle+gpwFlat.swift */; };
@@ -62,7 +63,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		793E7B082B5ACE1A000CC08A /* swift-cloud-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "swift-cloud-kit"; sourceTree = "<group>"; };
 		795464032B53FFF500618ACA /* Republik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Republik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		795464062B53FFF500618ACA /* GPWApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWApp.swift; sourceTree = "<group>"; };
 		795464082B53FFF500618ACA /* GPWContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +93,8 @@
 		79ABED102B55517700C15D0C /* GPWCameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCameraService.swift; sourceTree = "<group>"; };
 		79ABED132B5552DE00C15D0C /* GPWCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCameraView.swift; sourceTree = "<group>"; };
 		79ABED152B55541900C15D0C /* GPWViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWViewfinderView.swift; sourceTree = "<group>"; };
+		79C06F322B6CDBCD00C90DC3 /* gp-swift-cloud-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "gp-swift-cloud-kit"; sourceTree = "<group>"; };
+		79C06F332B6CDC2C00C90DC3 /* gp-swift-storage-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "gp-swift-storage-kit"; path = "../../../gpfister/gp-swift-storage-kit"; sourceTree = "<group>"; };
 		79DFFB7B2B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ButtonStyle+gpwPlain.swift"; sourceTree = "<group>"; };
 		79DFFB7C2B5D4E210052AB59 /* ButtonStyle+gpwBnWFlat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ButtonStyle+gpwBnWFlat.swift"; sourceTree = "<group>"; };
 		79DFFB7D2B5D4E210052AB59 /* ButtonStyle+gpwFlat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ButtonStyle+gpwFlat.swift"; sourceTree = "<group>"; };
@@ -116,7 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79ABCEBC2B5B0C6E00823B28 /* GPWCloudKit in Frameworks */,
+				79506B6C2B6D0860009AFD76 /* GPWCloudKit in Frameworks */,
+				79C06F312B6CDBAD00C90DC3 /* GPStorageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,7 +129,8 @@
 		793E7B072B5ACC6B000CC08A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				793E7B082B5ACE1A000CC08A /* swift-cloud-kit */,
+				79C06F332B6CDC2C00C90DC3 /* gp-swift-storage-kit */,
+				79C06F322B6CDBCD00C90DC3 /* gp-swift-cloud-kit */,
 			);
 			path = Packages;
 			sourceTree = "<group>";
@@ -418,7 +422,8 @@
 			);
 			name = "Republik (iOS)";
 			packageProductDependencies = (
-				79ABCEBB2B5B0C6E00823B28 /* GPWCloudKit */,
+				79C06F302B6CDBAD00C90DC3 /* GPStorageKit */,
+				79506B6B2B6D0860009AFD76 /* GPWCloudKit */,
 			);
 			productName = WebRTC;
 			productReference = 795464032B53FFF500618ACA /* Republik.app */;
@@ -451,7 +456,8 @@
 			mainGroup = 795463FA2B53FFF500618ACA;
 			packageReferences = (
 				793E7B062B5A72AC000CC08A /* XCRemoteSwiftPackageReference "WebRTC" */,
-				793E7B092B5AE4A9000CC08A /* XCLocalSwiftPackageReference "Packages/swift-cloud-kit" */,
+				79C06F2F2B6CDBAD00C90DC3 /* XCRemoteSwiftPackageReference "gp-swift-storage-kit" */,
+				79506B6A2B6D0860009AFD76 /* XCLocalSwiftPackageReference "Packages/gp-swift-cloud-kit" */,
 			);
 			productRefGroup = 795464042B53FFF500618ACA /* Products */;
 			projectDirPath = "";
@@ -767,9 +773,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		793E7B092B5AE4A9000CC08A /* XCLocalSwiftPackageReference "Packages/swift-cloud-kit" */ = {
+		79506B6A2B6D0860009AFD76 /* XCLocalSwiftPackageReference "Packages/gp-swift-cloud-kit" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "Packages/swift-cloud-kit";
+			relativePath = "Packages/gp-swift-cloud-kit";
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -782,12 +788,25 @@
 				minimumVersion = 120.0.0;
 			};
 		};
+		79C06F2F2B6CDBAD00C90DC3 /* XCRemoteSwiftPackageReference "gp-swift-storage-kit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gpfister/gp-swift-storage-kit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		79ABCEBB2B5B0C6E00823B28 /* GPWCloudKit */ = {
+		79506B6B2B6D0860009AFD76 /* GPWCloudKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GPWCloudKit;
+		};
+		79C06F302B6CDBAD00C90DC3 /* GPStorageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79C06F2F2B6CDBAD00C90DC3 /* XCRemoteSwiftPackageReference "gp-swift-storage-kit" */;
+			productName = GPStorageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

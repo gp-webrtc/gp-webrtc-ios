@@ -31,14 +31,18 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
     init() {}
 
     func get(_ documentPath: GPWCKFirestoreDocumentPath) async throws -> GPWCKDocument? {
-        let snapshot = try await documentPath.documentRef.getDocument()
+        do {
+            let snapshot = try await documentPath.documentRef.getDocument()
 
-        guard snapshot.exists else {
-            return nil
+            guard snapshot.exists else {
+                return nil
+            }
+
+            let doc = try snapshot.data(as: GPWCKDocument.self)
+            return doc
+        } catch {
+            throw GPWCKFirestoreError.unableToGetDocument(path: documentPath.string)
         }
-
-        let doc = try snapshot.data(as: GPWCKDocument.self)
-        return doc
     }
 
     func getAll(_ collectionPath: GPWCKFirestoreCollectionPath) async throws -> [GPWCKDocument] {
@@ -51,7 +55,21 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
 
             return docs
         } catch {
-            throw GPWCKFirestoreError(from: error)
+            throw GPWCKFirestoreError.unableToGetCollectionDocuments(path: collectionPath.string)
+        }
+    }
+
+    func getSome(_ collectionPath: GPWCKFirestoreCollectionPath) async throws -> [GPWCKDocument] {
+        do {
+            let snapshots = try await collectionPath.collectionRef.getDocuments()
+
+            let docs = snapshots.documents.compactMap { doc -> GPWCKDocument?
+                in try? doc.data(as: GPWCKDocument.self)
+            }
+
+            return docs
+        } catch {
+            throw GPWCKFirestoreError.unableToGetCollectionDocuments(path: collectionPath.string)
         }
     }
 
@@ -61,7 +79,10 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
     ) -> GPWCKSnapshotListener {
         documentPath.documentRef.addSnapshotListener { snapshot, error in
             if let error {
-                callback(nil, GPWCKFirestoreError(from: error))
+                #if DEBUG
+                Logger().error("Unable to listen to document snapshort due to Firestore error: \(error.localizedDescription)")
+                #endif
+                callback(nil, GPWCKFirestoreError.unableToListenToDocumentChanges(path: documentPath.string))
                 return
             }
 
@@ -91,7 +112,10 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
     ) -> GPWCKSnapshotListener {
         collectionPath.collectionRef.addSnapshotListener { snapshot, error in
             if let error {
-                callback([], GPWCKFirestoreError(from: error))
+                #if DEBUG
+                Logger().error("GPWCKFirestoreService: Unable to listen to collection snapshort due to Firestore error: \(error.localizedDescription)")
+                #endif
+                callback([], GPWCKFirestoreError.unableToListenToCollectionChanges(path: collectionPath.string))
                 return
             }
 
@@ -107,7 +131,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
                     return document
                 } catch {
                     #if DEBUG
-                    Logger().debug("Unable to parse data: \(error.localizedDescription)")
+                    Logger().debug("GPWCKFirestoreService: Unable to parse data: \(error.localizedDescription)")
                     #endif
                     return nil
                 }
@@ -123,7 +147,10 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
     ) -> GPWCKSnapshotListener {
         query.addSnapshotListener { snapshot, error in
             if let error {
-                callback([], GPWCKFirestoreError(from: error))
+                #if DEBUG
+                Logger().error("GPWCKFirestoreService: Unable to listen to query snapshort due to Firestore error: \(error.localizedDescription)")
+                #endif
+                callback([], GPWCKFirestoreError.unableToListenToQueryChanges(query: query.debugDescription))
                 return
             }
 

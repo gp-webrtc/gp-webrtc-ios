@@ -38,37 +38,61 @@ struct GPWContentView: View {
         }
     }
 
+    private var splash: some View {
+        VStack {
+            ZStack {
+                HStack {
+                    Text("Republik\nof free speech")
+                        .font(.custom("Tourney", size: 34, relativeTo: .largeTitle))
+                        .foregroundStyle(.accent)
+                    Spacer()
+                }
+                .padding()
+            }
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .overlay {
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(style: StrokeStyle(lineWidth: 1))
+                    .shadow(radius: 1)
+            }
+            .padding()
+            .padding(.top, 48)
+
+            Spacer()
+
+            ZStack {
+                if userAccount.authState == .signedOut {
+                    Button(action: signInAnonymously) {
+                        HStack {
+                            Spacer()
+                            Text("Join now, we need you !")
+                            Spacer()
+                        }
+                    }
+                    .buttonStyle(.gpwPlain)
+                } else {
+                    ProgressView {
+                        Text("Loading ...")
+                            .foregroundStyle(.white)
+                    }
+                }
+            }
+
+            .padding()
+            .padding(.bottom)
+        }
+        .background(Image("GPWSplashScreen").resizable().scaledToFill())
+        .ignoresSafeArea()
+    }
+
     var body: some View {
         ZStack {
             if userAccount.authState == .signedIn {
                 GPWUserMainView()
                     .environmentObject(userAccount)
             } else {
-                VStack {
-                    Spacer()
-                    ZStack {
-                        if userAccount.authState == .signedOut {
-                            Button(action: signInAnonymously) {
-                                HStack {
-                                    Spacer()
-                                    Text("Join the republik")
-                                    Spacer()
-                                }
-                            }
-                            .buttonStyle(.gpwPlain)
-                        } else {
-                            ProgressView {
-                                Text("Loading ...")
-                                    .foregroundStyle(.white)
-                            }
-                        }
-                    }
-
-                    .padding()
-                    .padding(.bottom)
-                }
-                .background(Image("GPWSplashScreen").resizable().scaledToFill())
-                .ignoresSafeArea()
+                splash
             }
         }
         .onAppear {

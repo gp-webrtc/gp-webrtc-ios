@@ -6,6 +6,8 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Tourney.ttf</string>
+		<string>Tourney-Italic.ttf</string>
 		<string>Saira.ttf</string>
 		<string>Saira-Italic.ttf</string>
 	</array>

@@ -32,13 +32,13 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
 
     func get(_ documentPath: GPWCKFirestoreDocumentPath) async throws -> GPWCKDocument? {
         do {
-            let snapshot = try await documentPath.documentRef.getDocument()
+            let document = try await documentPath.documentRef.getDocument()
 
-            guard snapshot.exists else {
+            guard document.exists else {
                 return nil
             }
 
-            let doc = try snapshot.data(as: GPWCKDocument.self)
+            let doc = try document.data(as: GPWCKDocument.self)
             return doc
         } catch {
             throw GPWCKFirestoreError.unableToGetDocument(path: documentPath.string)
@@ -47,9 +47,9 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
 
     func getAll(_ collectionPath: GPWCKFirestoreCollectionPath) async throws -> [GPWCKDocument] {
         do {
-            let snapshots = try await collectionPath.collectionRef.getDocuments()
+            let documents = try await collectionPath.collectionRef.getDocuments()
 
-            let docs = snapshots.documents.compactMap { doc -> GPWCKDocument?
+            let docs = documents.documents.compactMap { doc -> GPWCKDocument?
                 in try? doc.data(as: GPWCKDocument.self)
             }
 
@@ -59,17 +59,17 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
         }
     }
 
-    func getSome(_ collectionPath: GPWCKFirestoreCollectionPath) async throws -> [GPWCKDocument] {
+    func getSome(_ query: Query) async throws -> [GPWCKDocument] {
         do {
-            let snapshots = try await collectionPath.collectionRef.getDocuments()
+            let query = try await query.getDocuments()
 
-            let docs = snapshots.documents.compactMap { doc -> GPWCKDocument?
+            let docs = query.documents.compactMap { doc -> GPWCKDocument?
                 in try? doc.data(as: GPWCKDocument.self)
             }
 
             return docs
         } catch {
-            throw GPWCKFirestoreError.unableToGetCollectionDocuments(path: collectionPath.string)
+            throw GPWCKFirestoreError.unableToGetQueryDocuments(query: query.debugDescription)
         }
     }
 

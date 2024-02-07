@@ -1,6 +1,6 @@
 // swift-tools-version:5.9
 //
-// gp-webrtc/swift-cloud-kit
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -35,7 +35,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.20.0")),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.21.0")),
     ],
     targets: [
         .target(

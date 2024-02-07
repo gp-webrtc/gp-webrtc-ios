@@ -1,5 +1,5 @@
 //
-// gp-webrtc/swift-cloud-kit
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -79,9 +79,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
     ) -> GPWCKSnapshotListener {
         documentPath.documentRef.addSnapshotListener { snapshot, error in
             if let error {
-                #if DEBUG
-                Logger().error("Unable to listen to document snapshort due to Firestore error: \(error.localizedDescription)")
-                #endif
+                Logger().error("[GPWCKFirestoreService] Unable to listen to document snapshort due to Firestore error: \(error.localizedDescription)")
                 callback(nil, GPWCKFirestoreError.unableToListenToDocumentChanges(path: documentPath.string))
                 return
             }
@@ -112,9 +110,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
     ) -> GPWCKSnapshotListener {
         collectionPath.collectionRef.addSnapshotListener { snapshot, error in
             if let error {
-                #if DEBUG
-                Logger().error("GPWCKFirestoreService: Unable to listen to collection snapshort due to Firestore error: \(error.localizedDescription)")
-                #endif
+                Logger().error("[GPWCKFirestoreService] Unable to listen to collection snapshort due to Firestore error: \(error.localizedDescription)")
                 callback([], GPWCKFirestoreError.unableToListenToCollectionChanges(path: collectionPath.string))
                 return
             }
@@ -130,9 +126,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
                     let document = try document.data(as: GPWCKDocument.self)
                     return document
                 } catch {
-                    #if DEBUG
-                    Logger().debug("GPWCKFirestoreService: Unable to parse data: \(error.localizedDescription)")
-                    #endif
+                    Logger().debug("[GPWCKFirestoreService] Unable to parse data: \(error.localizedDescription)")
                     return nil
                 }
             }
@@ -147,9 +141,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
     ) -> GPWCKSnapshotListener {
         query.addSnapshotListener { snapshot, error in
             if let error {
-                #if DEBUG
-                Logger().error("GPWCKFirestoreService: Unable to listen to query snapshort due to Firestore error: \(error.localizedDescription)")
-                #endif
+                Logger().error("[GPWCKFirestoreService] Unable to listen to query snapshort due to Firestore error: \(error.localizedDescription)")
                 callback([], GPWCKFirestoreError.unableToListenToQueryChanges(query: query.debugDescription))
                 return
             }

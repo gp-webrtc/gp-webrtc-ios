@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,49 +20,18 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import SwiftUI
+#if canImport(FirebaseFunctions)
+import Foundation
 
-struct GPWUserDevicesView: View {
-    @StateObject private var userDevices = GPWUserDeviceListViewModel()
+struct GPWCKUserFCMRegistrationTokenDeletionBody {
+    let userId: String
+    let tokenId: String
 
-    var body: some View {
-        List(userDevices.devices) { userDevice in
-            GPWCell(title: userDevice.displayName, image: Image(systemName: "iphone.gen3"))
-        }
-        .navigationTitle("Devices")
+    var dictionary: [String: Any] {
+        [
+            "userId": userId,
+            "tokenId": tokenId,
+        ]
     }
 }
-
-private extension GPWUserDevicesView {
-    struct GPWCell: View {
-        let title: String
-        let image: Image
-
-        var body: some View {
-            HStack(spacing: 16) {
-                image
-                    .frame(width: 32, alignment: .leading)
-                Text(title)
-                    .font(.gpwHeadline)
-                    .fontWeight(.semibold)
-                Spacer()
-            }
-        }
-    }
-
-    struct GPWNavigationCell: View {
-        let title: String
-        let image: Image
-        let destination: GPWUserMainView.GPWDestination
-
-        var body: some View {
-            NavigationLink(value: destination) {
-                GPWCell(title: title, image: image)
-            }
-        }
-    }
-}
-
-#Preview {
-    GPWUserDevicesView()
-}
+#endif

@@ -1,5 +1,5 @@
 //
-// gp-webrtc/swift-cloud-kit
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -24,13 +24,6 @@
 import FirebaseSharedSwift
 import Foundation
 
-/// Wraps the Firestore API to access user document ``GPWCKUser``
-///
-/// The user document can be read or updated, however it cannot be deleted. To do so, use
-/// ``GPWCKAuthService/deleteUser(confirmationPassword:)``.
-///
-/// The user document holds the user public profile ``GPWCKUserPublicProfile``.
-///
 public struct GPWCKUserService {
     public static var shared: GPWCKUserService {
         if let instance {

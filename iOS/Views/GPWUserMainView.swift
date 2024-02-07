@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc-ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -24,6 +24,7 @@ import SwiftUI
 
 struct GPWUserMainView: View {
     @StateObject private var user = GPWUserViewModel()
+    @StateObject private var userNotification = GPWUserNotificationViewModel()
 
     @State private var selectedTab = GPWTab.contactList
     @State private var path = NavigationPath()
@@ -50,6 +51,7 @@ struct GPWUserMainView: View {
         }
         .onAppear {
             user.subscribe(userId: userId)
+            userNotification.subscribe(userId: userId)
         }
     }
 
@@ -63,7 +65,7 @@ struct GPWUserMainView: View {
                         .navigationDestination(for: GPWDestination.self) { destination in
                             switch destination {
                                 case .userAccount: GPWUserAccountView()
-                                case .userDevices: GPWUserDevicesView()
+                                case .userDeviceList: GPWUserDeviceListView()
                                 case .settings: GPWSetttingsScreen()
                                 case .about: GPWAboutScreen()
                             }
@@ -116,7 +118,7 @@ private extension GPWUserMainView {
 extension GPWUserMainView {
     enum GPWDestination: Hashable {
         case userAccount
-        case userDevices
+        case userDeviceList
         case settings
         case about
     }

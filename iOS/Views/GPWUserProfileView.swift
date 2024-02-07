@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc-ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -29,7 +29,7 @@ struct GPWUserProfileView: View {
     private var userMenu: some View {
         VStack(spacing: 0) {
             GPWCell(title: "Account", image: Image(systemName: "person"), destination: .userAccount)
-            GPWCell(title: "Devices", image: Image(systemName: "smartphone"), destination: .userDevices)
+            GPWCell(title: "Devices", image: Image(systemName: "smartphone"), destination: .userDeviceList)
             GPWCell(title: "Settings", image: Image(systemName: "slider.horizontal.3"), destination: .settings)
 
             Divider()
@@ -77,6 +77,8 @@ extension GPWUserProfileView {
         let image: Image
         let destination: GPWUserMainView.GPWDestination
 
+        @Environment(\.colorScheme) private var colorScheme
+
         var body: some View {
             NavigationLink(value: destination) {
                 HStack {
@@ -91,7 +93,7 @@ extension GPWUserProfileView {
                 }
                 .padding()
             }
-            .tint(.black)
+            .tint(colorScheme == .light ? .black : .white)
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-// gp-webrtc/swift-cloud-kit
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -42,9 +42,9 @@ public class GPWCKCloudMessagingService: NSObject, MessagingDelegate {
                     Messaging.messaging().setAPNSToken(_apnsToken, type: .prod)
                     //                        Messaging.messaging().token { token, error in
                     //                            if let error {
-                    //                                Logger().error("GPWCKCloudMessagingService could not fetch FCM registration token: \(error)")
+                    //                                Logger().error("[GPWCKCloudMessagingService] Could not fetch FCM registration token: \(error)")
                     //                            } else if let token {
-                    //                                Logger().debug("GPWCKCloudMessagingService received FCM registration token: \(token)")
+                    //                                Logger().debug("[GPWCKCloudMessagingService] Received FCM registration token: \(token)")
                     //                            }
                     //                        }
                 }
@@ -62,10 +62,10 @@ public class GPWCKCloudMessagingService: NSObject, MessagingDelegate {
         Messaging.messaging().isAutoInitEnabled = true
     }
 
-    public func messaging(_: Messaging, didReceiveRegistrationToken _: String?) {
-//        Task {
+    public func messaging(_: Messaging, didReceiveRegistrationToken token: String?) {
+        Task {
 //            do {
-//                Logger().info("GPWCKCloudMessagingService received FCM registration token: \(token ?? "nil")")
+            Logger().info("[GPWCKCloudMessagingService] Received FCM registration token: \(token ?? "nil")")
 //                if let token {
 //                    try await GPWCKUserFCMRegistrationTokenService()
 //                        .insertOrUpdate(token, userId: self.userId, tokenId: self.tokenId)
@@ -74,9 +74,9 @@ public class GPWCKCloudMessagingService: NSObject, MessagingDelegate {
 //                        .delete(tokenId, userId: userId)
 //                }
 //            } catch {
-//                Logger().error("GPWCKCloudMessagingService could not \(token != nil ? "insert or update" : "delete") token: \(error.localizedDescription)")
+//                Logger().error("[GPWCKCloudMessagingService] could not \(token != nil ? "insert or update" : "delete") token: \(error.localizedDescription)")
 //            }
-//        }
+        }
     }
 
     public func appDidReceiveMessage(_ message: [AnyHashable: Any]) {

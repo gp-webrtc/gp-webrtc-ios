@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc-ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -37,12 +37,12 @@ class GPWUserViewModel: ObservableObject {
         if snapshotListner == nil {
             snapshotListner = userService.documentSnapshot(userId) { user, error in
                 if let error {
-                    Logger().error("GPWUserViewModel: Unable to subscribe to user profile changes: \(error.localizedDescription)")
+                    Logger().error("[GPWUserViewModel] Unable to subscribe to user profile changes: \(error.localizedDescription)")
                     return
                 }
 
                 guard let user else {
-                    Logger().error("GPWUserViewModel: Received not user data")
+                    Logger().error("[GPWUserViewModel] Received not user data")
                     return
                 }
 

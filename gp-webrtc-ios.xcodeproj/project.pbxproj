@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		792CDEEC2B74009C0048EB5D /* GPWUserNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEEB2B74009C0048EB5D /* GPWUserNotificationService.swift */; };
+		792CDEEF2B7401210048EB5D /* GPWUserNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEEE2B7401210048EB5D /* GPWUserNotificationViewModel.swift */; };
+		792CDEF32B7401E50048EB5D /* GPUserDefaultValues+userFCMRegistrationTokenId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userFCMRegistrationTokenId.swift */; };
+		792CDEF72B742C480048EB5D /* GPWUserNotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEF62B742C480048EB5D /* GPWUserNotificationError.swift */; };
 		79506B6C2B6D0860009AFD76 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79506B6B2B6D0860009AFD76 /* GPWCloudKit */; };
 		79506B712B6D2E7F009AFD76 /* Tourney-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79506B6F2B6D2E7F009AFD76 /* Tourney-Italic.ttf */; };
 		79506B722B6D2E7F009AFD76 /* Tourney.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79506B702B6D2E7F009AFD76 /* Tourney.ttf */; };
@@ -44,7 +48,7 @@
 		79DFFB8E2B5D4E210052AB59 /* GPWFlatButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB842B5D4E210052AB59 /* GPWFlatButtonStyle.swift */; };
 		79DFFB8F2B5D4E210052AB59 /* GPWBnWPlainButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB852B5D4E210052AB59 /* GPWBnWPlainButtonStyle.swift */; };
 		79DFFB912B5D96B10052AB59 /* GPWUserAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB902B5D96B10052AB59 /* GPWUserAccountView.swift */; };
-		79DFFB932B5D99420052AB59 /* GPWUserDevicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB922B5D99420052AB59 /* GPWUserDevicesView.swift */; };
+		79DFFB932B5D99420052AB59 /* GPWUserDeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB922B5D99420052AB59 /* GPWUserDeviceListView.swift */; };
 		79DFFB962B5D99660052AB59 /* GPWSetttingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB952B5D99660052AB59 /* GPWSetttingsScreen.swift */; };
 		79DFFB982B5D99720052AB59 /* GPWAboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB972B5D99720052AB59 /* GPWAboutScreen.swift */; };
 		79DFFB9A2B5DA56A0052AB59 /* GPWUserDeviceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB992B5DA56A0052AB59 /* GPWUserDeviceListViewModel.swift */; };
@@ -65,6 +69,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		792CDEEB2B74009C0048EB5D /* GPWUserNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationService.swift; sourceTree = "<group>"; };
+		792CDEEE2B7401210048EB5D /* GPWUserNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationViewModel.swift; sourceTree = "<group>"; };
+		792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userFCMRegistrationTokenId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPUserDefaultValues+userFCMRegistrationTokenId.swift"; sourceTree = "<group>"; };
+		792CDEF62B742C480048EB5D /* GPWUserNotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationError.swift; sourceTree = "<group>"; };
 		79506B6F2B6D2E7F009AFD76 /* Tourney-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tourney-Italic.ttf"; sourceTree = "<group>"; };
 		79506B702B6D2E7F009AFD76 /* Tourney.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tourney.ttf; sourceTree = "<group>"; };
 		795464032B53FFF500618ACA /* Republik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Republik.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +118,7 @@
 		79DFFB842B5D4E210052AB59 /* GPWFlatButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWFlatButtonStyle.swift; sourceTree = "<group>"; };
 		79DFFB852B5D4E210052AB59 /* GPWBnWPlainButtonStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWBnWPlainButtonStyle.swift; sourceTree = "<group>"; };
 		79DFFB902B5D96B10052AB59 /* GPWUserAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserAccountView.swift; sourceTree = "<group>"; };
-		79DFFB922B5D99420052AB59 /* GPWUserDevicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserDevicesView.swift; sourceTree = "<group>"; };
+		79DFFB922B5D99420052AB59 /* GPWUserDeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserDeviceListView.swift; sourceTree = "<group>"; };
 		79DFFB952B5D99660052AB59 /* GPWSetttingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWSetttingsScreen.swift; sourceTree = "<group>"; };
 		79DFFB972B5D99720052AB59 /* GPWAboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWAboutScreen.swift; sourceTree = "<group>"; };
 		79DFFB992B5DA56A0052AB59 /* GPWUserDeviceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserDeviceListViewModel.swift; sourceTree = "<group>"; };
@@ -130,6 +138,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		792CDEEA2B74007E0048EB5D /* User Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				792CDEF42B742C330048EB5D /* Models */,
+				792CDEF12B7401D80048EB5D /* Extensions */,
+				792CDEF02B7401380048EB5D /* View Models */,
+				792CDEED2B74009F0048EB5D /* Services */,
+			);
+			path = "User Notifications";
+			sourceTree = "<group>";
+		};
+		792CDEED2B74009F0048EB5D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				792CDEEB2B74009C0048EB5D /* GPWUserNotificationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		792CDEF02B7401380048EB5D /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				792CDEEE2B7401210048EB5D /* GPWUserNotificationViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		792CDEF12B7401D80048EB5D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userFCMRegistrationTokenId.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		792CDEF42B742C330048EB5D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				792CDEF52B742C390048EB5D /* Errors */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		792CDEF52B742C390048EB5D /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				792CDEF62B742C480048EB5D /* GPWUserNotificationError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		793E7B072B5ACC6B000CC08A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,8 +225,9 @@
 		795464052B53FFF500618ACA /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				79ABED172B559E3D00C15D0C /* Camera */,
 				79ABECF32B551A5800C15D0C /* App */,
+				79ABED172B559E3D00C15D0C /* Camera */,
+				792CDEEA2B74007E0048EB5D /* User Notifications */,
 				79ABECF72B551A7500C15D0C /* Resources */,
 				79ABECF42B551A6000C15D0C /* Views */,
 			);
@@ -291,7 +351,7 @@
 				79DFFB902B5D96B10052AB59 /* GPWUserAccountView.swift */,
 				796F036A2B5B243A00F44E26 /* GPWUserChatListView.swift */,
 				796F03682B5B241400F44E26 /* GPWUserContactListView.swift */,
-				79DFFB922B5D99420052AB59 /* GPWUserDevicesView.swift */,
+				79DFFB922B5D99420052AB59 /* GPWUserDeviceListView.swift */,
 				79ABED0A2B55457400C15D0C /* GPWUserMainView.swift */,
 				796F036C2B5B245500F44E26 /* GPWUserProfileView.swift */,
 			);
@@ -442,8 +502,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				CLASSPREFIX = GPW;
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
+				ORGANIZATIONNAME = "Greg PFISTER";
 				TargetAttributes = {
 					795464022B53FFF500618ACA = {
 						CreatedOnToolsVersion = 15.1;
@@ -502,17 +564,20 @@
 				796F036B2B5B243A00F44E26 /* GPWUserChatListView.swift in Sources */,
 				795464092B53FFF500618ACA /* GPWContentView.swift in Sources */,
 				79DFFB982B5D99720052AB59 /* GPWAboutScreen.swift in Sources */,
-				79DFFB932B5D99420052AB59 /* GPWUserDevicesView.swift in Sources */,
+				792CDEF32B7401E50048EB5D /* GPUserDefaultValues+userFCMRegistrationTokenId.swift in Sources */,
+				79DFFB932B5D99420052AB59 /* GPWUserDeviceListView.swift in Sources */,
 				79DFFB8E2B5D4E210052AB59 /* GPWFlatButtonStyle.swift in Sources */,
 				79ABED112B55517700C15D0C /* GPWCameraService.swift in Sources */,
 				79DFFB9A2B5DA56A0052AB59 /* GPWUserDeviceListViewModel.swift in Sources */,
 				79ABED162B55541900C15D0C /* GPWViewfinderView.swift in Sources */,
+				792CDEF72B742C480048EB5D /* GPWUserNotificationError.swift in Sources */,
 				79ABECF22B5519EA00C15D0C /* GPWAppDelegate.swift in Sources */,
 				79DFFB8B2B5D4E210052AB59 /* GPWBnWBorderedButtonStyle.swift in Sources */,
 				79DFFB882B5D4E210052AB59 /* ButtonStyle+gpwFlat.swift in Sources */,
 				7954640B2B53FFF500618ACA /* GPItem.swift in Sources */,
 				79DFFB9C2B5DA5D80052AB59 /* GPWUserDevice.swift in Sources */,
 				79DFFB912B5D96B10052AB59 /* GPWUserAccountView.swift in Sources */,
+				792CDEEF2B7401210048EB5D /* GPWUserNotificationViewModel.swift in Sources */,
 				795464072B53FFF500618ACA /* GPWApp.swift in Sources */,
 				79DFFB962B5D99660052AB59 /* GPWSetttingsScreen.swift in Sources */,
 				79ABED0D2B5547CD00C15D0C /* GPWCallSheet.swift in Sources */,
@@ -526,6 +591,7 @@
 				796F036D2B5B245500F44E26 /* GPWUserProfileView.swift in Sources */,
 				79DFFB8A2B5D4E210052AB59 /* ButtonStyle+gpwBnWPlain.swift in Sources */,
 				79700E212B6AEC5F0066F68C /* Font.swift in Sources */,
+				792CDEEC2B74009C0048EB5D /* GPWUserNotificationService.swift in Sources */,
 				79DFFB862B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift in Sources */,
 				796F03722B5B257400F44E26 /* GPWUserViewModel.swift in Sources */,
 				79DFFB872B5D4E210052AB59 /* ButtonStyle+gpwBnWFlat.swift in Sources */,
@@ -793,7 +859,7 @@
 			repositoryURL = "https://github.com/stasel/WebRTC.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 120.0.0;
+				minimumVersion = 121.0.0;
 			};
 		};
 		79C06F2F2B6CDBAD00C90DC3 /* XCRemoteSwiftPackageReference "gp-swift-storage-kit" */ = {

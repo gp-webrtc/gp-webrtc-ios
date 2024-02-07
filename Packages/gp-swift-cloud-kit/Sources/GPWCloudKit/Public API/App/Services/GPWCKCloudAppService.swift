@@ -1,5 +1,5 @@
 //
-// gp-webrtc/swift-cloud-kit
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -66,9 +66,7 @@ public class GPWCKCloudAppService {
 
     public func configure(withConfiguration configuration: GPWCKConfiguration, usingEmulatorConfig emulatorConfig: GPWCKEmulatorConfig? = nil) {
         guard _configuration == nil else {
-            #if DEBUG
-            Logger().error("GPWCloudKit has already been configured")
-            #endif
+            Logger().error("[GPWCKCloudAppService] GPWCloudKit has already been configured")
             return
         }
 
@@ -98,7 +96,7 @@ public class GPWCKCloudAppService {
             // Auth emulator
             #if canImport(FirebaseAuth)
             if let authEmulator = emulatorConfig.authEmulator {
-                Logger().info("GPWCloudKit will connect to Auth emulator on \(authEmulator.hostname):\(authEmulator.port ?? 9099)")
+                Logger().info("[GPWCKCloudAppService] GPWCloudKit will connect to Auth emulator on \(authEmulator.hostname):\(authEmulator.port ?? 9099)")
                 Auth.auth().useEmulator(withHost: authEmulator.hostname, port: authEmulator.port ?? 9099)
             }
             #endif
@@ -106,7 +104,7 @@ public class GPWCKCloudAppService {
             #if canImport(FirebaseFirestore)
             // Firestore Emulator
             if let firestoreEmulator = emulatorConfig.firestoreEmulator {
-                Logger().info("GPWCloudKit will connect to Firestore emulator on \(firestoreEmulator.hostname):\(firestoreEmulator.port ?? 8080)")
+                Logger().info("[GPWCKCloudAppService] GPWCloudKit will connect to Firestore emulator on \(firestoreEmulator.hostname):\(firestoreEmulator.port ?? 8080)")
                 let settings = Firestore.firestore().settings
                 settings.host = "\(firestoreEmulator.hostname):\(firestoreEmulator.port ?? 8080)"
                 settings.cacheSettings = MemoryCacheSettings()
@@ -118,7 +116,7 @@ public class GPWCKCloudAppService {
             #if canImport(FirebaseFunctions)
             // Functions emulator
             if let functionsEmulator = emulatorConfig.functionsEmulator {
-                Logger().info("GPWCloudKit will connect to Function emulator on \(functionsEmulator.hostname):\(functionsEmulator.port ?? 5001)")
+                Logger().info("[GPWCKCloudAppService] GPWCloudKit will connect to Function emulator on \(functionsEmulator.hostname):\(functionsEmulator.port ?? 5001)")
                 Functions.functions(region: functionsEmulator.region).useEmulator(withHost: functionsEmulator.hostname, port: functionsEmulator.port ?? 5001)
             }
             #endif
@@ -126,7 +124,7 @@ public class GPWCKCloudAppService {
             #if canImport(FirebaseStorage)
             // Storage emulator
             if let storageEmulator = emulatorConfig.storageEmulator {
-                Logger().info("GPWCloudKit will connectto Storage emulator on \(storageEmulator.hostname):\(storageEmulator.port ?? 5001)")
+                Logger().info("[GPWCKCloudAppService] GPWCloudKit will connectto Storage emulator on \(storageEmulator.hostname):\(storageEmulator.port ?? 5001)")
                 Storage.storage().useEmulator(withHost: storageEmulator.hostname, port: storageEmulator.port ?? 9199)
             }
             #endif

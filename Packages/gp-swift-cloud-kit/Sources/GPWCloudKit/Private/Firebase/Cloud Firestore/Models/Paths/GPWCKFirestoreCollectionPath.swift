@@ -1,5 +1,5 @@
 //
-// gp-webrtc/swift-cloud-kit
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -26,14 +26,14 @@ import Foundation
 
 enum GPWCKFirestoreCollectionPath {
     case users
-    case userDevices(userId: String)
+    case userDeviceList(userId: String)
     case userPublicKeys(userId: String)
 
     var string: String {
         switch self {
             case .users:
                 "/users"
-            case let .userDevices(userId):
+            case let .userDeviceList(userId):
                 "/users/\(userId)/devices"
             case let .userPublicKeys(userId):
                 "/users/\(userId)/publicKeys"

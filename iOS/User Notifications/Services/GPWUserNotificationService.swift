@@ -20,6 +20,7 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+import Combine
 import Foundation
 import GPWCloudKit
 import os.log
@@ -28,8 +29,14 @@ import UserNotifications
 
 class GPWUserNotificationService: NSObject, UNUserNotificationCenterDelegate {
     static var shared: GPWUserNotificationService {
-        GPWUserNotificationService()
+        if let _instance { return _instance }
+        else {
+            _instance = GPWUserNotificationService()
+            return _instance!
+        }
     }
+
+    private static var _instance: GPWUserNotificationService?
 
     private let cloudMessagingService: GPWCKCloudMessagingService
     private let userNotificationCenter = UNUserNotificationCenter.current()
@@ -49,6 +56,8 @@ class GPWUserNotificationService: NSObject, UNUserNotificationCenterDelegate {
         }
     }
 
+    var fcmRegistrationToken: AnyPublisher<String?, Never> { cloudMessagingService.fcmRegistrationToken }
+
     var apnsToken: Data? {
         get { cloudMessagingService.apnsToken }
         set { cloudMessagingService.apnsToken = newValue }
@@ -59,6 +68,7 @@ class GPWUserNotificationService: NSObject, UNUserNotificationCenterDelegate {
         if settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional {
             await withCheckedContinuation { continuation in
                 DispatchQueue.main.async {
+                    Logger().debug("[GPWUserNotificationService] Registering for remote notifications")
                     #if os(iOS)
                     UIApplication.shared.registerForRemoteNotifications()
                     #else
@@ -68,6 +78,7 @@ class GPWUserNotificationService: NSObject, UNUserNotificationCenterDelegate {
                 }
             }
         } else {
+            Logger().error("[GPWUserNotificationService] Unable to register for remote notifications: Not authorized (phone privacy settings)")
             throw GPWUserNotificationError.notAuthorized
         }
     }
@@ -76,8 +87,10 @@ class GPWUserNotificationService: NSObject, UNUserNotificationCenterDelegate {
         let settings = await userNotificationCenter.notificationSettings()
 
         if settings.authorizationStatus == .notDetermined {
+            Logger().debug("[GPWUserNotificationService] Request authorization for user notification")
             return try await userNotificationCenter.requestAuthorization(options: [.provisional, .alert, .badge, .sound, .criticalAlert])
         } else {
+            Logger().debug("[GPWUserNotificationService] Authorization have already been requested")
             return settings.authorizationStatus != .denied
         }
     }
@@ -115,12 +128,11 @@ extension GPWUserNotificationService {
         // Inform Cloud Messaging service
         cloudMessagingService.appDidReceiveMessage(userInfo)
 
-        if response.notification.request.content.categoryIdentifier == "USER_FRIEND_REQUEST_RECEIVED" {
+        if response.notification.request.content.categoryIdentifier == "USER_CALL_REQUEST" {
             // Retrieve the meeting details.
-            let userId = userInfo["userId"] as! String
-            let friendRequestId = userInfo["friendRequestId"] as! String
+            let callerId = userInfo["callerId"] as! String
 
-            Logger().debug("[GPWUserNotificationService] Received push notification USER_FRIEND_REQUEST_RECEIVED with user id = \(userId) and request id = \(friendRequestId)")
+            Logger().debug("[GPWUserNotificationService] Received push notification USER_CALL_REQUEST with user id = \(callerId)")
 
             //            switch response.actionIdentifier {
             //                case "ACCEPT_ACTION":

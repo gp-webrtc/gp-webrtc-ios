@@ -31,6 +31,7 @@ public struct GPWCKUser: GPWCKDocumentProtocol {
     public let displayName: String
     public let profilePicture: String?
     public let pinHash: String?
+    public let settings: GPWCKUserSettings
     public let creationDate: Date?
     public let modificationDate: Date?
 
@@ -43,6 +44,7 @@ public struct GPWCKUser: GPWCKDocumentProtocol {
         userId = user.userId
         displayName = decryptedData.displayName
         profilePicture = decryptedData.profilePicture
+        settings = user.settings
         pinHash = user.pinHash
         creationDate = user.creationDate
         modificationDate = user.modificationDate

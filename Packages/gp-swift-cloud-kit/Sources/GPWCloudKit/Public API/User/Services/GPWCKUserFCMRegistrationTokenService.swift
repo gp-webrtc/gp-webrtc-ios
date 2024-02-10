@@ -23,10 +23,54 @@
 #if canImport(FirebaseFunctions)
 import Foundation
 
-class GPWCKUserFCMRegistrationTokenService {
-    func insertOrUpdate(_ token: String, userId: String, tokenId: String) async throws {
-        let inserOrUpdateFCMRegistrationTokenFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("user-inserOrUpdateFCMRegistrationToken", in: "europe-west1")
-        try await inserOrUpdateFCMRegistrationTokenFunctionService
+public class GPWCKUserFCMRegistrationTokenService {
+    public static var shared: GPWCKUserFCMRegistrationTokenService {
+        if let _instance {
+            return _instance
+        } else {
+            _instance = GPWCKUserFCMRegistrationTokenService()
+            return _instance!
+        }
+    }
+
+    private static var _instance: GPWCKUserFCMRegistrationTokenService?
+
+    // MARK: - Cloud Firestore documents
+
+    private let firestoreService = GPWCKFirestoreService<GPWCKEncryptedUser>()
+
+    public func documentSnapshot(
+        _ userId: String,
+        onChanges callback: @escaping GPWCKDocumentSnapshotChangesHandler<GPWCKUser>
+    ) -> GPWCKSnapshotListener {
+        let snapshotListener = firestoreService.documentSnapshotListener(
+            .user(userId: userId)
+        ) { encryptedUser, error in
+            if let error {
+                callback(nil, error)
+                return
+            }
+            if let encryptedUser {
+                do {
+                    let user = try GPWCKUser(from: encryptedUser)
+                    callback(user, nil)
+                } catch {
+                    callback(nil, error)
+                }
+                return
+            } else {
+                callback(nil, nil)
+                return
+            }
+        }
+        return snapshotListener
+    }
+
+    // MARK: - Cloud Functions
+
+    public func insertOrUpdate(_ token: String, userId: String, tokenId: String) async throws {
+        let insertOrUpdateFCMRegistrationTokenFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("user-insertOrUpdateFCMRegistrationToken", in: "europe-west3")
+        try await insertOrUpdateFCMRegistrationTokenFunctionService
             .call(
                 GPWCKUserFCMRegistrationTokenInsertionOrUpdateBody(
                     userId: userId,
@@ -38,7 +82,7 @@ class GPWCKUserFCMRegistrationTokenService {
             )
     }
 
-    func delete(_ tokenId: String, userId: String) async throws {
+    public func delete(_ tokenId: String, userId: String) async throws {
         let approvePendingFriendRequestFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("user-deleteFCMRegistrationToken", in: "europe-west1")
         try await approvePendingFriendRequestFunctionService
             .call(

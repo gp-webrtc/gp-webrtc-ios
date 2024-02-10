@@ -23,13 +23,16 @@
 import Combine
 import Foundation
 import GPStorageKit
+import GPWCloudKit
 import os.log
 
 class GPWUserNotificationViewModel: ObservableObject {
     @GPSCPublishedUserDefault(\.userFCMRegistrationTokenId) private var userFCMRegistrationTokenId
 
+    private var token: String?
     private var cancellables = Set<AnyCancellable>()
     private var userNotificationService = GPWUserNotificationService.shared
+    private var userFCMRegistrationTokenService = GPWCKUserFCMRegistrationTokenService.shared
 
     init() {}
 
@@ -37,25 +40,31 @@ class GPWUserNotificationViewModel: ObservableObject {
         self.unsubcribe()
     }
 
-    func subscribe(userId _: String) {
-//        $userFCMRegistrationTokenId
-//            .sink { userFCMRegistrationTokenId in
-//                if userFCMRegistrationTokenId == nil {
-//                    let userFCMRegistrationTokenId = UUID().uuidString
-//                    self.userFCMRegistrationTokenId = userFCMRegistrationTokenId
-//                    Logger().debug("[GPWUserNotificationViewModel] userFCMRegistrationTokenId = \(userFCMRegistrationTokenId)")
-//                }
-//            }
-//            .store(in: &cancellables)
+    func subscribe(userId: String) {
+        userNotificationService.fcmRegistrationToken.combineLatest($userFCMRegistrationTokenId)
+            .sink { token, tokenId in
+                if token != self.token {
+                    if let token {
+                        let tokenId = tokenId ?? UUID().uuidString
+                        Task {
+                            do {
+                                Logger().debug("[GPWUserNotificationViewModel] Uploading FCM registration token")
+                                try await self.userFCMRegistrationTokenService.insertOrUpdate(token, userId: userId, tokenId: tokenId)
+                                self.token = token
+                                if self.userFCMRegistrationTokenId != tokenId { self.userFCMRegistrationTokenId = tokenId }
+                            } catch {
+                                Logger().error("[GPWUserNotificationViewModel] Unable to upload FCM register token: \(error.localizedDescription)")
+                            }
+                        }
+                    }
+                }
+            }
+            .store(in: &cancellables)
     }
 
     func unsubcribe() {
         for cancellable in cancellables {
             cancellable.cancel()
         }
-    }
-
-    func requestAuthorization() async throws -> Bool {
-        try await userNotificationService.requestAuthorization()
     }
 }

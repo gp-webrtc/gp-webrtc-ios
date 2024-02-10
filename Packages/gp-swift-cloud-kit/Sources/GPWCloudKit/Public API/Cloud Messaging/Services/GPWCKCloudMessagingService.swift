@@ -28,10 +28,15 @@ import SwiftUI
 import UserNotifications
 
 public class GPWCKCloudMessagingService: NSObject, MessagingDelegate {
-    //        public let userId: String
-    //        public let tokenId: String
-
     private var _apnsToken: Data?
+    private var fcmRegistrationTokenSubject = CurrentValueSubject<String?, Never>(nil)
+
+    override public init() {
+        super.init()
+
+        Messaging.messaging().delegate = self
+        Messaging.messaging().isAutoInitEnabled = true
+    }
 
     public var apnsToken: Data? {
         get { _apnsToken }
@@ -52,31 +57,11 @@ public class GPWCKCloudMessagingService: NSObject, MessagingDelegate {
         }
     }
 
-    override public init() {
-        //        public init(userId: String, tokenId: String) {
-        //            self.userId = userId
-        //            self.tokenId = tokenId
-        super.init()
-
-        Messaging.messaging().delegate = self
-        Messaging.messaging().isAutoInitEnabled = true
-    }
+    public var fcmRegistrationToken: AnyPublisher<String?, Never> { fcmRegistrationTokenSubject.eraseToAnyPublisher() }
 
     public func messaging(_: Messaging, didReceiveRegistrationToken token: String?) {
-        Task {
-//            do {
-            Logger().info("[GPWCKCloudMessagingService] Received FCM registration token: \(token ?? "nil")")
-//                if let token {
-//                    try await GPWCKUserFCMRegistrationTokenService()
-//                        .insertOrUpdate(token, userId: self.userId, tokenId: self.tokenId)
-//                } else {
-//                    try await GPWCKUserFCMRegistrationTokenService()
-//                        .delete(tokenId, userId: userId)
-//                }
-//            } catch {
-//                Logger().error("[GPWCKCloudMessagingService] could not \(token != nil ? "insert or update" : "delete") token: \(error.localizedDescription)")
-//            }
-        }
+        Logger().info("[GPWCKCloudMessagingService] Received FCM registration token: \(token ?? "nil")")
+        fcmRegistrationTokenSubject.send(token)
     }
 
     public func appDidReceiveMessage(_ message: [AnyHashable: Any]) {

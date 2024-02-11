@@ -151,6 +151,7 @@
 		791755082B77CFA6006A469E /* User Devices */ = {
 			isa = PBXGroup;
 			children = (
+				79C7EED52B79459B00118737 /* View Models */,
 				791755092B77CFEA006A469E /* Views */,
 			);
 			path = "User Devices";
@@ -367,6 +368,7 @@
 				796F03642B5B18C900F44E26 /* Resources */,
 				79DFFB782B5D4D810052AB59 /* UI */,
 				796F036E2B5B254500F44E26 /* User */,
+				79C7EED62B7945D900118737 /* User Local Device */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -416,7 +418,6 @@
 			isa = PBXGroup;
 			children = (
 				796F03712B5B257400F44E26 /* GPWUserViewModel.swift */,
-				79DFFB992B5DA56A0052AB59 /* GPWUserDeviceListViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -529,6 +530,21 @@
 				79ABED132B5552DE00C15D0C /* GPWCameraView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		79C7EED52B79459B00118737 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				79DFFB992B5DA56A0052AB59 /* GPWUserDeviceListViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		79C7EED62B7945D900118737 /* User Local Device */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "User Local Device";
 			sourceTree = "<group>";
 		};
 		79DFFB782B5D4D810052AB59 /* UI */ = {

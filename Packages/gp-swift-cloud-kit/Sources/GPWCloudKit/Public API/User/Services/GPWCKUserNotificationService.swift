@@ -24,40 +24,34 @@
 import FirebaseSharedSwift
 import Foundation
 
-public struct GPWCKUserDeviceService {
-    public static var shared: GPWCKUserDeviceService {
-        if let instance {
-            return instance
+public struct GPWCKUserNotificationService {
+    public static var shared: GPWCKUserNotificationService {
+        if let _instance {
+            return _instance
         } else {
-            let instance = GPWCKUserDeviceService()
-            GPWCKUserDeviceService.instance = instance
-            return instance
+            _instance = GPWCKUserNotificationService()
+            return _instance!
         }
     }
 
-    private static var instance: GPWCKUserDeviceService?
+    private static var _instance: GPWCKUserNotificationService?
 
-    private let firestoreService = GPWCKFirestoreService<GPWCKEncryptedUserDevice>()
+    private let firestoreService = GPWCKFirestoreService<GPWCKUserNotification>()
 
     public func documentSnapshot(
         _ deviceId: String,
         of userId: String,
-        onChanges callback: @escaping GPWCKDocumentSnapshotChangesHandler<GPWCKUserDevice>
+        onChanges callback: @escaping GPWCKDocumentSnapshotChangesHandler<GPWCKUserNotification>
     ) -> GPWCKSnapshotListener {
         let snapshotListener = firestoreService.documentSnapshotListener(
             .userDevice(userId: userId, deviceId: deviceId)
-        ) { encryptedUserDevice, error in
+        ) { userNotification, error in
             if let error {
                 callback(nil, error)
                 return
             } else {
-                if let encryptedUserDevice {
-                    do {
-                        let userDevice = try GPWCKUserDevice(from: encryptedUserDevice)
-                        callback(userDevice, nil)
-                    } catch {
-                        callback(nil, error)
-                    }
+                if let userNotification {
+                    callback(userNotification, nil)
                     return
                 } else {
                     callback(nil, nil)
@@ -70,31 +64,19 @@ public struct GPWCKUserDeviceService {
 
     public func collectionSnapshot(
         _ userId: String,
-        onChanges callback: @escaping GPWCKQuerySnapshotChangesHandler<GPWCKUserDevice>
+        onChanges callback: @escaping GPWCKQuerySnapshotChangesHandler<GPWCKUserNotification>
     ) -> GPWCKSnapshotListener {
         let snapshotListener = firestoreService.collectionSnapshotListener(
             .userDeviceList(userId: userId)
-        ) { encryptedUserDevices, error in
+        ) { userNotifications, error in
             if let error {
                 callback([], error)
                 return
             }
 
-            let userDeviceList = encryptedUserDevices.compactMap { encryptedUserDevice -> GPWCKUserDevice? in
-                try? GPWCKUserDevice(from: encryptedUserDevice)
-            }
-            callback(userDeviceList, nil)
+            callback(userNotifications, nil)
         }
         return snapshotListener
-    }
-
-    public func create(_ userDevice: GPWCKUserDevice) async throws {
-        let encryptedUserDevice = try GPWCKEncryptedUserDevice(from: userDevice)
-        try await firestoreService.create(encryptedUserDevice, atPath: .userDevice(userId: userDevice.userId, deviceId: userDevice.deviceId))
-    }
-
-    public func delete(_ deviceId: String, of userId: String) async throws {
-        try await firestoreService.delete(.userDevice(userId: userId, deviceId: deviceId))
     }
 }
 #endif

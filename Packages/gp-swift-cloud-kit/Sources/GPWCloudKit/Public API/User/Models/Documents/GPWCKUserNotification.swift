@@ -25,32 +25,14 @@ import FirebaseFirestore
 #endif
 import Foundation
 
-public struct GPWCKUserDevice: GPWCKDocumentProtocol {
+public struct GPWCKUserNotification: GPWCKDocumentProtocol {
     public let id: String?
     public let userId: String
-    public let deviceId: String
-    public let displayName: String
+    public let notificationId: String
+    public let type: GPWCKUserNotificationType
+    public let path: String
+    public let wasRead: Bool
+    public let wasReceived: Bool
     public let creationDate: Date?
     public let modificationDate: Date?
-
-    init(from encryptedUserDevice: GPWCKEncryptedUserDevice) throws {
-        let decryptedUserDeviceData = encryptedUserDevice.isEncrypted
-            ? GPWCKEncryptedUserDeviceData(displayName: "Encrypted Device")
-            : try Self.base64Decode(encrypted: encryptedUserDevice.encrypted)
-
-        id = encryptedUserDevice.id
-        userId = encryptedUserDevice.userId
-        deviceId = encryptedUserDevice.deviceId
-        displayName = decryptedUserDeviceData.displayName
-        creationDate = encryptedUserDevice.creationDate
-        modificationDate = encryptedUserDevice.modificationDate
-    }
-
-    static func base64Decode(encrypted: String) throws -> GPWCKEncryptedUserDeviceData {
-        guard let data = Data(base64Encoded: encrypted),
-              let decryptedData = try? JSONDecoder().decode(GPWCKEncryptedUserDeviceData.self, from: data)
-        else { throw GPWCKEncryptionError.unableToDecryptedData }
-
-        return decryptedData
-    }
 }

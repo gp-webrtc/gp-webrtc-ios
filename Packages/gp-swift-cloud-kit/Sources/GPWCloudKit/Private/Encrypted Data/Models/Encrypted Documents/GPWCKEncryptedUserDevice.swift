@@ -36,7 +36,6 @@ struct GPWCKEncryptedUserDevice: GPWCKDocumentProtocol {
     let deviceId: String
     let isEncrypted: Bool
     let encrypted: String
-    let ipAddresses: [String]
 
     #if canImport(FirebaseFirestore)
     @ServerTimestamp var creationDate: Date?
@@ -59,7 +58,6 @@ struct GPWCKEncryptedUserDevice: GPWCKDocumentProtocol {
         deviceId = userDevice.deviceId
         isEncrypted = false
         self.encrypted = encrypted
-        ipAddresses = userDevice.ipAddresses
         creationDate = userDevice.creationDate
         modificationDate = userDevice.modificationDate
     }

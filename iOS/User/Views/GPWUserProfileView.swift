@@ -24,21 +24,30 @@ import os.log
 import SwiftUI
 
 struct GPWUserProfileView: View {
+    @ScaledMetric(relativeTo: .body) private var spacing = 16
+
     @EnvironmentObject private var user: GPWUserViewModel
 
+    private func navigationCell(value: GPWNavigationDestination, title: String, systemImage: String) -> some View {
+        GPWNavigationCell(value: value) {
+            Text(title)
+        } leading: {
+            Image(systemName: systemImage)
+        }
+    }
+
     private var userMenu: some View {
-        VStack(spacing: 0) {
-            GPWCell(title: "Account", image: Image(systemName: "person"), destination: .userAccount)
-            GPWCell(title: "Devices", image: Image(systemName: "smartphone"), destination: .userDeviceList)
-            GPWCell(title: "Settings", image: Image(systemName: "slider.horizontal.3"), destination: .settings)
+        VStack(spacing: spacing) {
+            navigationCell(value: .userAccount, title: "Account", systemImage: "person")
+            navigationCell(value: .userDeviceList, title: "Devices", systemImage: "smartphone")
+            navigationCell(value: .userSettings, title: "Settings", systemImage: "slider.horizontal.3")
 
             Divider()
                 .background(Color.gray)
-                .padding(.horizontal)
 
-            //            GPWCell(title: "Help", image: Image(systemName: "questionmark.circle"), destination: .help)
-            GPWCell(title: "About", image: Image(systemName: "info.circle"), destination: .about)
+            navigationCell(value: .about, title: "About", systemImage: "info.circle")
         }
+        .padding()
         .overlay {
             RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1)
         }
@@ -68,33 +77,6 @@ struct GPWUserProfileView: View {
         content
             .padding()
             .padding(.vertical)
-    }
-}
-
-extension GPWUserProfileView {
-    private struct GPWCell: View {
-        let title: String
-        let image: Image
-        let destination: GPWUserMainView.GPWDestination
-
-        @Environment(\.colorScheme) private var colorScheme
-
-        var body: some View {
-            NavigationLink(value: destination) {
-                HStack {
-                    image
-                        .frame(width: 32, alignment: .leading)
-                    Text(title)
-                        .font(.gpwHeadline)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .frame(width: 32, alignment: .trailing)
-                }
-                .padding()
-            }
-            .tint(colorScheme == .light ? .black : .white)
-        }
     }
 }
 

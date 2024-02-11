@@ -65,5 +65,16 @@ public struct GPWCKUserService {
         }
         return snapshotListener
     }
+
+    public func updateSettings(_ settings: GPWCKUserSettings, of userId: String) async throws {
+        try await firestoreService.update(from: GPWCKUserSettingsUpdate(settings: settings), atPath: .user(userId: userId))
+    }
 }
+
+private extension GPWCKUserService {
+    struct GPWCKUserSettingsUpdate: GPWCKDataProtocol {
+        let settings: GPWCKUserSettings
+    }
+}
+
 #endif

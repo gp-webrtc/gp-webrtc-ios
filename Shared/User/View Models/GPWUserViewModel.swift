@@ -26,8 +26,10 @@ import GPWCloudKit
 import os.log
 
 class GPWUserViewModel: ObservableObject {
+    @Published var isLoading = true
     @Published var userId: String?
     @Published var displayName: String = ""
+    @Published var settings: GPWCKUserSettings = .default
 
     private let userService = GPWCKUserService.shared
 
@@ -42,15 +44,22 @@ class GPWUserViewModel: ObservableObject {
                 }
 
                 guard let user else {
-                    Logger().error("[GPWUserViewModel] Received not user data")
+                    Logger().error("[GPWUserViewModel] Received no user data")
                     return
                 }
 
                 DispatchQueue.main.async {
+                    self.isLoading = false
                     self.userId = user.userId
                     self.displayName = user.displayName
+                    self.settings = user.settings
                 }
             }
         }
+    }
+
+    func updateSettings(_ settings: GPWCKUserSettings) async throws {
+        guard let userId else { return }
+        try await userService.updateSettings(settings, of: userId)
     }
 }

@@ -22,47 +22,22 @@
 
 import SwiftUI
 
-struct GPWUserDeviceListView: View {
-    @StateObject private var userDevices = GPWUserDeviceListViewModel()
+struct GPWUserContentView: View {
+    let userId: String
+
+    @StateObject private var user = GPWUserViewModel()
 
     var body: some View {
-        List(userDevices.devices) { userDevice in
-            GPWCell(title: userDevice.displayName, image: Image(systemName: "iphone.gen3"))
-        }
-        .navigationTitle("Devices")
-    }
-}
-
-private extension GPWUserDeviceListView {
-    struct GPWCell: View {
-        let title: String
-        let image: Image
-
-        var body: some View {
-            HStack(spacing: 16) {
-                image
-                    .frame(width: 32, alignment: .leading)
-                Text(title)
-                    .font(.gpwHeadline)
-                    .fontWeight(.semibold)
-                Spacer()
+        ZStack {
+            if user.isLoading {
+                ProgressView("We are sorting out your citizenship...")
+            } else {
+                GPWUserMainView()
+                    .environmentObject(user)
             }
         }
-    }
-
-    struct GPWNavigationCell: View {
-        let title: String
-        let image: Image
-        let destination: GPWUserMainView.GPWDestination
-
-        var body: some View {
-            NavigationLink(value: destination) {
-                GPWCell(title: title, image: image)
-            }
+        .onAppear {
+            user.subscribe(userId: userId)
         }
     }
-}
-
-#Preview {
-    GPWUserDeviceListView()
 }

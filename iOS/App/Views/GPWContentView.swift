@@ -88,8 +88,8 @@ struct GPWContentView: View {
 
     var body: some View {
         ZStack {
-            if userAccount.authState == .signedIn {
-                GPWUserMainView()
+            if userAccount.authState == .signedIn, let userId = userAccount.userId {
+                GPWUserContentView(userId: userId)
                     .environmentObject(userAccount)
             } else {
                 splash

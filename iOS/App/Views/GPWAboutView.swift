@@ -22,7 +22,7 @@
 
 import SwiftUI
 
-struct GPWAboutScreen: View {
+struct GPWAboutView: View {
     var body: some View {
         Text("About")
             .navigationTitle("About")
@@ -30,5 +30,5 @@ struct GPWAboutScreen: View {
 }
 
 #Preview {
-    GPWAboutScreen()
+    GPWAboutView()
 }

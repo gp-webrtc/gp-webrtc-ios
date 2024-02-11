@@ -122,12 +122,20 @@ extension GPWUserNotificationService {
     {
         Logger().debug("[GPWUserNotificationService] Received push notification \(response.notification.request.content.categoryIdentifier)")
 
-        // Get the meeting ID from the original notification.
+        // Get the user info from the original notification.
         let userInfo = response.notification.request.content.userInfo
 
         // Inform Cloud Messaging service
         cloudMessagingService.appDidReceiveMessage(userInfo)
 
+        switch response.notification.request.content.categoryIdentifier {
+            case "DEVICE_ADDED":
+                processDeviceAddedNotification(userInfo)
+            case "DEVICE_REMOVED":
+                processDeviceRemovedNotification(userInfo)
+            default:
+                Logger().warning("[GPWUserNotificationService] Received unhandled pushed notification '\(response.notification.request.content.categoryIdentifier)'")
+        }
         if response.notification.request.content.categoryIdentifier == "USER_CALL_REQUEST" {
             // Retrieve the meeting details.
             let callerId = userInfo["callerId"] as! String
@@ -162,5 +170,13 @@ extension GPWUserNotificationService {
 
         // Always call the completion handler when done.
         completionHandler()
+    }
+
+    private func processDeviceAddedNotification(_ userInfo: [AnyHashable: Any]) {
+        Logger().debug("[GPWUserNotificationService] Received push notification DEVICE_ADDED with user info = \(userInfo)")
+    }
+
+    private func processDeviceRemovedNotification(_ userInfo: [AnyHashable: Any]) {
+        Logger().debug("[GPWUserNotificationService] Received push notification DEVICE_REMOVED with user info = \(userInfo)")
     }
 }

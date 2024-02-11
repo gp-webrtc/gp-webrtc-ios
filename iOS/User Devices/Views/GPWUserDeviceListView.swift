@@ -1,5 +1,5 @@
 //
-// gp-webrtc-ios/swift-cloud-kit
+// gp-webrtc-ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,18 +20,23 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Foundation
+import SwiftUI
 
-public struct GPWCKUserSettings: GPWCKDataProtocol {
-    public let notifications: GPWCKUserNotificationsSettings
+struct GPWUserDeviceListView: View {
+    @StateObject private var userDevices = GPWUserDeviceListViewModel()
 
-    public init(notifications: GPWCKUserNotificationsSettings = .default) {
-        self.notifications = notifications
+    var body: some View {
+        List(userDevices.devices) { userDevice in
+            GPWCell {
+                Text(userDevice.displayName)
+            } leading: {
+                Image(systemName: "iphone.gen3")
+            }
+        }
+        .navigationTitle("Devices")
     }
 }
 
-public extension GPWCKUserSettings {
-    static var `default`: GPWCKUserSettings {
-        .init(notifications: .default)
-    }
+#Preview {
+    GPWUserDeviceListView()
 }

@@ -23,12 +23,12 @@
 import SwiftUI
 
 struct GPWUserMainView: View {
-    @StateObject private var user = GPWUserViewModel()
     @StateObject private var userNotification = GPWUserNotificationViewModel()
 
     @State private var selectedTab = GPWTab.contactList
     @State private var path = NavigationPath()
 
+    @EnvironmentObject private var user: GPWUserViewModel
     @EnvironmentObject private var userAccount: GPWUserAccountViewModel
 
     private func tabView(userId: String) -> some View {
@@ -50,7 +50,6 @@ struct GPWUserMainView: View {
             }
         }
         .onAppear {
-            user.subscribe(userId: userId)
             userNotification.subscribe(userId: userId)
         }
     }
@@ -62,12 +61,13 @@ struct GPWUserMainView: View {
                     tabView(userId: userId)
                         .navigationTitle(selectedTab.rawValue)
                         .toolbar(.hidden, for: .navigationBar)
-                        .navigationDestination(for: GPWDestination.self) { destination in
+                        .navigationDestination(for: GPWNavigationDestination.self) { destination in
                             switch destination {
                                 case .userAccount: GPWUserAccountView()
                                 case .userDeviceList: GPWUserDeviceListView()
-                                case .settings: GPWSetttingsScreen()
-                                case .about: GPWAboutScreen()
+                                case .userNotificationsSettings: GPWUserNotificationsSettingsView()
+                                case .userSettings: GPWUserSettingsView()
+                                case .about: GPWAboutView()
                             }
                         }
                 }
@@ -81,7 +81,6 @@ struct GPWUserMainView: View {
 
     var body: some View {
         content
-            .environmentObject(user)
     }
 }
 
@@ -112,15 +111,6 @@ private extension GPWUserMainView {
                 label()
             }
         }
-    }
-}
-
-extension GPWUserMainView {
-    enum GPWDestination: Hashable {
-        case userAccount
-        case userDeviceList
-        case settings
-        case about
     }
 }
 

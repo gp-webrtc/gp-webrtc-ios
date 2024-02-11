@@ -40,7 +40,11 @@ struct GPWUserAccountView: View {
 
     private var accountDetailSection: some View {
         Section {
-            GPWCell(title: "Display QR code", image: Image(systemName: "qrcode.viewfinder"))
+            GPWCell {
+                Text("Display QR code")
+            } trailing: {
+                Image(systemName: "qrcode.viewfinder")
+            }
         } header: {
             Text("Account details")
         }
@@ -49,7 +53,11 @@ struct GPWUserAccountView: View {
     private var dangerSection: some View {
         Section {
             Button(role: .destructive, action: { showDeleteUserAccountConfirmationDialog.toggle() }) {
-                GPWCell(title: "Delete my account", image: Image(systemName: "rectangle.portrait.and.arrow.right"))
+                GPWCell {
+                    Text("Delete my account")
+                } leading: {
+                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                }
             }
             .buttonStyle(.gpwPlain)
             .listRowInsets(EdgeInsets())
@@ -68,36 +76,6 @@ struct GPWUserAccountView: View {
             Button("Delete my account !!", role: .destructive, action: deleteUserAccount)
             Button("Please cancel", role: .cancel, action: {})
                 .keyboardShortcut(.defaultAction)
-        }
-    }
-}
-
-private extension GPWUserAccountView {
-    struct GPWCell: View {
-        let title: String
-        let image: Image
-
-        var body: some View {
-            HStack(spacing: 16) {
-                image
-                    .frame(width: 32, alignment: .leading)
-                Text(title)
-                    .font(.gpwHeadline)
-                    .fontWeight(.semibold)
-                Spacer()
-            }
-        }
-    }
-
-    struct GPWNavigationCell: View {
-        let title: String
-        let image: Image
-        let destination: GPWUserMainView.GPWDestination
-
-        var body: some View {
-            NavigationLink(value: destination) {
-                GPWCell(title: title, image: image)
-            }
         }
     }
 }

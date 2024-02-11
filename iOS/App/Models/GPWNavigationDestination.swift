@@ -20,15 +20,12 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import SwiftUI
+import Foundation
 
-struct GPWSetttingsScreen: View {
-    var body: some View {
-        Text("Settings")
-            .navigationTitle("Setting")
-    }
-}
-
-#Preview {
-    GPWSetttingsScreen()
+enum GPWNavigationDestination: Hashable {
+    case userAccount
+    case userDeviceList
+    case userNotificationsSettings
+    case userSettings
+    case about
 }

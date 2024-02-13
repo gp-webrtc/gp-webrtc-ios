@@ -20,28 +20,18 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import os.log
-import SwiftUI
+import Foundation
+import GPStorageKit
 
-struct GPWUserContentView: View {
-    let userId: String
+extension GPSCUserDefaultValues {
+    struct GPWIsLocalDeviceRegisteredKey: GPSCUserDefaultCodableKey {
+        static let defaultValue: Bool = false
+        static let key = "isLocalDeviceRegistered"
+        static let isTiedToUserId = true
+    }
 
-    @State private var path = NavigationPath()
-    @StateObject private var user = GPWUserViewModel()
-
-    var body: some View {
-        ZStack {
-            if user.isLoading {
-                ProgressView("We are sorting out your citizenship...")
-            } else {
-                NavigationStack(path: $path) {
-                    GPWUserMainView()
-                        .environmentObject(user)
-                }
-            }
-        }
-        .onAppear {
-            user.subscribe(userId: userId)
-        }
+    var isLocalDeviceRegistered: Bool {
+        get { self[GPWIsLocalDeviceRegisteredKey.self] }
+        set { self[GPWIsLocalDeviceRegisteredKey.self] = newValue }
     }
 }

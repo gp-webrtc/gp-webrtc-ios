@@ -28,39 +28,72 @@ import SwiftUI
 import UserNotifications
 
 public class GPWCKCloudMessagingService: NSObject, MessagingDelegate {
+    public static var shared: GPWCKCloudMessagingService {
+        if let _instance { return _instance }
+        else {
+            _instance = GPWCKCloudMessagingService()
+            return _instance!
+        }
+    }
+
     private var _apnsToken: Data?
+    private static var _instance: GPWCKCloudMessagingService?
+
     private var fcmRegistrationTokenSubject = CurrentValueSubject<String?, Never>(nil)
 
-    override public init() {
+    override private init() {
         super.init()
-
         Messaging.messaging().delegate = self
-        Messaging.messaging().isAutoInitEnabled = true
     }
 
     public var apnsToken: Data? {
         get { _apnsToken }
         set {
-            if _apnsToken != newValue {
-                _apnsToken = newValue
+            // First time
+            if _apnsToken == nil, let newValue {
+                Messaging.messaging().setAPNSToken(newValue, type: .prod)
+                Messaging.messaging().token { token, error in
+                    if let error {
+                        Logger().error("[GPWCKCloudMessagingService] Unable to fetching FCM registration token: \(error)")
+                        return
+                    }
+
+                    print("[GPWCKCloudMessagingService] Fetched FCM registration token: \(token ?? "nil")")
+                    self.fcmRegistrationTokenSubject.send(token)
+                }
+            } else if _apnsToken != nil, newValue == nil {
                 if let _apnsToken {
-                    Messaging.messaging().setAPNSToken(_apnsToken, type: .prod)
-                    //                        Messaging.messaging().token { token, error in
-                    //                            if let error {
-                    //                                Logger().error("[GPWCKCloudMessagingService] Could not fetch FCM registration token: \(error)")
-                    //                            } else if let token {
-                    //                                Logger().debug("[GPWCKCloudMessagingService] Received FCM registration token: \(token)")
-                    //                            }
-                    //                        }
+                    Messaging.messaging().setAPNSToken(_apnsToken, type: .sandbox)
+                } else {
+                    Messaging.messaging().deleteData { error in
+                        if let error {
+                            Logger().error("[GPWCKCloudMessagingService] Unable to delete data: \(error.localizedDescription)")
+                            return
+                        }
+                        Logger().debug("[GPWCKCloudMessagingService] Data deleted")
+                    }
                 }
             }
+            _apnsToken = newValue
         }
     }
 
-    public var fcmRegistrationToken: AnyPublisher<String?, Never> { fcmRegistrationTokenSubject.eraseToAnyPublisher() }
+//    public func refreshFCMRegistrtionToken() {
+//        Messaging.messaging().token { token, error in
+//            if let error = error {
+//                Logger().error("[GPWCKCloudMessagingService] Unable to fetching FCM registration token: \(error)")
+//                return
+//            }
+//
+//            print("[GPWCKCloudMessagingService] Fetched FCM registration token: \(token ?? "nil")")
+//            self.fcmRegistrationTokenSubject.send(token)
+//        }
+//    }
+
+    public lazy var fcmRegistrationToken = fcmRegistrationTokenSubject.eraseToAnyPublisher()
 
     public func messaging(_: Messaging, didReceiveRegistrationToken token: String?) {
-        Logger().info("[GPWCKCloudMessagingService] Received FCM registration token: \(token ?? "nil")")
+        Logger().debug("[GPWCKCloudMessagingService] Refreshed FCM registration token: \(token ?? "nil")")
         fcmRegistrationTokenSubject.send(token)
     }
 

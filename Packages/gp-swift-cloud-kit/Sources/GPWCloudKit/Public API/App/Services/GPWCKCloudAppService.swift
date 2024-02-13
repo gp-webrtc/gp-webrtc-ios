@@ -64,7 +64,10 @@ public class GPWCKCloudAppService {
 
     private init() {}
 
-    public func configure(withConfiguration configuration: GPWCKConfiguration, usingEmulatorConfig emulatorConfig: GPWCKEmulatorConfig? = nil) {
+    public func configure(
+        withConfiguration configuration: GPWCKConfiguration,
+        usingEmulatorConfig emulatorConfig: GPWCKEmulatorConfig? = nil
+    ) {
         guard _configuration == nil else {
             Logger().error("[GPWCKCloudAppService] GPWCloudKit has already been configured")
             return
@@ -79,11 +82,13 @@ public class GPWCKCloudAppService {
 
         // User AppCheck debug when configuration is .local or when running via emulators
         #if canImport(FirebaseAppCheck)
-        if _configuration == .local {
+        if /* emulatorConfig != nil || */ _configuration == .local {
+            Logger().info("[GPWCKCloudAppService] App check is enabled using debug token")
             let providerFactory = AppCheckDebugProviderFactory()
             AppCheck.setAppCheckProviderFactory(providerFactory)
         } else {
             let providerFactory = GPWCKAppCheckProviderFactory()
+            Logger().info("[GPWCKCloudAppService] App check is enabled")
             AppCheck.setAppCheckProviderFactory(providerFactory)
         }
         #endif
@@ -93,10 +98,10 @@ public class GPWCKCloudAppService {
 
         // Configure Emulators, if required
         if let emulatorConfig {
-            // Auth emulator
             #if canImport(FirebaseAuth)
+            // Auth emulator
             if let authEmulator = emulatorConfig.authEmulator {
-                Logger().info("[GPWCKCloudAppService] GPWCloudKit will connect to Auth emulator on \(authEmulator.hostname):\(authEmulator.port ?? 9099)")
+                Logger().info("[GPWCKCloudAppService] Connect to Auth emulator on \(authEmulator.hostname):\(authEmulator.port ?? 9099)")
                 Auth.auth().useEmulator(withHost: authEmulator.hostname, port: authEmulator.port ?? 9099)
             }
             #endif
@@ -104,7 +109,7 @@ public class GPWCKCloudAppService {
             #if canImport(FirebaseFirestore)
             // Firestore Emulator
             if let firestoreEmulator = emulatorConfig.firestoreEmulator {
-                Logger().info("[GPWCKCloudAppService] GPWCloudKit will connect to Firestore emulator on \(firestoreEmulator.hostname):\(firestoreEmulator.port ?? 8080)")
+                Logger().info("[GPWCKCloudAppService] Connect to Firestore emulator on \(firestoreEmulator.hostname):\(firestoreEmulator.port ?? 8080)")
                 let settings = Firestore.firestore().settings
                 settings.host = "\(firestoreEmulator.hostname):\(firestoreEmulator.port ?? 8080)"
                 settings.cacheSettings = MemoryCacheSettings()
@@ -116,7 +121,7 @@ public class GPWCKCloudAppService {
             #if canImport(FirebaseFunctions)
             // Functions emulator
             if let functionsEmulator = emulatorConfig.functionsEmulator {
-                Logger().info("[GPWCKCloudAppService] GPWCloudKit will connect to Function emulator on \(functionsEmulator.hostname):\(functionsEmulator.port ?? 5001)")
+                Logger().info("[GPWCKCloudAppService] Connect to Function emulator on \(functionsEmulator.hostname):\(functionsEmulator.port ?? 5001)")
                 Functions.functions(region: functionsEmulator.region).useEmulator(withHost: functionsEmulator.hostname, port: functionsEmulator.port ?? 5001)
             }
             #endif
@@ -124,7 +129,7 @@ public class GPWCKCloudAppService {
             #if canImport(FirebaseStorage)
             // Storage emulator
             if let storageEmulator = emulatorConfig.storageEmulator {
-                Logger().info("[GPWCKCloudAppService] GPWCloudKit will connectto Storage emulator on \(storageEmulator.hostname):\(storageEmulator.port ?? 5001)")
+                Logger().info("[GPWCKCloudAppService] Connect to Storage emulator on \(storageEmulator.hostname):\(storageEmulator.port ?? 9199)")
                 Storage.storage().useEmulator(withHost: storageEmulator.hostname, port: storageEmulator.port ?? 9199)
             }
             #endif

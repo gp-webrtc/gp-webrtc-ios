@@ -88,9 +88,18 @@ public struct GPWCKUserDeviceService {
         return snapshotListener
     }
 
-    public func create(_ userDevice: GPWCKUserDevice) async throws {
-        let encryptedUserDevice = try GPWCKEncryptedUserDevice(from: userDevice)
-        try await firestoreService.create(encryptedUserDevice, atPath: .userDevice(userId: userDevice.userId, deviceId: userDevice.deviceId))
+    public func create(_ key: (userId: String, deviceId: String), displayName: String) async throws {
+        let encryptedUserDevice = try GPWCKEncryptedUserDevice(
+            from: GPWCKUserDevice(
+                userId: key.userId,
+                deviceId: key.deviceId,
+                displayName: displayName
+            )
+        )
+        try await firestoreService.create(
+            encryptedUserDevice,
+            atPath: .userDevice(userId: key.userId, deviceId: key.deviceId)
+        )
     }
 
     public func delete(_ deviceId: String, of userId: String) async throws {

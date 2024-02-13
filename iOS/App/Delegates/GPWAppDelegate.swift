@@ -23,35 +23,36 @@
 import Foundation
 import GPWCloudKit
 import os.log
+import PushKit
 import UIKit
+import UserNotifications
 
 class GPWAppDelegate: NSObject, UIApplicationDelegate {
-    let cloudAppService = GPWCKCloudAppService.shared
-
-    // MARK: - App lifecycle
-
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        cloudAppService.configure(withConfiguration: .local)
-
-        // If the intent is to connect to the emulator, uncomment the following
-        // lines and comment the above one
-        // BEGIN OF BLOCK
+    private func configureCloudApp() {
+        // #if targetEnvironment(simulator)
         //        cloudAppService.configure(
         //            withConfiguration: .local,
         //            usingEmulatorConfig: GPWCKEmulatorConfig(
-        //                authEmulator: GPWCKEmulator(hostname: "gp-mac-studio.local.gpf.pw"),
-        //                firestoreEmulator: GPWCKEmulator(hostname: "gp-mac-studio.local.gpf.pw"),
-        //                functionsEmulator: GPWCKFunctionsEmulator(hostname: "gp-mac-studio.local.gpf.pw", region: "europe-west3"),
-        //                storageEmulator: GPWCKEmulator(hostname: "gp-mac-studio.local.gpf.pw")
+        //                authEmulator: GPWCKEmulator(hostname: "127.0.0.1"),
+        //                firestoreEmulator: GPWCKEmulator(hostname: "127.0.0.1"),
+        //                functionsEmulator: GPWCKFunctionsEmulator(hostname: "127.0.0.1", region: "europe-west3"),
+        //                storageEmulator: GPWCKEmulator(hostname: "127.0.0.1")
         //            )
         //        )
-        // END OF BLOCK
-
-        // All done
-        return true
+        // #else
+        GPWCKCloudAppService.shared.configure(withConfiguration: .local)
+        // #endif
     }
 
-    // MARK: - User notifications
+    // MARK: - UIApplicationDelegate
+
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        configureCloudApp()
+        configureUserNotifications()
+        configureVoIP()
+
+        return true
+    }
 
     func application(_: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Logger().debug("[GPWAppDelegate] Device push notification token: \(deviceToken.reduce("") { $0 + String(format: "%02x", $1) })")
@@ -76,5 +77,118 @@ class GPWAppDelegate: NSObject, UIApplicationDelegate {
         }
 
         return completionHandler(.noData)
+    }
+}
+
+// MARK: - UNUserNotificationCenterDelegate
+
+extension GPWAppDelegate: UNUserNotificationCenterDelegate {
+    private func configureUserNotifications() {
+        UNUserNotificationCenter.current().delegate = self
+    }
+
+    func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+        Logger().debug("[GPWUserNotificationService] Will present push notification '\(notification.request.content.categoryIdentifier)'")
+
+        // Get the user info from the original notification.
+        let userInfo = notification.request.content.userInfo
+        let categoryIdentifier = notification.request.content.categoryIdentifier
+
+        Logger().debug("[GPWAppDelegate] User notification payload: \(notification.request.content.userInfo)")
+
+        // Inform Cloud Messaging service
+        GPWCKCloudMessagingService.shared.appDidReceiveMessage(userInfo)
+
+        // Check the message type
+        switch categoryIdentifier {
+            case "USER_DEVICE_ADDED":
+                return [.banner, .badge, .sound, .list]
+            default:
+                Logger().warning("[GPWUserNotificationService] Received unhandled pushed notification '\(notification.request.content.categoryIdentifier)'")
+                return []
+        }
+    }
+
+    func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        Logger().debug("[GPWUserNotificationService] Received push notification \(response.notification.request.content.categoryIdentifier)")
+
+        // Get the user info from the original notification.
+        let userInfo = response.notification.request.content.userInfo
+
+        Logger().debug("[GPWAppDelegate] User notification payload: \(response.notification.request.content.userInfo)")
+
+        // Inform Cloud Messaging service
+        GPWCKCloudMessagingService.shared.appDidReceiveMessage(userInfo)
+
+        switch response.notification.request.content.categoryIdentifier {
+            case "USER_DEVICE_ADDED":
+                processDeviceAddedNotification(userInfo)
+            default:
+                Logger().warning("[GPWUserNotificationService] Received unhandled pushed notification '\(response.notification.request.content.categoryIdentifier)'")
+        }
+        if response.notification.request.content.categoryIdentifier == "USER_CALL_REQUEST" {
+            // Retrieve the meeting details.
+            let callerId = userInfo["callerId"] as! String
+
+            Logger().debug("[GPWUserNotificationService] Received push notification USER_CALL_REQUEST with user id = \(callerId)")
+
+            //            switch response.actionIdentifier {
+            //                case "ACCEPT_ACTION":
+            //                    sharedMeetingManager.acceptMeeting(user: userID,
+            //                                                       meetingID: meetingID)
+            //                    break
+            //
+            //                case "DECLINE_ACTION":
+            //                    sharedMeetingManager.declineMeeting(user: userID,
+            //                                                        meetingID: meetingID)
+            //                    break
+            //
+            //                case UNNotificationDefaultActionIdentifier,
+            //                UNNotificationDismissActionIdentifier:
+            //                    // Queue meeting-related notifications for later
+            //                    //  if the user does not act.
+            //                    sharedMeetingManager.queueMeetingForDelivery(user: userID,
+            //                                                                 meetingID: meetingID)
+            //                    break
+            //
+            //                default:
+            //                    break
+            //            }
+        } else {
+            Logger().warning("[GPWUserNotificationService] Received unhandled pushed notification '\(response.notification.request.content.categoryIdentifier)'")
+        }
+    }
+
+    private func processDeviceAddedNotification(_ userInfo: [AnyHashable: Any]) {
+        Logger().debug("[GPWUserNotificationService] Received push notification DEVICE_ADDED with user info = \(userInfo)")
+    }
+
+    private func processDeviceRemovedNotification(_ userInfo: [AnyHashable: Any]) {
+        Logger().debug("[GPWUserNotificationService] Received push notification DEVICE_REMOVED with user info = \(userInfo)")
+    }
+}
+
+// MARK: - PKPushRegistryDelegate
+
+extension GPWAppDelegate: PKPushRegistryDelegate {
+    private func configureVoIP() {
+        let voipRegistry = PKPushRegistry(queue: DispatchQueue.main)
+        voipRegistry.delegate = self
+        voipRegistry.desiredPushTypes = [.voIP]
+    }
+
+    func pushRegistry(_: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
+        guard type == .voIP else { return }
+        Logger().debug("[GPWAppDelegate] Received VoIP push credentials \(pushCredentials.description)")
+    }
+
+    func pushRegistry(_: PKPushRegistry, didInvalidatePushTokenFor type: PKPushType) {
+        guard type == .voIP else { return }
+        Logger().debug("[GPWAppDelegate] Invalidated VoIP push credentials")
+    }
+
+    func pushRegistry(_: PKPushRegistry, didReceiveIncomingPushWith _: PKPushPayload, for type: PKPushType) async {
+        guard type == .voIP else { return }
+        Logger().debug("[GPWAppDelegate] Received incomming VoIP push")
     }
 }

@@ -50,6 +50,14 @@ public class GPWCKAuthService {
     public func addStateDidChangeListener(onChanges callback: @escaping GPWCKAuthStateDidChangeBlock = { _ in }) -> GPWCKAuthStateDidChangeListener {
         auth.addStateDidChangeListener { _, user in
             if let user {
+                if let currentUser = self.auth.currentUser {
+                    currentUser.getIDTokenResult(forcingRefresh: true) { _, error in
+                        if error != nil {
+                            Task { try? await currentUser.delete() }
+                            callback(nil)
+                        }
+                    }
+                }
                 if let user = try? GPWCKUserAccount(from: user) {
                     callback(user)
                     return
@@ -101,6 +109,9 @@ public class GPWCKAuthService {
     #if !os(watchOS)
 
     public func signInAnonymously() async throws -> GPWCKUserAccount {
+        guard auth.currentUser == nil else {
+            throw GPWCKAuthError(code: .credentialAlreadyInUse)
+        }
         let result = try await auth.signInAnonymously()
         return try GPWCKUserAccount(from: result.user)
     }
@@ -108,6 +119,8 @@ public class GPWCKAuthService {
     public func deleteUser() async throws {
         if let user = auth.currentUser {
             try await user.delete()
+        } else {
+            throw GPWCKAuthError(code: .userNotFound)
         }
     }
 

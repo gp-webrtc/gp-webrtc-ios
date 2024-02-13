@@ -22,6 +22,7 @@
 
 import Combine
 import Foundation
+import GPStorageKit
 import GPWCloudKit
 import os.log
 
@@ -47,6 +48,9 @@ class GPWUserAccountViewModel: ObservableObject {
             idTokenDidChangeListener = authService.addIDTokenDidChangeListener { userAccount in
                 DispatchQueue.main.async {
                     self.userId = userAccount?.userId
+                    if let userId = userAccount?.userId, userId != GPSCStorageService.shared.userId {
+                        GPSCStorageService.shared.userId = userId
+                    }
                 }
             }
         }
@@ -58,6 +62,7 @@ class GPWUserAccountViewModel: ObservableObject {
 
     func delete() async throws {
         try await authService.deleteUser()
+        GPSCStorageService.shared.resetUserData()
     }
 }
 

@@ -24,14 +24,14 @@ import SwiftUI
 
 struct GPWUserMainView: View {
     @StateObject private var userNotification = GPWUserNotificationViewModel()
+    @StateObject private var userLocalDevice = GPWUserLocalDeviceViewModel()
 
     @State private var selectedTab = GPWTab.contactList
-    @State private var path = NavigationPath()
 
     @EnvironmentObject private var user: GPWUserViewModel
     @EnvironmentObject private var userAccount: GPWUserAccountViewModel
 
-    private func tabView(userId: String) -> some View {
+    private var tabView: some View {
         TabView(selection: $selectedTab) {
             GPWTabItem(tag: .contactList) {
                 GPWUserContactListView()
@@ -49,38 +49,38 @@ struct GPWUserMainView: View {
                 Label("Profile", systemImage: "person.crop.circle.fill")
             }
         }
-        .onAppear {
-            userNotification.subscribe(userId: userId)
+        .environmentObject(userLocalDevice)
+        .environmentObject(userNotification)
+        .navigationTitle(selectedTab.rawValue)
+        .toolbar(.hidden, for: .navigationBar)
+        .navigationDestination(for: GPWNavigationDestination.self) { destination in
+            switch destination {
+                case .userAccount: GPWUserAccountView()
+                case .userDeviceList: GPWUserDeviceListView()
+                case .userNotificationsSettings: GPWUserNotificationsSettingsView()
+                case .userSettings: GPWUserSettingsView()
+                case .about: GPWAboutView()
+            }
         }
     }
 
-    private var content: some View {
+    var body: some View {
         ZStack {
             if let userId = userAccount.userId {
-                NavigationStack(path: $path) {
-                    tabView(userId: userId)
-                        .navigationTitle(selectedTab.rawValue)
-                        .toolbar(.hidden, for: .navigationBar)
-                        .navigationDestination(for: GPWNavigationDestination.self) { destination in
-                            switch destination {
-                                case .userAccount: GPWUserAccountView()
-                                case .userDeviceList: GPWUserDeviceListView()
-                                case .userNotificationsSettings: GPWUserNotificationsSettingsView()
-                                case .userSettings: GPWUserSettingsView()
-                                case .about: GPWAboutView()
-                            }
-                        }
-                }
+                tabView
+                    .onAppear {
+//                        userLocalDevice.subscribe(userId: userId)
+                        userNotification.subscribe(userId: userId)
+                    }
+//                    .sheet(isPresented: $showUserNotificationsConsentSheet) {
+//                        <#code#>
+//                    }
             } else {
                 ProgressView {
                     Text("Loading ...")
                 }
             }
         }
-    }
-
-    var body: some View {
-        content
     }
 }
 

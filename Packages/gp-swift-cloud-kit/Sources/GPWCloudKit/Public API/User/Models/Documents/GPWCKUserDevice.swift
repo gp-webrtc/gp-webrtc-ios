@@ -33,6 +33,15 @@ public struct GPWCKUserDevice: GPWCKDocumentProtocol {
     public let creationDate: Date?
     public let modificationDate: Date?
 
+    init(userId: String, deviceId: String, displayName: String) {
+        id = nil
+        self.userId = userId
+        self.deviceId = deviceId
+        self.displayName = displayName
+        creationDate = nil
+        modificationDate = nil
+    }
+
     init(from encryptedUserDevice: GPWCKEncryptedUserDevice) throws {
         let decryptedUserDeviceData = encryptedUserDevice.isEncrypted
             ? GPWCKEncryptedUserDeviceData(displayName: "Encrypted Device")

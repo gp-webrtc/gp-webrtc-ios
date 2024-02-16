@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7916491C2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7916491B2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift */; };
+		791649202B7E382F0050AAD1 /* Republik (VoIP).appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 791649192B7E382F0050AAD1 /* Republik (VoIP).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		791755112B77D05A006A469E /* GPWUserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755102B77D05A006A469E /* GPWUserSettingsView.swift */; };
 		791755132B77D10C006A469E /* GPWUserNotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755122B77D10C006A469E /* GPWUserNotificationsSettingsView.swift */; };
 		791755162B77D176006A469E /* GPWNavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755152B77D176006A469E /* GPWNavigationDestination.swift */; };
@@ -63,7 +65,28 @@
 		79E31F692B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E31F682B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7916491E2B7E382F0050AAD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 795463FB2B53FFF500618ACA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 791649182B7E382F0050AAD1;
+			remoteInfo = VoIP;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		791649212B7E382F0050AAD1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				791649202B7E382F0050AAD1 /* Republik (VoIP).appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7933857F2B5413660060CC95 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -77,6 +100,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		791649192B7E382F0050AAD1 /* Republik (VoIP).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Republik (VoIP).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7916491B2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCallDirectoryHandler.swift; sourceTree = "<group>"; };
+		7916491D2B7E382F0050AAD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		791755102B77D05A006A469E /* GPWUserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserSettingsView.swift; sourceTree = "<group>"; };
 		791755122B77D10C006A469E /* GPWUserNotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationsSettingsView.swift; sourceTree = "<group>"; };
 		791755152B77D176006A469E /* GPWNavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWNavigationDestination.swift; sourceTree = "<group>"; };
@@ -142,6 +168,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		791649162B7E382F0050AAD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		795464002B53FFF500618ACA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,6 +187,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7916491A2B7E382F0050AAD1 /* VoIP */ = {
+			isa = PBXGroup;
+			children = (
+				7916491B2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift */,
+				791649252B7E38870050AAD1 /* Resources */,
+			);
+			path = VoIP;
+			sourceTree = "<group>";
+		};
+		791649252B7E38870050AAD1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7916491D2B7E382F0050AAD1 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		791755082B77CFA6006A469E /* User Devices */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +375,7 @@
 				793E7B072B5ACC6B000CC08A /* Packages */,
 				795464182B5400FC00618ACA /* Shared */,
 				795464052B53FFF500618ACA /* iOS */,
+				7916491A2B7E382F0050AAD1 /* VoIP */,
 				795464042B53FFF500618ACA /* Products */,
 				79ABECFF2B552C0F00C15D0C /* Frameworks */,
 			);
@@ -334,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				795464032B53FFF500618ACA /* Republik.app */,
+				791649192B7E382F0050AAD1 /* Republik (VoIP).appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -633,6 +685,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		791649182B7E382F0050AAD1 /* Republik (VoIP) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 791649242B7E382F0050AAD1 /* Build configuration list for PBXNativeTarget "Republik (VoIP)" */;
+			buildPhases = (
+				791649152B7E382F0050AAD1 /* Sources */,
+				791649162B7E382F0050AAD1 /* Frameworks */,
+				791649172B7E382F0050AAD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Republik (VoIP)";
+			productName = VoIP;
+			productReference = 791649192B7E382F0050AAD1 /* Republik (VoIP).appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		795464022B53FFF500618ACA /* Republik (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 795464142B53FFF600618ACA /* Build configuration list for PBXNativeTarget "Republik (iOS)" */;
@@ -641,10 +710,12 @@
 				795464002B53FFF500618ACA /* Frameworks */,
 				795464012B53FFF500618ACA /* Resources */,
 				7933857F2B5413660060CC95 /* Embed Watch Content */,
+				791649212B7E382F0050AAD1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7916491F2B7E382F0050AAD1 /* PBXTargetDependency */,
 			);
 			name = "Republik (iOS)";
 			packageProductDependencies = (
@@ -667,6 +738,9 @@
 				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = "Greg PFISTER";
 				TargetAttributes = {
+					791649182B7E382F0050AAD1 = {
+						CreatedOnToolsVersion = 15.2;
+					};
 					795464022B53FFF500618ACA = {
 						CreatedOnToolsVersion = 15.1;
 					};
@@ -692,11 +766,19 @@
 			projectRoot = "";
 			targets = (
 				795464022B53FFF500618ACA /* Republik (iOS) */,
+				791649182B7E382F0050AAD1 /* Republik (VoIP) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		791649172B7E382F0050AAD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		795464012B53FFF500618ACA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -715,6 +797,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		791649152B7E382F0050AAD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7916491C2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		795463FF2B53FFF500618ACA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -768,7 +858,82 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7916491F2B7E382F0050AAD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 791649182B7E382F0050AAD1 /* Republik (VoIP) */;
+			targetProxy = 7916491E2B7E382F0050AAD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		791649222B7E382F0050AAD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DE65J7Y35D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VoIP/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VoIP;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Greg PFISTER. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.voip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		791649232B7E382F0050AAD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DE65J7Y35D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VoIP/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VoIP;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Greg PFISTER. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.voip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		795464122B53FFF600618ACA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -936,7 +1101,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -987,13 +1152,22 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		791649242B7E382F0050AAD1 /* Build configuration list for PBXNativeTarget "Republik (VoIP)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				791649222B7E382F0050AAD1 /* Debug */,
+				791649232B7E382F0050AAD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		795463FE2B53FFF500618ACA /* Build configuration list for PBXProject "gp-webrtc-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

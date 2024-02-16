@@ -20,6 +20,7 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+import CallKit
 import Foundation
 import GPWCloudKit
 import os.log
@@ -28,6 +29,15 @@ import UIKit
 import UserNotifications
 
 class GPWAppDelegate: NSObject, UIApplicationDelegate {
+    let callProvider: CXProvider
+
+    override init() {
+        let callProviderConfiguration = CXProviderConfiguration()
+        callProvider = CXProvider(configuration: callProviderConfiguration)
+
+        super.init()
+    }
+
     private func configureCloudApp() {
         // #if targetEnvironment(simulator)
         //        cloudAppService.configure(
@@ -85,6 +95,11 @@ class GPWAppDelegate: NSObject, UIApplicationDelegate {
 extension GPWAppDelegate: UNUserNotificationCenterDelegate {
     private func configureUserNotifications() {
         UNUserNotificationCenter.current().delegate = self
+        Task {
+            do {
+                let _ = try await GPWUserNotificationService.shared.requestAuthorization()
+            } catch {}
+        }
     }
 
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
@@ -187,8 +202,23 @@ extension GPWAppDelegate: PKPushRegistryDelegate {
         Logger().debug("[GPWAppDelegate] Invalidated VoIP push credentials")
     }
 
-    func pushRegistry(_: PKPushRegistry, didReceiveIncomingPushWith _: PKPushPayload, for type: PKPushType) async {
+    func pushRegistry(_: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) async {
         guard type == .voIP else { return }
         Logger().debug("[GPWAppDelegate] Received incomming VoIP push")
+
+        if let uuidString = payload.dictionaryPayload["UUID"] as? String,
+           let callerName = payload.dictionaryPayload["callerName"] as? String,
+           let uuid = UUID(uuidString: uuidString)
+        {
+            let update = CXCallUpdate()
+            update.localizedCallerName = callerName
+            update.hasVideo = true
+
+            do {
+                try await callProvider.reportNewIncomingCall(with: uuid, update: update)
+            } catch {
+                Logger().error("[GPWAppDelegate] Incoming VoIP call failed: \(error.localizedDescription)")
+            }
+        }
     }
 }

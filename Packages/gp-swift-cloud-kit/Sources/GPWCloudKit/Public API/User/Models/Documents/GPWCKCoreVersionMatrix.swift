@@ -25,45 +25,42 @@ import FirebaseFirestore
 #endif
 import Foundation
 
-struct GPWCKEncryptedUser: GPWCKDocumentProtocol {
+public enum GPWCKCoreIOSVersion: String, GPWCKDataProtocol {
+    case v0_0_0_0 = "0.0.0(0)"
+    case v0_1_0_1 = "0.1.0(1)"
+}
+
+public enum GPWCKCoreModelVersion: String, GPWCKDataProtocol {
+    case v0_0_0_0 = "0.0.0(0)"
+    case v0_1_0_1 = "0.1.0(1)"
+}
+
+public struct GPWCKModelUpgradeChain: GPWCKDataProtocol {
+    let upgradableFrom: GPWCKCoreModelVersion
+    let supportedIOSVersions: [GPWCKCoreIOSVersion]
+}
+
+public struct GPWCKCoreIOSSupportedModel: GPWCKDataProtocol {
+    let supportedModelVersions: [GPWCKCoreModelVersion]
+}
+
+public struct GPWCKCoreVersionMatrix: GPWCKDocumentProtocol {
     #if canImport(FirebaseFirestore)
     @DocumentID public var id: String?
     #else
-    var id: String?
+    public var id: String?
     #endif
 
-    let userId: String
-    let isEncrypted: Bool
-    let encrypted: String
-    let pinHash: String?
-    let settings: GPWCKUserSettings
-    let modelVersion: GPWCKCoreModelVersion?
+    let minimalIOSVersion: GPWCKCoreIOSVersion
+    let minimalCoreModel: GPWCKCoreModelVersion
+    let model: [GPWCKCoreModelVersion: GPWCKModelUpgradeChain]
+    let ios: [GPWCKCoreIOSVersion: GPWCKCoreIOSSupportedModel]
 
     #if canImport(FirebaseFirestore)
-    @ServerTimestamp var creationDate: Date?
-    @ServerTimestamp var modificationDate: Date?
+    @ServerTimestamp public var creationDate: Date?
+    @ServerTimestamp public var modificationDate: Date?
     #else
-    let creationDate: Date?
-    let modificationDate: Date?
+    public var creationDate: Date?
+    public var modificationDate: Date?
     #endif
-
-    init(from user: GPWCKUser) throws {
-        let encryptedData = GPWCKEncryptedUserData(
-            displayName: user.displayName,
-            profilePicture: user.profilePicture
-        )
-
-        guard let encrypted = try? JSONEncoder().encode(encryptedData).base64EncodedString()
-        else { throw GPWCKEncryptionError.unableToEncryptData }
-
-        id = user.id
-        userId = user.userId
-        isEncrypted = false
-        self.encrypted = encrypted
-        settings = user.settings
-        pinHash = user.pinHash
-        creationDate = user.creationDate
-        modificationDate = user.modificationDate
-        modelVersion = .v0_1_0_1
-    }
 }

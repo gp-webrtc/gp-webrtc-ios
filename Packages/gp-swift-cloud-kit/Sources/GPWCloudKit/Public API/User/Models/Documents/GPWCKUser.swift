@@ -34,6 +34,7 @@ public struct GPWCKUser: GPWCKDocumentProtocol {
     public let settings: GPWCKUserSettings
     public let creationDate: Date?
     public let modificationDate: Date?
+    public let modelVersion: GPWCKCoreModelVersion
 
     init(from user: GPWCKEncryptedUser) throws {
         let decryptedData = user.isEncrypted
@@ -48,6 +49,7 @@ public struct GPWCKUser: GPWCKDocumentProtocol {
         pinHash = user.pinHash
         creationDate = user.creationDate
         modificationDate = user.modificationDate
+        modelVersion = user.modelVersion ?? .v0_0_0_0
     }
 
     static func base64Decode(encrypted: String) throws -> GPWCKEncryptedUserData {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790857022B815F6D00209111 /* GPWCoreVersionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790857012B815F6D00209111 /* GPWCoreVersionViewModel.swift */; };
 		7916491C2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7916491B2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift */; };
 		791649202B7E382F0050AAD1 /* Republik (VoIP).appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 791649192B7E382F0050AAD1 /* Republik (VoIP).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		791755112B77D05A006A469E /* GPWUserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755102B77D05A006A469E /* GPWUserSettingsView.swift */; };
@@ -100,6 +101,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		790857012B815F6D00209111 /* GPWCoreVersionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCoreVersionViewModel.swift; sourceTree = "<group>"; };
 		791649192B7E382F0050AAD1 /* Republik (VoIP).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Republik (VoIP).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7916491B2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCallDirectoryHandler.swift; sourceTree = "<group>"; };
 		7916491D2B7E382F0050AAD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,6 +189,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		790857002B815F4E00209111 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				790857032B81616C00209111 /* View Models */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		790857032B81616C00209111 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				790857012B815F6D00209111 /* GPWCoreVersionViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		7916491A2B7E382F0050AAD1 /* VoIP */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +436,7 @@
 			isa = PBXGroup;
 			children = (
 				796F03622B5B15F000F44E26 /* Auth */,
+				790857002B815F4E00209111 /* Core */,
 				796F03632B5B15FF00F44E26 /* Local Storage */,
 				796F03642B5B18C900F44E26 /* Resources */,
 				79DFFB782B5D4D810052AB59 /* UI */,
@@ -811,6 +830,7 @@
 			files = (
 				796F03692B5B241400F44E26 /* GPWUserContactListView.swift in Sources */,
 				796464892B7A30D100EC913D /* GPWUserLocalDeviceViewModel.swift in Sources */,
+				790857022B815F6D00209111 /* GPWCoreVersionViewModel.swift in Sources */,
 				79DFFB892B5D4E210052AB59 /* ButtonStyle+gpwBnWBordered.swift in Sources */,
 				796F036B2B5B243A00F44E26 /* GPWUserChatListView.swift in Sources */,
 				795464092B53FFF500618ACA /* GPWContentView.swift in Sources */,

@@ -1,0 +1,84 @@
+//
+// gp-webrtc-ios/swift-cloud-kit
+// Copyright (c) 2024, Greg PFISTER. MIT License
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy of
+// this software and associated documentation files (the “Software”), to deal in
+// the Software without restriction, including without limitation the rights to
+// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+// the Software, and to permit persons to whom the Software is furnished to do so,
+// subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+// FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+// COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+// IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+// CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
+#if canImport(FirebaseFirestore)
+import FirebaseSharedSwift
+import Foundation
+
+public struct GPWCKCoreVersionMatrixService {
+    public static var shared: GPWCKCoreVersionMatrixService {
+        if let instance {
+            return instance
+        } else {
+            let instance = GPWCKCoreVersionMatrixService()
+            GPWCKCoreVersionMatrixService.instance = instance
+            return instance
+        }
+    }
+
+    private static var instance: GPWCKCoreVersionMatrixService?
+
+    private let firestoreService = GPWCKFirestoreService<GPWCKCoreVersionMatrix>()
+
+    public func documentSnapshot(
+        _ userId: String,
+        onChanges callback: @escaping GPWCKDocumentSnapshotChangesHandler<GPWCKCoreVersionMatrix>
+    ) -> GPWCKSnapshotListener {
+        let snapshotListener = firestoreService.documentSnapshotListener(
+            .user(userId: userId)
+        ) { coreVersionMatrix, error in
+            if let error {
+                callback(nil, error)
+                return
+            }
+
+            if let coreVersionMatrix {
+                callback(coreVersionMatrix, nil)
+            } else {
+                callback(
+                    GPWCKCoreVersionMatrix(
+                        minimalIOSVersion: .v0_1_0_1,
+                        minimalCoreModel: .v0_1_0_1,
+                        model: [.v0_1_0_1: GPWCKModelUpgradeChain(upgradableFrom: .v0_0_0_0, supportedIOSVersions: [.v0_1_0_1])],
+                        ios: [.v0_1_0_1: GPWCKCoreIOSSupportedModel(supportedModelVersions: [.v0_1_0_1])]
+                    ),
+                    nil
+                )
+            }
+        }
+        return snapshotListener
+    }
+
+    public func updateModel(to version: GPWCKCoreModelVersion, userId: String) async throws {
+        let updateModelFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("core-updateModel", in: "europe-west3")
+        try await updateModelFunctionService
+            .call(
+                GPWCKCoreModelUpdateBody(
+                    userId: userId,
+                    toVersion: version
+                )
+                .dictionary
+            )
+    }
+}
+
+#endif

@@ -25,12 +25,15 @@ import FirebaseFirestore
 import Foundation
 
 enum GPWCKFirestoreDocumentPath {
+    case coreVersionMatrix
     case user(userId: String)
     case userDevice(userId: String, deviceId: String)
     case userPublicKey(userId: String, type: GPWCKUserPublicKey.GPWCKKeyType)
 
     var string: String {
         switch self {
+            case .coreVersionMatrix:
+                "/core/version"
             case let .user(userId):
                 "/users/\(userId)"
             case let .userDevice(userId, deviceId):

@@ -25,12 +25,12 @@ import Foundation
 
 struct GPWCKCoreModelUpdateBody {
     let userId: String
-    let toVersion: GPWCKCoreModelVersion
+    let toVersion: String
 
     var dictionary: [String: Any] {
         [
             "userId": userId,
-            "toVersion": toVersion.rawValue,
+            "toVersion": toVersion,
         ]
     }
 }

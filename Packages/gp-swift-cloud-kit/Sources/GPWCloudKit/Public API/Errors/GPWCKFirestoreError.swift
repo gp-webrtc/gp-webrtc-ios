@@ -33,7 +33,7 @@ public enum GPWCKFirestoreError: Error {
     case unableToListenToDocumentChanges(path: String)
     case unableToListenToCollectionChanges(path: String)
     case unableToListenToQueryChanges(query: String)
-    case unableToReadData
+    case unableToReadData(error: Error)
     case unknown
 }
 
@@ -64,8 +64,8 @@ extension GPWCKFirestoreError: CustomStringConvertible {
                 "Unable to listen to changes on collection at path \(path)"
             case let .unableToListenToQueryChanges(query: query):
                 "Unable to listen to changes on query \(query)"
-            case .unableToReadData:
-                "Unable to read data"
+            case let .unableToReadData(error: error):
+                "Unable to read data (\(error.localizedDescription))"
             case .unknown:
                 "Unkown error"
         }
@@ -136,10 +136,13 @@ extension GPWCKFirestoreError: LocalizedError {
                     ),
                     query
                 )
-            case .unableToReadData:
-                NSLocalizedString(
-                    "Unable to read data",
-                    comment: "Unable to read data error"
+            case let .unableToReadData(error: error):
+                String.localizedStringWithFormat(
+                    NSLocalizedString(
+                        "Unable to read data (%@)",
+                        comment: "Unable to read data error"
+                    ),
+                    error.localizedDescription
                 )
             case .unknown:
                 NSLocalizedString(

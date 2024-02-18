@@ -85,7 +85,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
             }
 
             guard let snapshot else {
-                callback(nil, GPWCKFirestoreError.unableToReadData)
+                callback(nil, nil)
                 return
             }
 
@@ -94,13 +94,12 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
                 return
             }
 
-            // TODO: A specific error should be created when the document cannot be posted
-            guard let document = try? snapshot.data(as: GPWCKDocument.self) else {
-                callback(nil, GPWCKFirestoreError.unableToReadData)
-                return
+            do {
+                let document = try snapshot.data(as: GPWCKDocument.self)
+                callback(document, nil)
+            } catch {
+                callback(nil, GPWCKFirestoreError.unableToReadData(error: error))
             }
-
-            callback(document, nil)
         }
     }
 
@@ -115,9 +114,8 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
                 return
             }
 
-            // TODO: A specific error should be created when the snapshot is nil (internal error ?)
             guard let snapshot else {
-                callback([], GPWCKFirestoreError.unableToReadData)
+                callback([], nil)
                 return
             }
 
@@ -126,7 +124,7 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
                     let document = try document.data(as: GPWCKDocument.self)
                     return document
                 } catch {
-                    Logger().debug("[GPWCKFirestoreService] Unable to parse data: \(error.localizedDescription)")
+                    Logger().debug("[GPWCKFirestoreService] Unable to parse document \(document.reference.path)/\(document.reference.documentID): \(error.localizedDescription)")
                     return nil
                 }
             }
@@ -148,11 +146,19 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
 
             // TODO: A specific error should be created when the snapshot is nil (internal error ?)
             guard let snapshot else {
-                callback([], GPWCKFirestoreError.unableToReadData)
+                callback([], nil)
                 return
             }
 
-            let users = snapshot.documents.compactMap { try? $0.data(as: GPWCKDocument.self) }
+            let users = snapshot.documents.compactMap { document in
+                do {
+                    let document = try document.data(as: GPWCKDocument.self)
+                    return document
+                } catch {
+                    Logger().debug("[GPWCKFirestoreService] Unable to parse document \(document.reference.path)/\(document.reference.documentID): \(error.localizedDescription)")
+                    return nil
+                }
+            }
 
             callback(users, nil)
         }

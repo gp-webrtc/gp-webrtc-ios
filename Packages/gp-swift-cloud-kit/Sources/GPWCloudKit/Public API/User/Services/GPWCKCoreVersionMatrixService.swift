@@ -40,35 +40,23 @@ public struct GPWCKCoreVersionMatrixService {
     private let firestoreService = GPWCKFirestoreService<GPWCKCoreVersionMatrix>()
 
     public func documentSnapshot(
-        _ userId: String,
+        _: String,
         onChanges callback: @escaping GPWCKDocumentSnapshotChangesHandler<GPWCKCoreVersionMatrix>
     ) -> GPWCKSnapshotListener {
         let snapshotListener = firestoreService.documentSnapshotListener(
-            .user(userId: userId)
+            .coreVersionMatrix
         ) { coreVersionMatrix, error in
             if let error {
                 callback(nil, error)
                 return
             }
 
-            if let coreVersionMatrix {
-                callback(coreVersionMatrix, nil)
-            } else {
-                callback(
-                    GPWCKCoreVersionMatrix(
-                        minimalIOSVersion: .v0_1_0_1,
-                        minimalCoreModel: .v0_1_0_1,
-                        model: [.v0_1_0_1: GPWCKModelUpgradeChain(upgradableFrom: .v0_0_0_0, supportedIOSVersions: [.v0_1_0_1])],
-                        ios: [.v0_1_0_1: GPWCKCoreIOSSupportedModel(supportedModelVersions: [.v0_1_0_1])]
-                    ),
-                    nil
-                )
-            }
+            callback(coreVersionMatrix, nil)
         }
         return snapshotListener
     }
 
-    public func updateModel(to version: GPWCKCoreModelVersion, userId: String) async throws {
+    public func updateModel(to version: String, userId: String) async throws {
         let updateModelFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("core-updateModel", in: "europe-west3")
         try await updateModelFunctionService
             .call(

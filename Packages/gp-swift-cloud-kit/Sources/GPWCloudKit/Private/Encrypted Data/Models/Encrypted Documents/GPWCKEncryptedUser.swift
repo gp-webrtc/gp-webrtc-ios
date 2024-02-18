@@ -37,7 +37,7 @@ struct GPWCKEncryptedUser: GPWCKDocumentProtocol {
     let encrypted: String
     let pinHash: String?
     let settings: GPWCKUserSettings
-    let modelVersion: GPWCKCoreModelVersion?
+    let modelVersion: String?
 
     #if canImport(FirebaseFirestore)
     @ServerTimestamp var creationDate: Date?
@@ -64,6 +64,6 @@ struct GPWCKEncryptedUser: GPWCKDocumentProtocol {
         pinHash = user.pinHash
         creationDate = user.creationDate
         modificationDate = user.modificationDate
-        modelVersion = .v0_1_0_1
+        modelVersion = user.modelVersion
     }
 }

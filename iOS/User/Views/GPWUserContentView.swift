@@ -26,22 +26,82 @@ import SwiftUI
 struct GPWUserContentView: View {
     let userId: String
 
+    @ScaledMetric(relativeTo: .body) private var spacing = 16
+
+    @State private var isUpdating = false
     @State private var path = NavigationPath()
+
+    @StateObject private var coreVersion = GPWCoreVersionViewModel()
     @StateObject private var user = GPWUserViewModel()
+
+    private var mustUpdateApp: some View {
+        VStack(spacing: spacing) {
+            Image(systemName: "cloud.bolt")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 64, height: 64)
+                .foregroundColor(.red)
+            Text("You must update your app\nto the version \(coreVersion.targetIOSVersion ?? "UNKNOWN_VERISON") or above")
+                .multilineTextAlignment(.center)
+        }
+    }
+
+    private var mustUpdateData: some View {
+        VStack(spacing: spacing) {
+            Image(systemName: "exclamationmark.shield.fill")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 64, height: 64)
+                .foregroundColor(.accentColor)
+            Text("You must update your app data\nto the version \(coreVersion.targetModelVersion ?? "UNKNOWN_VERISON")")
+                .multilineTextAlignment(.center)
+            if !isUpdating {
+                Button {
+                    isUpdating = true
+                    Task {
+                        do {
+                            try await coreVersion.updateModel(to: coreVersion.targetModelVersion!, userId: userId)
+                        } catch {
+                            Logger().error("[GPWUserContentView] Unable to update data: \(error.localizedDescription)")
+                        }
+                    }
+                    isUpdating = false
+                } label: {
+                    Text("Update data")
+                }
+                .buttonStyle(.gpwPlain)
+            } else {
+                ProgressView()
+                    .progressViewStyle(.linear)
+            }
+        }
+    }
 
     var body: some View {
         ZStack {
-            if user.isLoading {
+            if user.isLoading || coreVersion.isLoading {
                 ProgressView("We are sorting out your citizenship...")
             } else {
-                NavigationStack(path: $path) {
-                    GPWUserMainView()
-                        .environmentObject(user)
+                if coreVersion.mustUpdateApp {
+                    mustUpdateApp
+                        .padding()
+                } else if coreVersion.mustUpdateData {
+                    mustUpdateData
+                        .padding()
+                } else {
+                    NavigationStack(path: $path) {
+                        GPWUserMainView()
+                            .environmentObject(user)
+                    }
                 }
             }
         }
         .onAppear {
             user.subscribe(userId: userId)
+            coreVersion.subscribe(userId: userId)
+        }
+        .onReceive(user.$modelVersion) { modelVersion in
+            coreVersion.modelVersion = modelVersion
         }
     }
 }

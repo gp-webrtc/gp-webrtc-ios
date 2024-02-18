@@ -39,19 +39,19 @@ class GPWAppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func configureCloudApp() {
-        // #if targetEnvironment(simulator)
-        //        cloudAppService.configure(
-        //            withConfiguration: .local,
-        //            usingEmulatorConfig: GPWCKEmulatorConfig(
-        //                authEmulator: GPWCKEmulator(hostname: "127.0.0.1"),
-        //                firestoreEmulator: GPWCKEmulator(hostname: "127.0.0.1"),
-        //                functionsEmulator: GPWCKFunctionsEmulator(hostname: "127.0.0.1", region: "europe-west3"),
-        //                storageEmulator: GPWCKEmulator(hostname: "127.0.0.1")
-        //            )
-        //        )
-        // #else
+        #if targetEnvironment(simulator)
+        GPWCKCloudAppService.shared.configure(
+            withConfiguration: .local,
+            usingEmulatorConfig: GPWCKEmulatorConfig(
+                authEmulator: GPWCKEmulator(hostname: "127.0.0.1"),
+                firestoreEmulator: GPWCKEmulator(hostname: "127.0.0.1"),
+                functionsEmulator: GPWCKFunctionsEmulator(hostname: "127.0.0.1", region: "europe-west3"),
+                storageEmulator: GPWCKEmulator(hostname: "127.0.0.1")
+            )
+        )
+        #else
         GPWCKCloudAppService.shared.configure(withConfiguration: .local)
-        // #endif
+        #endif
     }
 
     // MARK: - UIApplicationDelegate

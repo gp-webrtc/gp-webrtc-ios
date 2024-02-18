@@ -25,44 +25,14 @@ import FirebaseFirestore
 #endif
 import Foundation
 
-public enum GPWCKCoreIOSVersion: String, GPWCKDataProtocol, Comparable {
-    case v0_0_0_0 = "0.0.0(0)"
-    case v0_1_0_1 = "0.1.0(1)"
-
-    public static func < (lhs: GPWCKCoreIOSVersion, rhs: GPWCKCoreIOSVersion) -> Bool {
-        lhs.rawValue < rhs.rawValue
-    }
-}
-
-public enum GPWCKCoreModelVersion: String, GPWCKDataProtocol, Comparable {
-    case v0_0_0_0 = "0.0.0(0)"
-    case v0_1_0_1 = "0.1.0(1)"
-
-    public static func < (lhs: GPWCKCoreModelVersion, rhs: GPWCKCoreModelVersion) -> Bool {
-        lhs.rawValue < rhs.rawValue
-    }
-}
-
-public struct GPWCKModelUpgradeChain: GPWCKDataProtocol {
-    public let upgradableFrom: String
-    public let supportedIOSVersions: [String]
-}
-
-public struct GPWCKCoreIOSSupportedModel: GPWCKDataProtocol {
-    public let supportedModelVersions: [String]
-}
-
-public struct GPWCKCoreVersionMatrix: GPWCKDocumentProtocol {
+public struct GPWCKCoreStatus: GPWCKDocumentProtocol {
     #if canImport(FirebaseFirestore)
     @DocumentID public var id: String?
     #else
     public var id: String?
     #endif
 
-    public let minimalIOSVersion: String
-    public let minimalModelVersion: String
-    public let model: [String: GPWCKModelUpgradeChain]
-    public let ios: [String: GPWCKCoreIOSSupportedModel]
+    public let maintenanceMode: Bool
 
     #if canImport(FirebaseFirestore)
     @ServerTimestamp public var creationDate: Date?

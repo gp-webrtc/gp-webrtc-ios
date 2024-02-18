@@ -23,6 +23,8 @@
 import SwiftUI
 
 struct GPWUserDeviceListView: View {
+    let userId: String
+
     @StateObject private var userDevices = GPWUserDeviceListViewModel()
 
     var body: some View {
@@ -34,9 +36,11 @@ struct GPWUserDeviceListView: View {
             }
         }
         .navigationTitle("Devices")
+        .onAppear {
+            userDevices.subscribe(userId: userId)
+        }
+        .onDisappear {
+            userDevices.unsubscribe()
+        }
     }
-}
-
-#Preview {
-    GPWUserDeviceListView()
 }

@@ -26,7 +26,7 @@ import GPWCloudKit
 import os.log
 
 @MainActor
-class GPWCoreVersionViewModel: ObservableObject {
+final class GPWCoreVersionViewModel: ObservableObject {
     @Published var isLoading = true
     @Published var mustUpdateData = false
     @Published var mustUpdateApp = false
@@ -34,36 +34,34 @@ class GPWCoreVersionViewModel: ObservableObject {
     @Published var targetIOSVersion: String?
     @Published var targetModelVersion: String?
 
-    private let versionMatrixService = GPWCKCoreVersionMatrixService.shared
+    private let coreVersionService = GPWCKCoreVersionService.shared
 
-    private let versionMatrixSubject = CurrentValueSubject<GPWCKCoreVersionMatrix?, Never>(nil)
+    private let coreVersionSubject = CurrentValueSubject<GPWCKCoreVersion?, Never>(nil)
 
     private var snapshotListner: GPWCKSnapshotListener?
     private var cancellables = Set<AnyCancellable>()
 
-    func subscribe(userId: String) {
-        guard snapshotListner == nil else { return }
+    func subscribe(userId _: String) {
+        guard snapshotListner == nil, cancellables.isEmpty else { return }
 
-        snapshotListner = versionMatrixService.documentSnapshot(userId) { versionMatrix, error in
+        snapshotListner = coreVersionService.documentSnapshot { coreVersion, error in
             if let error {
                 Logger().error("[GPWCoreVersionViewModel] Unable to subscribe to core version matrix changes: \(error.localizedDescription)")
                 return
             }
 
-            guard let versionMatrix else {
+            guard let coreVersion else {
                 Logger().error("[GPWCoreVersionViewModel] Received no data")
                 return
             }
 
-            DispatchQueue.main.async {
-                self.isLoading = false
-                self.versionMatrixSubject.send(versionMatrix)
-            }
+            self.isLoading = false
+            self.coreVersionSubject.send(coreVersion)
         }
 
-        Publishers.CombineLatest3($isLoading, $modelVersion, versionMatrixSubject.eraseToAnyPublisher())
-            .sink { isLoading, modelVersion, versionMatrix in
-                guard !isLoading, let modelVersion, let versionMatrix else { return }
+        Publishers.CombineLatest3($isLoading, $modelVersion, coreVersionSubject.eraseToAnyPublisher())
+            .sink { isLoading, modelVersion, coreVersion in
+                guard !isLoading, let modelVersion, let coreVersion else { return }
 
                 // Get the app version
                 guard let shortVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String,
@@ -76,28 +74,28 @@ class GPWCoreVersionViewModel: ObservableObject {
                 let appVersion = "\(shortVersion)(\(version))"
 
                 // Is the app up to date
-                if versionMatrix.minimalIOSVersion > appVersion {
+                if coreVersion.minimalIOSVersion > appVersion {
                     self.mustUpdateApp = true
-                    self.targetIOSVersion = versionMatrix.minimalIOSVersion
+                    self.targetIOSVersion = coreVersion.minimalIOSVersion
                     return
                 }
 
                 // Is the model up to date
-                if versionMatrix.minimalModelVersion > modelVersion {
-                    guard let modelVersionData = versionMatrix.model[versionMatrix.minimalModelVersion] else {
-                        Logger().error("[GPWCoreVersionViewModel] Missing model version data for \(versionMatrix.minimalModelVersion)")
+                if coreVersion.minimalModelVersion > modelVersion {
+                    guard let modelVersionData = coreVersion.model[coreVersion.minimalModelVersion] else {
+                        Logger().error("[GPWCoreVersionViewModel] Missing model version data for \(coreVersion.minimalModelVersion)")
                         return
                     }
 
                     if !modelVersionData.supportedIOSVersions.contains(where: { $0 == appVersion }) {
                         self.mustUpdateApp = true
-                        self.targetIOSVersion = versionMatrix.minimalIOSVersion
+                        self.targetIOSVersion = coreVersion.minimalIOSVersion
                         return
                     }
                 }
 
                 // Get the current iOS version data
-                guard let currentIOSVersionData = versionMatrix.ios[appVersion] else {
+                guard let currentIOSVersionData = coreVersion.ios[appVersion] else {
                     Logger().error("[GPWCoreVersionViewModel] Missing iOS version data for \(appVersion)")
                     return
                 }
@@ -130,6 +128,6 @@ class GPWCoreVersionViewModel: ObservableObject {
     }
 
     func updateModel(to version: String, userId: String) async throws {
-        try await versionMatrixService.updateModel(to: version, userId: userId)
+        try await coreVersionService.updateModel(to: version, userId: userId)
     }
 }

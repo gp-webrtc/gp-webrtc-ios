@@ -23,6 +23,8 @@
 import SwiftUI
 
 struct GPWUserMainView: View {
+    let userId: String
+
     @StateObject private var userNotification = GPWUserNotificationViewModel()
     @StateObject private var userLocalDevice = GPWUserLocalDeviceViewModel()
 
@@ -44,7 +46,7 @@ struct GPWUserMainView: View {
                 Label("Chats", systemImage: "rectangle.3.group.bubble.fill")
             }
             GPWTabItem(tag: .profile) {
-                GPWUserProfileView()
+                GPWUserProfileView(userId: userId)
             } label: {
                 Label("Profile", systemImage: "person.crop.circle.fill")
             }
@@ -56,7 +58,7 @@ struct GPWUserMainView: View {
         .navigationDestination(for: GPWNavigationDestination.self) { destination in
             switch destination {
                 case .userAccount: GPWUserAccountView()
-                case .userDeviceList: GPWUserDeviceListView()
+                case let .userDeviceList(userId: userId): GPWUserDeviceListView(userId: userId)
                 case .userNotificationsSettings: GPWUserNotificationsSettingsView()
                 case .userSettings: GPWUserSettingsView()
                 case .about: GPWAboutView()
@@ -72,9 +74,10 @@ struct GPWUserMainView: View {
 //                        userLocalDevice.subscribe(userId: userId)
                         userNotification.subscribe(userId: userId)
                     }
-//                    .sheet(isPresented: $showUserNotificationsConsentSheet) {
-//                        <#code#>
-//                    }
+                    .onDisappear {
+//                        userLocalDevice.unsubscribe()
+                        userNotification.unsubcribe()
+                    }
             } else {
                 ProgressView {
                     Text("Loading ...")
@@ -120,8 +123,4 @@ extension GPWUserMainView {
         case chatList = "Chats"
         case profile = "Profile"
     }
-}
-
-#Preview {
-    GPWUserMainView()
 }

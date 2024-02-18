@@ -27,7 +27,8 @@ import GPWCloudKit
 import os.log
 import UIKit
 
-class GPWUserLocalDeviceViewModel: ObservableObject {
+@MainActor
+final class GPWUserLocalDeviceViewModel: ObservableObject {
     @Published var isLoading = true
     @Published var deviceId: String?
     @Published var displayName = ""
@@ -45,14 +46,12 @@ class GPWUserLocalDeviceViewModel: ObservableObject {
         guard snapshotListener == nil else { return }
 
         snapshotListener = userDeviceService.collectionSnapshot(userId) { userDevices, error in
-            DispatchQueue.main.async {
-                self.isLoading = false
-                if let error {
-                    Logger().error("[GPWUserLocalDeviceViewModel] Unable to get user device list: \(error.localizedDescription)")
-                    return
-                }
-                self.userDevicesSubject.send(userDevices)
+            self.isLoading = false
+            if let error {
+                Logger().error("[GPWUserLocalDeviceViewModel] Unable to get user device list: \(error.localizedDescription)")
+                return
             }
+            self.userDevicesSubject.send(userDevices)
         }
 
         Publishers.CombineLatest4($isLoading, $userLocalDeviceId, userDevicesSubject.eraseToAnyPublisher(), $isLocalDeviceRegistered)
@@ -74,9 +73,7 @@ class GPWUserLocalDeviceViewModel: ObservableObject {
                         }
                     }
                 } else {
-                    DispatchQueue.main.async {
-                        self.isDeleted = true
-                    }
+                    self.isDeleted = true
                 }
             }
             .store(in: &cancellables)
@@ -84,22 +81,22 @@ class GPWUserLocalDeviceViewModel: ObservableObject {
         Publishers.CombineLatest($userLocalDeviceId, userDevicesSubject.eraseToAnyPublisher())
             .sink { userLocalDeviceId, userDevices in
                 if let userDevice = userDevices.first(where: { $0.deviceId == userLocalDeviceId }) {
-                    DispatchQueue.main.async {
-                        self.deviceId = userDevice.deviceId
-                        self.displayName = userDevice.displayName
-                    }
+                    self.deviceId = userDevice.deviceId
+                    self.displayName = userDevice.displayName
 
                 } else {
-                    DispatchQueue.main.async {
-                        self.deviceId = nil
-                        self.displayName = ""
-                    }
+                    self.deviceId = nil
+                    self.displayName = ""
                 }
             }
             .store(in: &cancellables)
     }
 
     func unsubscribe() {
+        if let snapshotListener {
+            snapshotListener.remove()
+            self.snapshotListener = nil
+        }
         for cancellable in cancellables {
             cancellable.cancel()
         }

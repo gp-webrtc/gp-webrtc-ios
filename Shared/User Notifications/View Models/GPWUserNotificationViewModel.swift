@@ -29,7 +29,7 @@ import UIKit
 import UserNotifications
 
 @MainActor
-class GPWUserNotificationViewModel: ObservableObject {
+final class GPWUserNotificationViewModel: ObservableObject {
     @Published var isLoading = true
 
 //    @GPSCPublishedUserDefault(\.userPushNotificationOnboarding) private var userPushNotificationOnboarding
@@ -39,14 +39,6 @@ class GPWUserNotificationViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private var userNotificationService = GPWUserNotificationService.shared
     private var userFCMRegistrationTokenService = GPWCKUserFCMRegistrationTokenService.shared
-
-    init() {}
-
-    deinit {
-        Task {
-            await self.unsubcribe()
-        }
-    }
 
     func subscribe(userId: String) {
         // Determine FCM registration token (when authorized) or get rid of registered token (if denied)
@@ -101,17 +93,17 @@ class GPWUserNotificationViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
+    func unsubcribe() {
+        for cancellable in cancellables {
+            cancellable.cancel()
+        }
+    }
+
     func requestAuthorization() async throws -> Bool {
         let isAuthorized = try await userNotificationService.requestAuthorization()
         if isAuthorized {
             try await userNotificationService.registerForRemoteNotifications()
         }
         return isAuthorized
-    }
-
-    func unsubcribe() {
-        for cancellable in cancellables {
-            cancellable.cancel()
-        }
     }
 }

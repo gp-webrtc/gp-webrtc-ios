@@ -90,8 +90,8 @@ class GPWUserNotificationService {
         let settings = await userNotificationCenter.notificationSettings()
         if settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional {
             await withCheckedContinuation { continuation in
+                Logger().debug("[GPWUserNotificationService] Registering for remote notifications")
                 DispatchQueue.main.async {
-                    Logger().debug("[GPWUserNotificationService] Registering for remote notifications")
                     #if os(iOS)
                     UIApplication.shared.registerForRemoteNotifications()
                     #else

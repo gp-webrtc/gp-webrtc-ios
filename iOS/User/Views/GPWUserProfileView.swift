@@ -24,6 +24,8 @@ import os.log
 import SwiftUI
 
 struct GPWUserProfileView: View {
+    let userId: String
+
     @ScaledMetric(relativeTo: .body) private var spacing = 16
 
     @EnvironmentObject private var user: GPWUserViewModel
@@ -39,7 +41,7 @@ struct GPWUserProfileView: View {
     private var userMenu: some View {
         VStack(spacing: spacing) {
             navigationCell(value: .userAccount, title: "Account", systemImage: "person")
-            navigationCell(value: .userDeviceList, title: "Devices", systemImage: "smartphone")
+            navigationCell(value: .userDeviceList(userId: userId), title: "Devices", systemImage: "smartphone")
             navigationCell(value: .userSettings, title: "Settings", systemImage: "slider.horizontal.3")
 
             Divider()
@@ -78,8 +80,4 @@ struct GPWUserProfileView: View {
             .padding()
             .padding(.vertical)
     }
-}
-
-#Preview {
-    GPWUserProfileView()
 }

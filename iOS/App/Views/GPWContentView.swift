@@ -24,6 +24,38 @@ import os.log
 import SwiftUI
 
 struct GPWContentView: View {
+    @StateObject private var coreStatus = GPWCoreStatusViewModel()
+
+    var body: some View {
+        ZStack {
+            if coreStatus.isLoading {
+                GPWSplashView {
+                    ProgressView {
+                        Text("Loading ...")
+                            .foregroundStyle(.white)
+                    }
+                }
+            } else if coreStatus.maintenanceMode {
+                GPWSplashView {
+                    Text("Sorry, the app is undergoing some maintanance. Please wait a few minutes.")
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.white)
+                        .bold()
+                }
+            } else {
+                GPWAuthView()
+            }
+        }
+        .onAppear {
+            coreStatus.subscribe()
+        }
+        .onDisappear {
+            coreStatus.unsubscribe()
+        }
+    }
+}
+
+struct GPWAuthView: View {
     @State private var path = NavigationPath()
 
     @StateObject private var userAccount = GPWUserAccountViewModel()
@@ -38,7 +70,46 @@ struct GPWContentView: View {
         }
     }
 
-    private var splash: some View {
+    var body: some View {
+        ZStack {
+            if userAccount.authState == .signedIn, let userId = userAccount.userId {
+                GPWUserContentView(userId: userId)
+                    .environmentObject(userAccount)
+            } else {
+                GPWSplashView {
+                    ZStack {
+                        if userAccount.authState == .signedOut {
+                            Button(action: signInAnonymously) {
+                                HStack {
+                                    Spacer()
+                                    Text("Join now, we need you !")
+                                    Spacer()
+                                }
+                            }
+                            .buttonStyle(.gpwPlain)
+                        } else {
+                            ProgressView {
+                                Text("Loading ...")
+                                    .foregroundStyle(.white)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .onAppear {
+            userAccount.subscribe()
+        }
+        .onDisappear {
+            userAccount.unsubscribe()
+        }
+    }
+}
+
+struct GPWSplashView<GPWContent: View>: View {
+    @ViewBuilder var content: () -> GPWContent
+
+    var body: some View {
         VStack {
             ZStack {
                 HStack {
@@ -61,43 +132,13 @@ struct GPWContentView: View {
 
             Spacer()
 
-            ZStack {
-                if userAccount.authState == .signedOut {
-                    Button(action: signInAnonymously) {
-                        HStack {
-                            Spacer()
-                            Text("Join now, we need you !")
-                            Spacer()
-                        }
-                    }
-                    .buttonStyle(.gpwPlain)
-                } else {
-                    ProgressView {
-                        Text("Loading ...")
-                            .foregroundStyle(.white)
-                    }
-                }
-            }
+            content()
 
-            .padding()
-            .padding(.bottom)
+                .padding()
+                .padding(.bottom)
         }
         .background(Image("GPWSplashScreen").resizable().scaledToFill())
         .ignoresSafeArea()
-    }
-
-    var body: some View {
-        ZStack {
-            if userAccount.authState == .signedIn, let userId = userAccount.userId {
-                GPWUserContentView(userId: userId)
-                    .environmentObject(userAccount)
-            } else {
-                splash
-            }
-        }
-        .onAppear {
-            userAccount.subscribe()
-        }
     }
 }
 

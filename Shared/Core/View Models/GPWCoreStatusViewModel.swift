@@ -20,42 +20,35 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Combine
 import Foundation
 import GPWCloudKit
 import os.log
 
 @MainActor
-final class GPWUserViewModel: ObservableObject {
+final class GPWCoreStatusViewModel: ObservableObject {
     @Published var isLoading = true
-    @Published var userId: String?
-    @Published var displayName: String = ""
-    @Published var settings: GPWCKUserSettings = .default
-    @Published var modelVersion: String = GPWCKCoreModelVersion.v0_0_0_0.rawValue
+    @Published var maintenanceMode = false
 
-    private let userService = GPWCKUserService.shared
+    private let coreStatusService = GPWCKCoreStatusService.shared
 
     private var snapshotListner: GPWCKSnapshotListener?
 
-    func subscribe(userId: String) {
-        if snapshotListner == nil {
-            snapshotListner = userService.documentSnapshot(userId) { user, error in
-                if let error {
-                    Logger().error("[GPWUserViewModel] Unable to subscribe to user profile changes: \(error.localizedDescription)")
-                    return
-                }
+    func subscribe() {
+        guard snapshotListner == nil else { return }
 
-                guard let user else {
-                    Logger().error("[GPWUserViewModel] Received no user data")
-                    return
-                }
-
-                self.isLoading = false
-                self.userId = user.userId
-                self.displayName = user.displayName
-                self.settings = user.settings
-                self.modelVersion = user.modelVersion
+        snapshotListner = coreStatusService.documentSnapshot { coreStatus, error in
+            if let error {
+                Logger().error("[GPWCoreVersionViewModel] Unable to subscribe to core version matrix changes: \(error.localizedDescription)")
+                return
             }
+
+            guard let coreStatus else {
+                Logger().error("[GPWCoreVersionViewModel] Received no data")
+                return
+            }
+
+            self.isLoading = false
+            self.maintenanceMode = coreStatus.maintenanceMode
         }
     }
 
@@ -64,10 +57,5 @@ final class GPWUserViewModel: ObservableObject {
             snapshotListner.remove()
             self.snapshotListner = nil
         }
-    }
-
-    func updateSettings(_ settings: GPWCKUserSettings) async throws {
-        guard let userId else { return }
-        try await userService.updateSettings(settings, of: userId)
     }
 }

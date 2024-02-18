@@ -24,7 +24,7 @@ import Foundation
 
 enum GPWNavigationDestination: Hashable {
     case userAccount
-    case userDeviceList
+    case userDeviceList(userId: String)
     case userNotificationsSettings
     case userSettings
     case about

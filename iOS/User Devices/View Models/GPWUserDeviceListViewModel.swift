@@ -25,7 +25,8 @@ import Foundation
 import GPWCloudKit
 import os.log
 
-class GPWUserDeviceListViewModel: ObservableObject {
+@MainActor
+final class GPWUserDeviceListViewModel: ObservableObject {
     @Published var devices: [GPWCKUserDevice] = []
 
     private let userDeviceService = GPWCKUserDeviceService.shared
@@ -40,10 +41,15 @@ class GPWUserDeviceListViewModel: ObservableObject {
                     return
                 }
 
-                DispatchQueue.main.async {
-                    self.devices = userDevices
-                }
+                self.devices = userDevices
             }
+        }
+    }
+
+    func unsubscribe() {
+        if let snapshotListner {
+            snapshotListner.remove()
+            self.snapshotListner = nil
         }
     }
 }

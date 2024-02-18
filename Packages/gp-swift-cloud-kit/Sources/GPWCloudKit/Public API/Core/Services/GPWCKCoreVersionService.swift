@@ -24,34 +24,33 @@
 import FirebaseSharedSwift
 import Foundation
 
-public struct GPWCKCoreVersionMatrixService {
-    public static var shared: GPWCKCoreVersionMatrixService {
+public struct GPWCKCoreVersionService {
+    public static var shared: GPWCKCoreVersionService {
         if let instance {
             return instance
         } else {
-            let instance = GPWCKCoreVersionMatrixService()
-            GPWCKCoreVersionMatrixService.instance = instance
+            let instance = GPWCKCoreVersionService()
+            GPWCKCoreVersionService.instance = instance
             return instance
         }
     }
 
-    private static var instance: GPWCKCoreVersionMatrixService?
+    private static var instance: GPWCKCoreVersionService?
 
-    private let firestoreService = GPWCKFirestoreService<GPWCKCoreVersionMatrix>()
+    private let firestoreService = GPWCKFirestoreService<GPWCKCoreVersion>()
 
     public func documentSnapshot(
-        _: String,
-        onChanges callback: @escaping GPWCKDocumentSnapshotChangesHandler<GPWCKCoreVersionMatrix>
+        onChanges callback: @escaping GPWCKDocumentSnapshotChangesHandler<GPWCKCoreVersion>
     ) -> GPWCKSnapshotListener {
         let snapshotListener = firestoreService.documentSnapshotListener(
-            .coreVersionMatrix
-        ) { coreVersionMatrix, error in
+            .coreVersion
+        ) { coreVersion, error in
             if let error {
                 callback(nil, error)
                 return
             }
 
-            callback(coreVersionMatrix, nil)
+            callback(coreVersion, nil)
         }
         return snapshotListener
     }

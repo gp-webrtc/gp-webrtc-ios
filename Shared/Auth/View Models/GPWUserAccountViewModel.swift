@@ -26,7 +26,8 @@ import GPStorageKit
 import GPWCloudKit
 import os.log
 
-class GPWUserAccountViewModel: ObservableObject {
+@MainActor
+final class GPWUserAccountViewModel: ObservableObject {
     @Published var userId: String?
     @Published var authState: GPWAuthState = .unknown
 
@@ -39,20 +40,27 @@ class GPWUserAccountViewModel: ObservableObject {
     func subscribe() {
         if authStateDidChangeListener == nil {
             authStateDidChangeListener = authService.addStateDidChangeListener { userAccount in
-                DispatchQueue.main.async {
-                    self.authState = userAccount != nil ? .signedIn : .signedOut
-                }
+                self.authState = userAccount != nil ? .signedIn : .signedOut
             }
         }
         if idTokenDidChangeListener == nil {
             idTokenDidChangeListener = authService.addIDTokenDidChangeListener { userAccount in
-                DispatchQueue.main.async {
-                    self.userId = userAccount?.userId
-                    if let userId = userAccount?.userId, userId != GPSCStorageService.shared.userId {
-                        GPSCStorageService.shared.userId = userId
-                    }
+                self.userId = userAccount?.userId
+                if let userId = userAccount?.userId, userId != GPSCStorageService.shared.userId {
+                    GPSCStorageService.shared.userId = userId
                 }
             }
+        }
+    }
+
+    func unsubscribe() {
+        if let authStateDidChangeListener {
+            authService.removeStateDidChangeListener(authStateDidChangeListener)
+            self.authStateDidChangeListener = nil
+        }
+        if let idTokenDidChangeListener {
+            authService.removeIDTokenDidChangeListener(idTokenDidChangeListener)
+            self.idTokenDidChangeListener = nil
         }
     }
 

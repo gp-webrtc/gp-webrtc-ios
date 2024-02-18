@@ -21,33 +21,39 @@
 //
 
 #if canImport(FirebaseFirestore)
-import FirebaseFirestore
+import FirebaseSharedSwift
 import Foundation
 
-enum GPWCKFirestoreDocumentPath {
-    case coreStatus
-    case coreVersion
-    case user(userId: String)
-    case userDevice(userId: String, deviceId: String)
-    case userPublicKey(userId: String, type: GPWCKUserPublicKey.GPWCKKeyType)
-
-    var string: String {
-        switch self {
-            case .coreStatus:
-                "/core/status"
-            case .coreVersion:
-                "/core/version"
-            case let .user(userId):
-                "/users/\(userId)"
-            case let .userDevice(userId, deviceId):
-                "/users/\(userId)/devices/\(deviceId)"
-            case let .userPublicKey(userId, type):
-                "/users/\(userId)/publicKeys/\(type.rawValue)"
+public struct GPWCKCoreStatusService {
+    public static var shared: GPWCKCoreStatusService {
+        if let instance {
+            return instance
+        } else {
+            let instance = GPWCKCoreStatusService()
+            GPWCKCoreStatusService.instance = instance
+            return instance
         }
     }
 
-    var documentRef: DocumentReference {
-        Firestore.firestore().document(string)
+    private static var instance: GPWCKCoreStatusService?
+
+    private let firestoreService = GPWCKFirestoreService<GPWCKCoreStatus>()
+
+    public func documentSnapshot(
+        onChanges callback: @escaping GPWCKDocumentSnapshotChangesHandler<GPWCKCoreStatus>
+    ) -> GPWCKSnapshotListener {
+        let snapshotListener = firestoreService.documentSnapshotListener(
+            .coreStatus
+        ) { coreStatus, error in
+            if let error {
+                callback(nil, error)
+                return
+            }
+
+            callback(coreStatus, nil)
+        }
+        return snapshotListener
     }
 }
+
 #endif

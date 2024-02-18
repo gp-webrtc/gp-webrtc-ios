@@ -90,7 +90,7 @@ struct GPWUserContentView: View {
                         .padding()
                 } else {
                     NavigationStack(path: $path) {
-                        GPWUserMainView()
+                        GPWUserMainView(userId: userId)
                             .environmentObject(user)
                     }
                 }
@@ -99,6 +99,10 @@ struct GPWUserContentView: View {
         .onAppear {
             user.subscribe(userId: userId)
             coreVersion.subscribe(userId: userId)
+        }
+        .onDisappear {
+            user.unsubscribe()
+            coreVersion.unsubscribe()
         }
         .onReceive(user.$modelVersion) { modelVersion in
             coreVersion.modelVersion = modelVersion

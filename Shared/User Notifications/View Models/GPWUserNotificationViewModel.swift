@@ -33,38 +33,38 @@ final class GPWUserNotificationViewModel: ObservableObject {
     @Published var isLoading = true
 
 //    @GPSCPublishedUserDefault(\.userPushNotificationOnboarding) private var userPushNotificationOnboarding
-    @GPSCPublishedUserDefault(\.userFCMRegistrationTokenId) private var userFCMRegistrationTokenId
+    @GPSCPublishedUserDefault(\.userNotificationRegistrationTokenId) private var userNotificationRegistrationTokenId
 
-    private var fcmRegistrationToken: String?
+//    private var fcmRegistrationToken: String?
     private var cancellables = Set<AnyCancellable>()
     private var userNotificationService = GPWUserNotificationService.shared
-    private var userFCMRegistrationTokenService = GPWCKUserFCMRegistrationTokenService.shared
+    private var userNotificationRegistrationTokenService = GPWCKUserNotificationRegistrationTokenService.shared
 
     func subscribe(userId: String) {
         // Determine FCM registration token (when authorized) or get rid of registered token (if denied)
-        Publishers.CombineLatest(userNotificationService.authorizationStatus, $userFCMRegistrationTokenId)
-            .sink { authorizationStatus, userFCMRegistrationTokenId in
+        Publishers.CombineLatest(userNotificationService.authorizationStatus, $userNotificationRegistrationTokenId)
+            .sink { authorizationStatus, userNotificationRegistrationTokenId in
                 if let authorizationStatus {
                     self.isLoading = false
 
                     switch authorizationStatus {
                         case .authorized:
-                            if userFCMRegistrationTokenId == nil { self.userFCMRegistrationTokenId = UUID().uuidString }
+                            if userNotificationRegistrationTokenId == nil { self.userNotificationRegistrationTokenId = UUID().uuidString }
 
-                            guard let userFCMRegistrationTokenId else { return }
-                            Logger().debug("[GPWUserNotificationViewModel] FCM token registration id: \(userFCMRegistrationTokenId)")
+                            guard let userNotificationRegistrationTokenId else { return }
+                            Logger().debug("[GPWUserNotificationViewModel] Notification registration token id: \(userNotificationRegistrationTokenId)")
                         case .denied:
-                            if let userFCMRegistrationTokenId {
+                            if let userNotificationRegistrationTokenId {
                                 Task {
                                     do {
                                         Logger().debug("[GPWUserNotificationViewModel] Deleting FCM registration token")
-                                        try await self.userFCMRegistrationTokenService.delete(userFCMRegistrationTokenId, userId: userId)
-                                        self.fcmRegistrationToken = nil
+                                        try await self.userNotificationRegistrationTokenService.delete(userNotificationRegistrationTokenId, userId: userId)
+//                                        self.fcmRegistrationToken = nil
                                     } catch {
                                         Logger().error("[GPWUserNotificationViewModel] Unable to upload FCM register token: \(error.localizedDescription)")
                                     }
                                 }
-                                self.userFCMRegistrationTokenId = nil
+                                self.userNotificationRegistrationTokenId = nil
                             }
                         default:
                             break
@@ -73,18 +73,33 @@ final class GPWUserNotificationViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
-        Publishers.CombineLatest3($isLoading, $userFCMRegistrationTokenId, userNotificationService.fcmRegistrationToken)
-            .sink { isLoading, userFCMRegistrationTokenId, fcmRegistrationToken in
-                guard !isLoading, let userFCMRegistrationTokenId, let fcmRegistrationToken, fcmRegistrationToken != self.fcmRegistrationToken else {
-                    Logger().debug("[GPWUserNotificationViewModel] Some conditions not met to upload FCM registration token: isLoading = \(isLoading), tokenId = \(userFCMRegistrationTokenId ?? "nil"), token: \(fcmRegistrationToken ?? "nil")")
+        Publishers.CombineLatest4($isLoading, $userNotificationRegistrationTokenId, userNotificationService.apnsToken, userNotificationService.voipToken)
+            .sink { isLoading, userNotificationRegistrationTokenId, apnsToken, voipToken in
+                guard !isLoading,
+                      let userNotificationRegistrationTokenId,
+                      let apnsToken,
+                      let voipToken
+                else {
+                    Logger().debug("[GPWUserNotificationViewModel] Some conditions not met to upload FCM registration token: isLoading = \(isLoading), tokenId = \(userNotificationRegistrationTokenId ?? "nil"), apnsToken: \(apnsToken ?? "nil"), voipToken: \(voipToken ?? "nil")")
                     return
                 }
+
+                // TODO: Check if tokens are different
 
                 Task {
                     do {
                         Logger().debug("[GPWUserNotificationViewModel] Uploading FCM registration token")
-                        try await self.userFCMRegistrationTokenService.insertOrUpdate(fcmRegistrationToken, userId: userId, tokenId: userFCMRegistrationTokenId)
-                        self.fcmRegistrationToken = fcmRegistrationToken
+                        try await self.userNotificationRegistrationTokenService
+                            .insertOrUpdate(
+                                GPWCKUserNotificationDeviceToken(
+                                    apnsToken: GPWCKUserNotificationDeviceAPNSToken(
+                                        apns: apnsToken,
+                                        voip: voipToken
+                                    )
+                                ),
+                                userId: userId,
+                                tokenId: userNotificationRegistrationTokenId
+                            )
                     } catch {
                         Logger().error("[GPWUserNotificationViewModel] Unable to upload FCM register token: \(error.localizedDescription)")
                     }
@@ -99,11 +114,7 @@ final class GPWUserNotificationViewModel: ObservableObject {
         }
     }
 
-    func requestAuthorization() async throws -> Bool {
-        let isAuthorized = try await userNotificationService.requestAuthorization()
-        if isAuthorized {
-            try await userNotificationService.registerForRemoteNotifications()
-        }
-        return isAuthorized
-    }
+//    func requestAuthorization(application: UIApplication) async throws -> Bool {
+//        return try await userNotificationService.requestAuthorization(application: application)
+//    }
 }

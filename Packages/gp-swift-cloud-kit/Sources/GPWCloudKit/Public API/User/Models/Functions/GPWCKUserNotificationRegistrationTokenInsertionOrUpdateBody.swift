@@ -23,14 +23,28 @@
 #if canImport(FirebaseFunctions)
 import Foundation
 
-struct GPWCKUserFCMRegistrationTokenDeletionBody {
+struct GPWCKUserNotificationRegistrationTokenInsertionOrUpdateBody {
+    enum GPWCKDeviceType: String {
+        case iOSApp
+        case androidApp
+        case watchOSApp
+        case safariWebApp
+        case chromeWebApp
+        case firefoxWebApp
+        case edgeWebApp
+    }
+
     let userId: String
     let tokenId: String
+    let token: GPWCKUserNotificationDeviceToken
+    let deviceType: GPWCKDeviceType
 
     var dictionary: [String: Any] {
         [
             "userId": userId,
             "tokenId": tokenId,
+            "token": token.dictionary,
+            "deviceType": deviceType.rawValue,
         ]
     }
 }

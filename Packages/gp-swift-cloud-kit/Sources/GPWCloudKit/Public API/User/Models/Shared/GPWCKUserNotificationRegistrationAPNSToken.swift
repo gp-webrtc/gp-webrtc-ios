@@ -1,5 +1,5 @@
 //
-// gp-webrtc-ios
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -21,17 +21,22 @@
 //
 
 import Foundation
-import GPStorageKit
 
-extension GPSCUserDefaultValues {
-    struct GPWUserFCMRegistrationTokenIdKey: GPSCUserDefaultKey {
-        static let key = "user.fcmRegistrationTokenId"
-        static let defaultValue: String? = nil
-        static let isTiedToUserId = true
+public struct GPWCKUserNotificationDeviceAPNSToken: GPWCKDataProtocol {
+    public let apns: String
+    public let voip: String?
+
+    public init(
+        apns: String,
+        voip: String?
+    ) {
+        self.apns = apns
+        self.voip = voip
     }
 
-    var userFCMRegistrationTokenId: String? {
-        get { self[GPWUserFCMRegistrationTokenIdKey.self] }
-        set { self[GPWUserFCMRegistrationTokenIdKey.self] = newValue }
+    var dictionary: [String: Any] {
+        var result = ["apns": apns]
+        if let voip { result["voip"] = voip }
+        return result
     }
 }

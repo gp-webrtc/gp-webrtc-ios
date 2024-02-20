@@ -21,9 +21,13 @@
 //
 
 import Foundation
+import SwiftData
 
-class GPWAppDelegate: NSObject {
-    override init() {
-        super.init()
+@Model
+final class GPWItem {
+    var timestamp: Date
+
+    init(timestamp: Date) {
+        self.timestamp = timestamp
     }
 }

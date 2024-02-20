@@ -31,7 +31,7 @@ struct GPWContentView: View {
             if coreStatus.isLoading {
                 GPWSplashView {
                     ProgressView {
-                        Text("Loading ...")
+                        Text("Loading app...")
                             .foregroundStyle(.white)
                     }
                 }
@@ -89,7 +89,7 @@ struct GPWAuthView: View {
                             .buttonStyle(.gpwPlain)
                         } else {
                             ProgressView {
-                                Text("Loading ...")
+                                Text("Loading authentication...")
                                     .foregroundStyle(.white)
                             }
                         }

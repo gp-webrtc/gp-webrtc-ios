@@ -40,9 +40,7 @@ private extension GPWUserNotificationsSettingsView {
         @Binding var settings: GPWCKUserSettings
 
         @State private var isEnabled = GPWCKUserSettings.default.notifications.isEnabled
-        @State private var onMessageReceived = GPWCKUserSettings.default.notifications.onMessageReceived
         @State private var onDeviceAdded = GPWCKUserSettings.default.notifications.onDeviceAdded
-        @State private var onDeviceRemoved = GPWCKUserSettings.default.notifications.onDeviceRemoved
 
         @EnvironmentObject private var user: GPWUserViewModel
 
@@ -56,24 +54,7 @@ private extension GPWUserNotificationsSettingsView {
                     GPWCKUserSettings(
                         notifications: GPWCKUserNotificationsSettings(
                             isEnabled: isEnabled,
-                            onMessageReceived: settings.notifications.onMessageReceived,
-                            onDeviceAdded: settings.notifications.onDeviceAdded,
-                            onDeviceRemoved: settings.notifications.onDeviceRemoved
-                        )
-                    )
-                )
-            }
-        }
-
-        private var onMessageReceivedField: some View {
-            GPWToggleField(title: "Message recevied", value: $onMessageReceived, referenceValue: settings.notifications.onMessageReceived) {
-                try await user.updateSettings(
-                    GPWCKUserSettings(
-                        notifications: GPWCKUserNotificationsSettings(
-                            isEnabled: settings.notifications.isEnabled,
-                            onMessageReceived: onMessageReceived,
-                            onDeviceAdded: settings.notifications.onDeviceAdded,
-                            onDeviceRemoved: settings.notifications.onDeviceRemoved
+                            onDeviceAdded: settings.notifications.onDeviceAdded
                         )
                     )
                 )
@@ -86,24 +67,7 @@ private extension GPWUserNotificationsSettingsView {
                     GPWCKUserSettings(
                         notifications: GPWCKUserNotificationsSettings(
                             isEnabled: settings.notifications.isEnabled,
-                            onMessageReceived: settings.notifications.onMessageReceived,
-                            onDeviceAdded: onDeviceAdded,
-                            onDeviceRemoved: settings.notifications.onDeviceRemoved
-                        )
-                    )
-                )
-            }
-        }
-
-        private var onDeviceRemovedField: some View {
-            GPWToggleField(title: "Device removed", value: $onDeviceRemoved, referenceValue: settings.notifications.onDeviceRemoved) {
-                try await user.updateSettings(
-                    GPWCKUserSettings(
-                        notifications: GPWCKUserNotificationsSettings(
-                            isEnabled: settings.notifications.isEnabled,
-                            onMessageReceived: settings.notifications.onMessageReceived,
-                            onDeviceAdded: settings.notifications.onDeviceAdded,
-                            onDeviceRemoved: onDeviceRemoved
+                            onDeviceAdded: onDeviceAdded
                         )
                     )
                 )
@@ -112,9 +76,7 @@ private extension GPWUserNotificationsSettingsView {
 
         private var notificationPreferencesSection: some View {
             Section {
-                onMessageReceivedField
                 onDeviceAddedField
-                onDeviceRemovedField
             } header: {
                 Text("Preferences")
             }
@@ -132,15 +94,11 @@ private extension GPWUserNotificationsSettingsView {
             }
             .onAppear {
                 isEnabled = settings.notifications.isEnabled
-                onMessageReceived = settings.notifications.onMessageReceived
                 onDeviceAdded = settings.notifications.onDeviceAdded
-                onDeviceRemoved = settings.notifications.onDeviceRemoved
             }
             .onChange(of: settings) { _, settings in
                 isEnabled = settings.notifications.isEnabled
-                onMessageReceived = settings.notifications.onMessageReceived
                 onDeviceAdded = settings.notifications.onDeviceAdded
-                onDeviceRemoved = settings.notifications.onDeviceRemoved
             }
         }
     }

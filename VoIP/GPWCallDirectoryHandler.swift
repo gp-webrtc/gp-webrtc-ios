@@ -28,6 +28,8 @@ class GPWCallDirectoryHandler: CXCallDirectoryProvider {
     override func beginRequest(with context: CXCallDirectoryExtensionContext) {
         context.delegate = self
 
+        Logger().debug("[GPWCallDirectoryHandler] Received request to directory provider")
+
         // <--- Block is deactivated because there are no phone number
         //        // Check whether this is an "incremental" data request. If so, only
         //        // provide the set of phone number blocking and identification entries

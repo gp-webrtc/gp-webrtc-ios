@@ -23,17 +23,17 @@
 #if canImport(FirebaseFunctions)
 import Foundation
 
-public class GPWCKUserFCMRegistrationTokenService {
-    public static var shared: GPWCKUserFCMRegistrationTokenService {
+public class GPWCKUserNotificationRegistrationTokenService {
+    public static var shared: GPWCKUserNotificationRegistrationTokenService {
         if let _instance {
             return _instance
         } else {
-            _instance = GPWCKUserFCMRegistrationTokenService()
+            _instance = GPWCKUserNotificationRegistrationTokenService()
             return _instance!
         }
     }
 
-    private static var _instance: GPWCKUserFCMRegistrationTokenService?
+    private static var _instance: GPWCKUserNotificationRegistrationTokenService?
 
     // MARK: - Cloud Firestore documents
 
@@ -68,11 +68,11 @@ public class GPWCKUserFCMRegistrationTokenService {
 
     // MARK: - Cloud Functions
 
-    public func insertOrUpdate(_ token: String, userId: String, tokenId: String) async throws {
-        let insertOrUpdateFCMRegistrationTokenFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("user-insertOrUpdateFCMRegistrationToken", in: "europe-west3")
+    public func insertOrUpdate(_ token: GPWCKUserNotificationDeviceToken, userId: String, tokenId: String) async throws {
+        let insertOrUpdateFCMRegistrationTokenFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("user-insertOrUpdateNotificationRegistrationToken", in: "europe-west3")
         try await insertOrUpdateFCMRegistrationTokenFunctionService
             .call(
-                GPWCKUserFCMRegistrationTokenInsertionOrUpdateBody(
+                GPWCKUserNotificationRegistrationTokenInsertionOrUpdateBody(
                     userId: userId,
                     tokenId: tokenId,
                     token: token,
@@ -83,10 +83,10 @@ public class GPWCKUserFCMRegistrationTokenService {
     }
 
     public func delete(_ tokenId: String, userId: String) async throws {
-        let approvePendingFriendRequestFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("user-deleteFCMRegistrationToken", in: "europe-west1")
+        let approvePendingFriendRequestFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("user-deleteNotificationRegistrationToken", in: "europe-west1")
         try await approvePendingFriendRequestFunctionService
             .call(
-                GPWCKUserFCMRegistrationTokenDeletionBody(
+                GPWCKUserNotificationRegistrationTokenDeletionBody(
                     userId: userId,
                     tokenId: tokenId
                 )

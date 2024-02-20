@@ -1,5 +1,5 @@
 //
-// gp-webrtc-ios/swift-cloud-kit
+// gp-webrtc-ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,32 +20,18 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if canImport(FirebaseFunctions)
 import Foundation
+import GPStorageKit
 
-struct GPWCKUserFCMRegistrationTokenInsertionOrUpdateBody {
-    enum GPWCKDeviceType: String {
-        case iOSApp
-        case androidApp
-        case watchOSApp
-        case safariWebApp
-        case chromeWebApp
-        case firefoxWebApp
-        case edgeWebApp
+extension GPSCUserDefaultValues {
+    struct GPWUserNotificationRegistrationTokenIdKey: GPSCUserDefaultKey {
+        static let key = "user.notificationRegistrationTokenId"
+        static let defaultValue: String? = nil
+        static let isTiedToUserId = true
     }
 
-    let userId: String
-    let tokenId: String
-    let token: String
-    let deviceType: GPWCKDeviceType
-
-    var dictionary: [String: Any] {
-        [
-            "userId": userId,
-            "tokenId": tokenId,
-            "token": token,
-            "deviceType": deviceType.rawValue,
-        ]
+    var userNotificationRegistrationTokenId: String? {
+        get { self[GPWUserNotificationRegistrationTokenIdKey.self] }
+        set { self[GPWUserNotificationRegistrationTokenIdKey.self] = newValue }
     }
 }
-#endif

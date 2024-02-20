@@ -1,5 +1,5 @@
 //
-// gp-webrtc-ios
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -21,13 +21,15 @@
 //
 
 import Foundation
-import SwiftData
 
-@Model
-final class GPItem {
-    var timestamp: Date
+public struct GPWCKUserNotificationDeviceToken: GPWCKDataProtocol {
+    public let apnsToken: GPWCKUserNotificationDeviceAPNSToken
 
-    init(timestamp: Date) {
-        self.timestamp = timestamp
+    public init(apnsToken: GPWCKUserNotificationDeviceAPNSToken) {
+        self.apnsToken = apnsToken
+    }
+
+    var dictionary: [String: Any] {
+        ["apnsToken": apnsToken.dictionary]
     }
 }

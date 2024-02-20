@@ -29,7 +29,7 @@ struct GPWApp: App {
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            GPItem.self,
+            GPWItem.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

@@ -24,25 +24,19 @@ import Foundation
 
 public struct GPWCKUserNotificationsSettings: GPWCKDataProtocol {
     public let isEnabled: Bool
-    public let onMessageReceived: Bool
     public let onDeviceAdded: Bool
-    public let onDeviceRemoved: Bool
 
     public init(
         isEnabled: Bool,
-        onMessageReceived: Bool,
-        onDeviceAdded: Bool,
-        onDeviceRemoved: Bool
+        onDeviceAdded: Bool
     ) {
         self.isEnabled = isEnabled
-        self.onMessageReceived = onMessageReceived
         self.onDeviceAdded = onDeviceAdded
-        self.onDeviceRemoved = onDeviceRemoved
     }
 }
 
 public extension GPWCKUserNotificationsSettings {
     static var `default`: GPWCKUserNotificationsSettings {
-        .init(isEnabled: true, onMessageReceived: true, onDeviceAdded: true, onDeviceRemoved: true)
+        .init(isEnabled: true, onDeviceAdded: true)
     }
 }

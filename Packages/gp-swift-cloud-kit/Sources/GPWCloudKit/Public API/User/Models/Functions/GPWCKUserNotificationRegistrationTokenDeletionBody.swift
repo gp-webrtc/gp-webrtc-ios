@@ -1,5 +1,5 @@
 //
-// gp-webrtc-ios
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,10 +20,18 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#if canImport(FirebaseFunctions)
 import Foundation
 
-class GPWAppDelegate: NSObject {
-    override init() {
-        super.init()
+struct GPWCKUserNotificationRegistrationTokenDeletionBody {
+    let userId: String
+    let tokenId: String
+
+    var dictionary: [String: Any] {
+        [
+            "userId": userId,
+            "tokenId": tokenId,
+        ]
     }
 }
+#endif

@@ -1,5 +1,5 @@
 //
-// gp-webrtc-ios
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,10 +20,29 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+#if canImport(FirebaseFirestore)
+import FirebaseSharedSwift
 import Foundation
 
-class GPWAppDelegate: NSObject {
-    override init() {
-        super.init()
+public struct GPWCKCoreService {
+    public static var shared: GPWCKCoreService {
+        if let instance {
+            return instance
+        } else {
+            let instance = GPWCKCoreService()
+            GPWCKCoreService.instance = instance
+            return instance
+        }
     }
+
+    private static var instance: GPWCKCoreService?
+
+    #if targetEnvironment(simulator)
+    public func initEmulator() async throws {
+        let updateModelFunctionService = GPWCKFunctionService<GPWCKFunctionNoResponse>("core-initEmulator", in: "europe-west3")
+        try await updateModelFunctionService.call([:])
+    }
+    #endif
 }
+
+#endif

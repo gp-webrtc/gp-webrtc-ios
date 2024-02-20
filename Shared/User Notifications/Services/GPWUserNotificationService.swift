@@ -22,9 +22,7 @@
 
 import Combine
 import Foundation
-import GPWCloudKit
 import os.log
-import UIKit
 import UserNotifications
 
 class GPWUserNotificationService {
@@ -38,30 +36,29 @@ class GPWUserNotificationService {
 
     private static var _instance: GPWUserNotificationService?
 
-    private let cloudMessagingService = GPWCKCloudMessagingService.shared
     private let userNotificationCenter = UNUserNotificationCenter.current()
+
+    private var apnsTokenSubject = CurrentValueSubject<String?, Never>(nil)
+    private var voipTokenSubject = CurrentValueSubject<String?, Never>(nil)
     private var isAuthorizedSubject = CurrentValueSubject<UNAuthorizationStatus?, Never>(nil)
 
     private init() {
         Task {
-            do {
-                let settings = await userNotificationCenter.notificationSettings()
-                isAuthorizedSubject.send(settings.authorizationStatus)
-                if settings.authorizationStatus == .authorized {
-                    try await registerForRemoteNotifications()
-                }
-            } catch {
-                Logger().error("[GPWUserNotificationService] Unable to register for remote notifications: \(error.localizedDescription)")
-            }
+            let settings = await userNotificationCenter.notificationSettings()
+            isAuthorizedSubject.send(settings.authorizationStatus)
         }
     }
 
-    lazy var fcmRegistrationToken = cloudMessagingService.fcmRegistrationToken
     lazy var authorizationStatus = isAuthorizedSubject.eraseToAnyPublisher()
+    lazy var apnsToken = apnsTokenSubject.eraseToAnyPublisher()
+    lazy var voipToken = voipTokenSubject.eraseToAnyPublisher()
 
-    var apnsToken: Data? {
-        get { cloudMessagingService.apnsToken }
-        set { cloudMessagingService.apnsToken = newValue }
+    func setAPNSToken(_ token: String?) {
+        apnsTokenSubject.send(token)
+    }
+
+    func setVOIPToken(_ token: String?) {
+        voipTokenSubject.send(token)
     }
 
     func requestAuthorization() async throws -> Bool {
@@ -75,42 +72,10 @@ class GPWUserNotificationService {
             let settings = await userNotificationCenter.notificationSettings()
             isAuthorizedSubject.send(settings.authorizationStatus)
 
-            if isAuthorized {
-                try await registerForRemoteNotifications()
-            }
-
             return isAuthorized
         } else {
             Logger().debug("[GPWUserNotificationService] Authorization have already been requested")
             return settings.authorizationStatus != .denied
         }
-    }
-
-    func registerForRemoteNotifications() async throws {
-        let settings = await userNotificationCenter.notificationSettings()
-        if settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional {
-            await withCheckedContinuation { continuation in
-                Logger().debug("[GPWUserNotificationService] Registering for remote notifications")
-                DispatchQueue.main.async {
-                    #if os(iOS)
-                    UIApplication.shared.registerForRemoteNotifications()
-                    #else
-                    WKApplication.shared().registerForRemoteNotifications()
-                    #endif
-                    continuation.resume()
-                }
-            }
-        } else {
-            Logger().error("[GPWUserNotificationService] Unable to register for remote notifications: Not authorized (phone privacy settings)")
-            throw GPWUserNotificationError.notAuthorized
-        }
-    }
-
-    func canHandleNotification(_ notification: [AnyHashable: Any]) -> Bool {
-        if let messageId = notification["gcm.message_id"] as? String {
-            Logger().debug("[GPWUserNotificationService] Message id: \(messageId)")
-            cloudMessagingService.appDidReceiveMessage(notification)
-            return true
-        } else { return false }
     }
 }

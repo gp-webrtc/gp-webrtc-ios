@@ -46,7 +46,6 @@ let package = Package(
                 .product(name: "FirebaseFunctions", package: "firebase-ios-sdk"),
                 .product(name: "FirebaseFirestore", package: "firebase-ios-sdk", condition: .when(platforms: [.iOS])),
                 .product(name: "FirebaseStorage", package: "firebase-ios-sdk"),
-                .product(name: "FirebaseMessaging", package: "firebase-ios-sdk"),
             ]
         ),
         .testTarget(

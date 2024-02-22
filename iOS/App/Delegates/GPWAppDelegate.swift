@@ -54,7 +54,12 @@ class GPWAppDelegate: NSObject {
             }
         }
         #else
+        #if GPW_DEVELOPMENT
         GPWCKCloudAppService.shared.configure(withConfiguration: .local)
+        #endif
+        #if GPW_RELEASE
+        GPWCKCloudAppService.shared.configure(withConfiguration: .release)
+        #endif
         #endif
     }
 

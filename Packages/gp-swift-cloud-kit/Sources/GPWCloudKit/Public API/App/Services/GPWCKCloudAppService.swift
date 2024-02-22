@@ -87,8 +87,8 @@ public class GPWCKCloudAppService {
             let providerFactory = AppCheckDebugProviderFactory()
             AppCheck.setAppCheckProviderFactory(providerFactory)
         } else {
-            let providerFactory = GPWCKAppCheckProviderFactory()
             Logger().info("[GPWCKCloudAppService] App check is enabled")
+            let providerFactory = GPWCKAppCheckProviderFactory()
             AppCheck.setAppCheckProviderFactory(providerFactory)
         }
         #endif

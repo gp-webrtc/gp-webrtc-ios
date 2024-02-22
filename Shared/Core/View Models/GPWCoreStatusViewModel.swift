@@ -27,14 +27,16 @@ import os.log
 @MainActor
 final class GPWCoreStatusViewModel: ObservableObject {
     @Published var isLoading = true
+    @Published var hasTimedOut = false
     @Published var maintenanceMode = false
 
     private let coreStatusService = GPWCKCoreStatusService.shared
 
     private var snapshotListner: GPWCKSnapshotListener?
+    private var timeoutTimer: Timer?
 
     func subscribe() {
-        guard snapshotListner == nil else { return }
+        guard snapshotListner == nil, timeoutTimer == nil else { return }
 
         snapshotListner = coreStatusService.documentSnapshot { coreStatus, error in
             if let error {
@@ -48,7 +50,15 @@ final class GPWCoreStatusViewModel: ObservableObject {
             }
 
             self.isLoading = false
+            self.timeoutTimer?.invalidate()
+            self.timeoutTimer = nil
             self.maintenanceMode = coreStatus.maintenanceMode
+        }
+
+        timeoutTimer = .scheduledTimer(withTimeInterval: 15, repeats: false) { _ in
+            DispatchQueue.main.async {
+                self.hasTimedOut = true
+            }
         }
     }
 

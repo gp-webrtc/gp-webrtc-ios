@@ -21,7 +21,7 @@
 //
 
 #if canImport(FirebaseFirestore)
-import FirebaseSharedSwift
+import FirebaseFirestore
 import Foundation
 
 public struct GPWCKCoreService {

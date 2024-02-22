@@ -28,7 +28,12 @@ struct GPWContentView: View {
 
     var body: some View {
         ZStack {
-            if coreStatus.isLoading {
+            if coreStatus.hasTimedOut {
+                GPWSplashView {
+                    Text("Something went wrong...")
+                        .foregroundStyle(.white)
+                }
+            } else if coreStatus.isLoading {
                 GPWSplashView {
                     ProgressView {
                         Text("Loading app...")

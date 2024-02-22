@@ -94,7 +94,8 @@ final class GPWUserNotificationViewModel: ObservableObject {
                                 GPWCKUserNotificationDeviceToken(
                                     apnsToken: GPWCKUserNotificationDeviceAPNSToken(
                                         apns: apnsToken,
-                                        voip: voipToken
+                                        voip: voipToken,
+                                        environment: UIDevice.current.pushEnvironment
                                     )
                                 ),
                                 userId: userId,

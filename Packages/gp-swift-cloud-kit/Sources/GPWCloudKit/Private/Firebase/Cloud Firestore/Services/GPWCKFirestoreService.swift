@@ -28,8 +28,6 @@ import os.log
 class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
     let firestore = Firestore.firestore()
 
-    init() {}
-
     func get(_ documentPath: GPWCKFirestoreDocumentPath) async throws -> GPWCKDocument? {
         do {
             let document = try await documentPath.documentRef.getDocument()

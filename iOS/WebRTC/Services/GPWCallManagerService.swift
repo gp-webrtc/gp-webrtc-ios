@@ -23,6 +23,8 @@
 import CallKit
 import Foundation
 import os.log
+import PushKit
+import WebRTC
 
 class GPWCallManagerService: NSObject {
     static var shared: GPWCallManagerService {
@@ -36,6 +38,7 @@ class GPWCallManagerService: NSObject {
     private static var _instance: GPWCallManagerService?
 
     private let callProvider: CXProvider
+//    private var timeoutTimers: [UUID:Timer] = [:]
 
     override init() {
         let config = CXProviderConfiguration()
@@ -53,47 +56,118 @@ class GPWCallManagerService: NSObject {
         callProvider.setDelegate(self, queue: nil)
     }
 
-    func processIncommingCall(callId: UUID, callerId _: String, displayName: String) async {
+    func processIncomingCall(with payload: PKPushPayload) async {
+        let callId = UUID()
         let callUpdate = CXCallUpdate()
-        callUpdate.remoteHandle = CXHandle(type: .generic, value: displayName)
-        callUpdate.hasVideo = true
-        callUpdate.localizedCallerName = displayName
-        callUpdate.supportsGrouping = false
-        callUpdate.supportsUngrouping = false
-        callUpdate.supportsHolding = true
+        callUpdate.remoteHandle = CXHandle(type: .generic, value: "Unknown")
 
-//        do {
-//            try await callProvider.reportNewIncomingCall(with: UUID(), update: update)
-        callProvider.reportCall(with: callId, updated: callUpdate)
-//        } catch {
-//            Logger().error("[GWPCallManagerService] Incoming VoIP call failed: \(error.localizedDescription)")
-//            callProvider.reportCall(with: UUID(), endedAt: Date.now, reason: .failed)
-//        }
+        do {
+            // Report call ASAP
+            try await callProvider.reportNewIncomingCall(with: callId, update: callUpdate)
+            Logger().info("[GWPCallManagerService] Incoming VoIP call \(callId.uuidString) reported")
+
+            // Parse payload and update, or close call
+            if let callerId = payload.dictionaryPayload["callerId"] as? String,
+               let displayName = payload.dictionaryPayload["displayName"] as? String
+            {
+                callUpdate.hasVideo = true
+                callUpdate.remoteHandle = CXHandle(type: .generic, value: callerId)
+                callUpdate.localizedCallerName = displayName
+                callUpdate.supportsGrouping = false
+                callUpdate.supportsUngrouping = false
+                callUpdate.supportsHolding = false
+                callUpdate.supportsDTMF = false
+                callProvider.reportCall(with: callId, updated: callUpdate)
+                Logger().info("[GWPCallManagerService] Incoming VoIP call \(callId.uuidString) updated")
+            }
+        } catch {
+            callProvider.reportCall(with: callId, endedAt: .now, reason: .failed)
+            Logger().error("[GWPCallManagerService] Incoming VoIP call \(callId.uuidString) failed: \(error.localizedDescription)")
+        }
     }
+
+//    func processIncommingCall(with callId: UUID, callerId: String, displayName: String) async {
+//        let callUpdate = CXCallUpdate()
+//        callUpdate.remoteHandle = CXHandle(type: .generic, value: callerId)
+//
+//        do {
+//            try await callProvider.reportNewIncomingCall(with: callId, update: callUpdate)
+//            callUpdate.hasVideo = true
+//            callUpdate.localizedCallerName = displayName
+//            callUpdate.supportsGrouping = false
+//            callUpdate.supportsUngrouping = false
+//            callUpdate.supportsHolding = false
+//            callUpdate.supportsDTMF = false
+//            callProvider.reportCall(with: callId, updated: callUpdate)
+    ////            Logger().info("[GWPCallManagerService] Incoming VoIP call \(callId.uuidString) reported")
+    ////            startTimeoutTimer(callId: callId)
+//        } catch {
+//            callProvider.reportCall(with: callId, endedAt: .now, reason: .failed)
+    ////            Logger().error("[GWPCallManagerService] Incoming VoIP call \(callId.uuidString) failed: \(error.localizedDescription)")
+//        }
+//    }
+
+//    func reportFakeCall() async {
+//        let callId = UUID()
+//        let callUpdate = CXCallUpdate()
+//        callUpdate.remoteHandle = CXHandle(type: .generic, value: "dummy")
+    ////        callUpdate.hasVideo = true
+//        callUpdate.localizedCallerName = "Fake call"
+    ////        callUpdate.supportsGrouping = false
+    ////        callUpdate.supportsUngrouping = false
+    ////        callUpdate.supportsHolding = false
+    ////        callUpdate.supportsDTMF = false
+//
+//        try? await callProvider.reportNewIncomingCall(with: callId, update: callUpdate)
+//        callProvider.reportCall(with: callId, endedAt: .now, reason: .failed)
+    ////        Logger().warning("[GWPCallManagerService] Incoming VoIP call reported as failed")
+//    }
+
+//    private func startTimeoutTimer(callId: UUID) {
+//        guard timeoutTimers[callId] == nil else { return }
+//
+//        timeoutTimers[callId] = .scheduledTimer(withTimeInterval: 15.0, repeats: false) { _ in
+//            Logger().warning("[GPWCallManagerService] Call \(callId.uuidString) was unanswered")
+//            self.
+//        }
+//    }
+//
+//    private func cancelTimeoutTimer(callId: UUID) {
+//        guard let timeoutTimer = timeoutTimers[callId] else { return }
+//
+//        timeoutTimer.invalidate()
+//        timeoutTimers.removeValue(forKey: callId)
+//    }
 }
 
 extension GPWCallManagerService: CXProviderDelegate {
     func providerDidReset(_: CXProvider) {
-        Logger().debug("[GPWAppDelegate] Provider did reset")
+        Logger().debug("[GPWCallManagerService] Provider did reset")
     }
 
     func provider(_: CXProvider, perform action: CXAnswerCallAction) {
-        Logger().debug("[GPWAppDelegate] Call answered")
+        Logger().debug("[GPWCallManagerService] Call \(action.callUUID.uuidString) answered (action)")
+
+//        cancelTimeoutTimer(callId: action.callUUID)
+
         action.fulfill()
     }
 
     func provider(_: CXProvider, perform action: CXEndCallAction) {
-        Logger().debug("[GPWAppDelegate] Call ended")
+        Logger().debug("[GPWCallManagerService] Call \(action.callUUID.uuidString) ended (action)")
+
+//        cancelTimeoutTimer(callId: action.callUUID)
+
         action.fail()
     }
 
-//    func provider(_ provider: CXProvider, perform action: CXSetHeldCallAction) {
-//        Logger().debug("[GPWAppDelegate] Call was \(action.isOnHold ? "" : "un")held")
-//        action.fulfill()
-//    }
+    //    func provider(_ provider: CXProvider, perform action: CXSetHeldCallAction) {
+    //        Logger().debug("[GPWCallManagerService] Call \(action.callUUID.uuidString) was \(action.isOnHold ? "" : "un")held")
+    //        action.fulfill()
+    //    }
 
     func provider(_: CXProvider, perform action: CXSetMutedCallAction) {
-        Logger().debug("[GPWAppDelegate] Call was \(action.isMuted ? "" : "un")muted")
+        Logger().debug("[GPWCallManagerService] Call \(action.callUUID.uuidString) was \(action.isMuted ? "" : "un")muted (action)")
         action.fulfill()
     }
 }

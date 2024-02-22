@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		790857022B815F6D00209111 /* GPWCoreVersionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790857012B815F6D00209111 /* GPWCoreVersionViewModel.swift */; };
-		7916491C2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7916491B2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift */; };
-		791649202B7E382F0050AAD1 /* Republik (VoIP).appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 791649192B7E382F0050AAD1 /* Republik (VoIP).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		790985012B852B35006C53B9 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = 790985002B852B35006C53B9 /* WebRTC */; };
 		791755112B77D05A006A469E /* GPWUserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755102B77D05A006A469E /* GPWUserSettingsView.swift */; };
 		791755132B77D10C006A469E /* GPWUserNotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755122B77D10C006A469E /* GPWUserNotificationsSettingsView.swift */; };
 		791755162B77D176006A469E /* GPWNavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755152B77D176006A469E /* GPWNavigationDestination.swift */; };
@@ -23,6 +22,7 @@
 		79506B6C2B6D0860009AFD76 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79506B6B2B6D0860009AFD76 /* GPWCloudKit */; };
 		79506B712B6D2E7F009AFD76 /* Tourney-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79506B6F2B6D2E7F009AFD76 /* Tourney-Italic.ttf */; };
 		79506B722B6D2E7F009AFD76 /* Tourney.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79506B702B6D2E7F009AFD76 /* Tourney.ttf */; };
+		7952559B2B855A7700218973 /* UIDevice+pushEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7952559A2B855A7700218973 /* UIDevice+pushEnvironment.swift */; };
 		795464072B53FFF500618ACA /* GPWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464062B53FFF500618ACA /* GPWApp.swift */; };
 		795464092B53FFF500618ACA /* GPWContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464082B53FFF500618ACA /* GPWContentView.swift */; };
 		7954640B2B53FFF500618ACA /* GPWItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7954640A2B53FFF500618ACA /* GPWItem.swift */; };
@@ -39,6 +39,7 @@
 		79700E1A2B6AE5460066F68C /* Saira.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E182B6AE5460066F68C /* Saira.ttf */; };
 		79700E1B2B6AE5460066F68C /* Saira-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E192B6AE5460066F68C /* Saira-Italic.ttf */; };
 		79700E212B6AEC5F0066F68C /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79700E202B6AEC5F0066F68C /* Font.swift */; };
+		7991E6F82B8610A700A14484 /* GPWNotificationServiceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7991E6F72B8610A700A14484 /* GPWNotificationServiceExtension.swift */; };
 		79ABECF22B5519EA00C15D0C /* GPWAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */; };
 		79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79ABECFD2B552ABE00C15D0C /* GoogleService-Info.plist */; };
 		79ABED0B2B55457400C15D0C /* GPWUserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED0A2B55457400C15D0C /* GPWUserMainView.swift */; };
@@ -48,10 +49,7 @@
 		79ABED142B5552DE00C15D0C /* GPWCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED132B5552DE00C15D0C /* GPWCameraView.swift */; };
 		79ABED162B55541900C15D0C /* GPWViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED152B55541900C15D0C /* GPWViewfinderView.swift */; };
 		79C06F312B6CDBAD00C90DC3 /* GPStorageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79C06F302B6CDBAD00C90DC3 /* GPStorageKit */; };
-		79C3801B2B85025C0042A840 /* GPWAppDelegate+UNUserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C3801A2B85025C0042A840 /* GPWAppDelegate+UNUserNotificationCenterDelegate.swift */; };
-		79C3801D2B8502B60042A840 /* GPWAppDelegate+PKPushRegistryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C3801C2B8502B60042A840 /* GPWAppDelegate+PKPushRegistryDelegate.swift */; };
 		79C380232B8508980042A840 /* GPWCallManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C380222B8508980042A840 /* GPWCallManagerService.swift */; };
-		79C380252B850C200042A840 /* GPWAppDelegate+UIApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C380242B850C200042A840 /* GPWAppDelegate+UIApplicationDelegate.swift */; };
 		79DFFB862B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB7B2B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift */; };
 		79DFFB872B5D4E210052AB59 /* ButtonStyle+gpwBnWFlat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB7C2B5D4E210052AB59 /* ButtonStyle+gpwBnWFlat.swift */; };
 		79DFFB882B5D4E210052AB59 /* ButtonStyle+gpwFlat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB7D2B5D4E210052AB59 /* ButtonStyle+gpwFlat.swift */; };
@@ -69,30 +67,20 @@
 		79DFFB9C2B5DA5D80052AB59 /* GPWUserDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB9B2B5DA5D80052AB59 /* GPWUserDevice.swift */; };
 		79E31F692B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E31F682B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift */; };
 		79EF64F22B824B9400A63065 /* GPWCoreStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */; };
+		79F885542B86AB78002D935D /* Republik (Notification Service Extension).appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7991E6F52B8610A700A14484 /* Republik (Notification Service Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7916491E2B7E382F0050AAD1 /* PBXContainerItemProxy */ = {
+		79F885552B86AB78002D935D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 795463FB2B53FFF500618ACA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 791649182B7E382F0050AAD1;
-			remoteInfo = VoIP;
+			remoteGlobalIDString = 7991E6F42B8610A700A14484;
+			remoteInfo = "Republik (Notification Service Extension)";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		791649212B7E382F0050AAD1 /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				791649202B7E382F0050AAD1 /* Republik (VoIP).appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7933857F2B5413660060CC95 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -103,13 +91,21 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		79F885572B86AB78002D935D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				79F885542B86AB78002D935D /* Republik (Notification Service Extension).appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		790857012B815F6D00209111 /* GPWCoreVersionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCoreVersionViewModel.swift; sourceTree = "<group>"; };
-		791649192B7E382F0050AAD1 /* Republik (VoIP).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Republik (VoIP).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7916491B2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCallDirectoryHandler.swift; sourceTree = "<group>"; };
-		7916491D2B7E382F0050AAD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		791755102B77D05A006A469E /* GPWUserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserSettingsView.swift; sourceTree = "<group>"; };
 		791755122B77D10C006A469E /* GPWUserNotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationsSettingsView.swift; sourceTree = "<group>"; };
 		791755152B77D176006A469E /* GPWNavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWNavigationDestination.swift; sourceTree = "<group>"; };
@@ -122,6 +118,7 @@
 		792CDEF62B742C480048EB5D /* GPWUserNotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationError.swift; sourceTree = "<group>"; };
 		79506B6F2B6D2E7F009AFD76 /* Tourney-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tourney-Italic.ttf"; sourceTree = "<group>"; };
 		79506B702B6D2E7F009AFD76 /* Tourney.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tourney.ttf; sourceTree = "<group>"; };
+		7952559A2B855A7700218973 /* UIDevice+pushEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+pushEnvironment.swift"; sourceTree = "<group>"; };
 		795464032B53FFF500618ACA /* Republik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Republik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		795464062B53FFF500618ACA /* GPWApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWApp.swift; sourceTree = "<group>"; };
 		795464082B53FFF500618ACA /* GPWContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWContentView.swift; sourceTree = "<group>"; };
@@ -142,6 +139,9 @@
 		79700E192B6AE5460066F68C /* Saira-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-Italic.ttf"; sourceTree = "<group>"; };
 		79700E202B6AEC5F0066F68C /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		797949E32B5C806900751A42 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
+		7991E6F52B8610A700A14484 /* Republik (Notification Service Extension).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Republik (Notification Service Extension).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7991E6F72B8610A700A14484 /* GPWNotificationServiceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWNotificationServiceExtension.swift; sourceTree = "<group>"; };
+		7991E6F92B8610A700A14484 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWAppDelegate.swift; sourceTree = "<group>"; };
 		79ABECF82B551B6100C15D0C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		79ABECF92B551B7300C15D0C /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
@@ -156,10 +156,7 @@
 		79ABED152B55541900C15D0C /* GPWViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWViewfinderView.swift; sourceTree = "<group>"; };
 		79C06F322B6CDBCD00C90DC3 /* gp-swift-cloud-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "gp-swift-cloud-kit"; sourceTree = "<group>"; };
 		79C06F332B6CDC2C00C90DC3 /* gp-swift-storage-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "gp-swift-storage-kit"; path = "../../../gpfister/gp-swift-storage-kit"; sourceTree = "<group>"; };
-		79C3801A2B85025C0042A840 /* GPWAppDelegate+UNUserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPWAppDelegate+UNUserNotificationCenterDelegate.swift"; sourceTree = "<group>"; };
-		79C3801C2B8502B60042A840 /* GPWAppDelegate+PKPushRegistryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPWAppDelegate+PKPushRegistryDelegate.swift"; sourceTree = "<group>"; };
 		79C380222B8508980042A840 /* GPWCallManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCallManagerService.swift; sourceTree = "<group>"; };
-		79C380242B850C200042A840 /* GPWAppDelegate+UIApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPWAppDelegate+UIApplicationDelegate.swift"; sourceTree = "<group>"; };
 		79DFFB7B2B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ButtonStyle+gpwPlain.swift"; sourceTree = "<group>"; };
 		79DFFB7C2B5D4E210052AB59 /* ButtonStyle+gpwBnWFlat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ButtonStyle+gpwBnWFlat.swift"; sourceTree = "<group>"; };
 		79DFFB7D2B5D4E210052AB59 /* ButtonStyle+gpwFlat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ButtonStyle+gpwFlat.swift"; sourceTree = "<group>"; };
@@ -177,22 +174,24 @@
 		79DFFB9B2B5DA5D80052AB59 /* GPWUserDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserDevice.swift; sourceTree = "<group>"; };
 		79E31F682B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPSCUserDefaultValues+isLocalDeviceRegistered.swift"; sourceTree = "<group>"; };
 		79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCoreStatusViewModel.swift; sourceTree = "<group>"; };
+		79F8854E2B868B92002D935D /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		791649162B7E382F0050AAD1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		795464002B53FFF500618ACA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				79506B6C2B6D0860009AFD76 /* GPWCloudKit in Frameworks */,
+				790985012B852B35006C53B9 /* WebRTC in Frameworks */,
 				79C06F312B6CDBAD00C90DC3 /* GPStorageKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7991E6F22B8610A700A14484 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,23 +213,6 @@
 				79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */,
 			);
 			path = "View Models";
-			sourceTree = "<group>";
-		};
-		7916491A2B7E382F0050AAD1 /* VoIP */ = {
-			isa = PBXGroup;
-			children = (
-				7916491B2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift */,
-				791649252B7E38870050AAD1 /* Resources */,
-			);
-			path = VoIP;
-			sourceTree = "<group>";
-		};
-		791649252B7E38870050AAD1 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				7916491D2B7E382F0050AAD1 /* Info.plist */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		791755082B77CFA6006A469E /* User Devices */ = {
@@ -315,9 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */,
-				79C3801A2B85025C0042A840 /* GPWAppDelegate+UNUserNotificationCenterDelegate.swift */,
-				79C3801C2B8502B60042A840 /* GPWAppDelegate+PKPushRegistryDelegate.swift */,
-				79C380242B850C200042A840 /* GPWAppDelegate+UIApplicationDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -343,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				7917550E2B77D038006A469E /* Views */,
+				7952559A2B855A7700218973 /* UIDevice+pushEnvironment.swift */,
 			);
 			path = "User Notifications";
 			sourceTree = "<group>";
@@ -407,7 +387,7 @@
 				793E7B072B5ACC6B000CC08A /* Packages */,
 				795464182B5400FC00618ACA /* Shared */,
 				795464052B53FFF500618ACA /* iOS */,
-				7916491A2B7E382F0050AAD1 /* VoIP */,
+				7991E6F62B8610A700A14484 /* Notification Service Extension */,
 				795464042B53FFF500618ACA /* Products */,
 				79ABECFF2B552C0F00C15D0C /* Frameworks */,
 			);
@@ -417,7 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				795464032B53FFF500618ACA /* Republik.app */,
-				791649192B7E382F0050AAD1 /* Republik (VoIP).appex */,
+				7991E6F52B8610A700A14484 /* Republik (Notification Service Extension).appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -554,6 +534,15 @@
 				79700E182B6AE5460066F68C /* Saira.ttf */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		7991E6F62B8610A700A14484 /* Notification Service Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7991E6F72B8610A700A14484 /* GPWNotificationServiceExtension.swift */,
+				79F8854F2B868BEB002D935D /* Resources */,
+			);
+			path = "Notification Service Extension";
 			sourceTree = "<group>";
 		};
 		79ABECF32B551A5800C15D0C /* App */ = {
@@ -732,26 +721,18 @@
 			path = "User Notifications";
 			sourceTree = "<group>";
 		};
+		79F8854F2B868BEB002D935D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7991E6F92B8610A700A14484 /* Info.plist */,
+				79F8854E2B868B92002D935D /* Entitlements.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		791649182B7E382F0050AAD1 /* Republik (VoIP) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 791649242B7E382F0050AAD1 /* Build configuration list for PBXNativeTarget "Republik (VoIP)" */;
-			buildPhases = (
-				791649152B7E382F0050AAD1 /* Sources */,
-				791649162B7E382F0050AAD1 /* Frameworks */,
-				791649172B7E382F0050AAD1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Republik (VoIP)";
-			productName = VoIP;
-			productReference = 791649192B7E382F0050AAD1 /* Republik (VoIP).appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		795464022B53FFF500618ACA /* Republik (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 795464142B53FFF600618ACA /* Build configuration list for PBXNativeTarget "Republik (iOS)" */;
@@ -760,21 +741,39 @@
 				795464002B53FFF500618ACA /* Frameworks */,
 				795464012B53FFF500618ACA /* Resources */,
 				7933857F2B5413660060CC95 /* Embed Watch Content */,
-				791649212B7E382F0050AAD1 /* Embed Foundation Extensions */,
+				79F885572B86AB78002D935D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7916491F2B7E382F0050AAD1 /* PBXTargetDependency */,
+				79F885562B86AB78002D935D /* PBXTargetDependency */,
 			);
 			name = "Republik (iOS)";
 			packageProductDependencies = (
 				79C06F302B6CDBAD00C90DC3 /* GPStorageKit */,
 				79506B6B2B6D0860009AFD76 /* GPWCloudKit */,
+				790985002B852B35006C53B9 /* WebRTC */,
 			);
 			productName = WebRTC;
 			productReference = 795464032B53FFF500618ACA /* Republik.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7991E6F42B8610A700A14484 /* Republik (Notification Service Extension) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7991E6FF2B8610A700A14484 /* Build configuration list for PBXNativeTarget "Republik (Notification Service Extension)" */;
+			buildPhases = (
+				7991E6F12B8610A700A14484 /* Sources */,
+				7991E6F22B8610A700A14484 /* Frameworks */,
+				7991E6F32B8610A700A14484 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Republik (Notification Service Extension)";
+			productName = "Republik (Notification Service Extension)";
+			productReference = 7991E6F52B8610A700A14484 /* Republik (Notification Service Extension).appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -788,11 +787,11 @@
 				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = "Greg PFISTER";
 				TargetAttributes = {
-					791649182B7E382F0050AAD1 = {
-						CreatedOnToolsVersion = 15.2;
-					};
 					795464022B53FFF500618ACA = {
 						CreatedOnToolsVersion = 15.1;
+					};
+					7991E6F42B8610A700A14484 = {
+						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
@@ -816,19 +815,12 @@
 			projectRoot = "";
 			targets = (
 				795464022B53FFF500618ACA /* Republik (iOS) */,
-				791649182B7E382F0050AAD1 /* Republik (VoIP) */,
+				7991E6F42B8610A700A14484 /* Republik (Notification Service Extension) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		791649172B7E382F0050AAD1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		795464012B53FFF500618ACA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -844,17 +836,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		791649152B7E382F0050AAD1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		7991E6F32B8610A700A14484 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7916491C2B7E382F0050AAD1 /* GPWCallDirectoryHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		795463FF2B53FFF500618ACA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -869,22 +860,20 @@
 				79DFFB982B5D99720052AB59 /* GPWAboutView.swift in Sources */,
 				792CDEF32B7401E50048EB5D /* GPUserDefaultValues+userNotificationRegistrationTokenId.swift in Sources */,
 				791755112B77D05A006A469E /* GPWUserSettingsView.swift in Sources */,
-				79C3801D2B8502B60042A840 /* GPWAppDelegate+PKPushRegistryDelegate.swift in Sources */,
 				79DFFB932B5D99420052AB59 /* GPWUserDeviceListView.swift in Sources */,
 				79E31F692B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift in Sources */,
 				79DFFB8E2B5D4E210052AB59 /* GPWFlatButtonStyle.swift in Sources */,
 				79ABED112B55517700C15D0C /* GPWCameraService.swift in Sources */,
 				79DFFB9A2B5DA56A0052AB59 /* GPWUserDeviceListViewModel.swift in Sources */,
 				79ABED162B55541900C15D0C /* GPWViewfinderView.swift in Sources */,
+				7952559B2B855A7700218973 /* UIDevice+pushEnvironment.swift in Sources */,
 				792CDEF72B742C480048EB5D /* GPWUserNotificationError.swift in Sources */,
 				79ABECF22B5519EA00C15D0C /* GPWAppDelegate.swift in Sources */,
 				791755132B77D10C006A469E /* GPWUserNotificationsSettingsView.swift in Sources */,
 				79DFFB8B2B5D4E210052AB59 /* GPWBnWBorderedButtonStyle.swift in Sources */,
 				79DFFB882B5D4E210052AB59 /* ButtonStyle+gpwFlat.swift in Sources */,
 				7954640B2B53FFF500618ACA /* GPWItem.swift in Sources */,
-				79C3801B2B85025C0042A840 /* GPWAppDelegate+UNUserNotificationCenterDelegate.swift in Sources */,
 				79DFFB9C2B5DA5D80052AB59 /* GPWUserDevice.swift in Sources */,
-				79C380252B850C200042A840 /* GPWAppDelegate+UIApplicationDelegate.swift in Sources */,
 				79DFFB912B5D96B10052AB59 /* GPWUserAccountView.swift in Sources */,
 				791755232B77FEBD006A469E /* GPWUserContentView.swift in Sources */,
 				792CDEEF2B7401210048EB5D /* GPWUserNotificationViewModel.swift in Sources */,
@@ -912,84 +901,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7991E6F12B8610A700A14484 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7991E6F82B8610A700A14484 /* GPWNotificationServiceExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7916491F2B7E382F0050AAD1 /* PBXTargetDependency */ = {
+		79F885562B86AB78002D935D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 791649182B7E382F0050AAD1 /* Republik (VoIP) */;
-			targetProxy = 7916491E2B7E382F0050AAD1 /* PBXContainerItemProxy */;
+			target = 7991E6F42B8610A700A14484 /* Republik (Notification Service Extension) */;
+			targetProxy = 79F885552B86AB78002D935D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		791649222B7E382F0050AAD1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DE65J7Y35D;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = VoIP/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = VoIP;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Greg PFISTER. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.voip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		791649232B7E382F0050AAD1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DE65J7Y35D;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = VoIP/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = VoIP;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Greg PFISTER. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.voip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		795464122B53FFF600618ACA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1113,14 +1043,13 @@
 		795464152B53FFF600618ACA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "iOS/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = DE65J7Y35D;
@@ -1164,14 +1093,13 @@
 		795464162B53FFF600618ACA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "iOS/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = DE65J7Y35D;
@@ -1212,18 +1140,68 @@
 			};
 			name = Release;
 		};
+		7991E6FD2B8610A700A14484 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Notification Service Extension/Resources/Entitlements.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = DE65J7Y35D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Notification Service Extension/Resources/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Republik;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Greg PFISTER. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.ext.notificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7991E6FE2B8610A700A14484 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Notification Service Extension/Resources/Entitlements.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = DE65J7Y35D;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Notification Service Extension/Resources/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Republik;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Greg PFISTER. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.ext.notificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		791649242B7E382F0050AAD1 /* Build configuration list for PBXNativeTarget "Republik (VoIP)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				791649222B7E382F0050AAD1 /* Debug */,
-				791649232B7E382F0050AAD1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		795463FE2B53FFF500618ACA /* Build configuration list for PBXProject "gp-webrtc-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1238,6 +1216,15 @@
 			buildConfigurations = (
 				795464152B53FFF600618ACA /* Debug */,
 				795464162B53FFF600618ACA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7991E6FF2B8610A700A14484 /* Build configuration list for PBXNativeTarget "Republik (Notification Service Extension)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7991E6FD2B8610A700A14484 /* Debug */,
+				7991E6FE2B8610A700A14484 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1271,6 +1258,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		790985002B852B35006C53B9 /* WebRTC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 793E7B062B5A72AC000CC08A /* XCRemoteSwiftPackageReference "WebRTC" */;
+			productName = WebRTC;
+		};
 		79506B6B2B6D0860009AFD76 /* GPWCloudKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GPWCloudKit;

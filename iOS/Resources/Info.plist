@@ -17,11 +17,6 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>Republik downloads content in response to push notifications</string>
-		<string>Republik provides Voice over IP services</string>
-		<string>audio</string>
-		<string>fetch</string>
-		<string>processing</string>
 		<string>remote-notification</string>
 		<string>voip</string>
 	</array>

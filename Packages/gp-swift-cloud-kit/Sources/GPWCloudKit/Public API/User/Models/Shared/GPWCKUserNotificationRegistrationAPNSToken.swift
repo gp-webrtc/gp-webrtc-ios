@@ -25,18 +25,28 @@ import Foundation
 public struct GPWCKUserNotificationDeviceAPNSToken: GPWCKDataProtocol {
     public let apns: String
     public let voip: String?
+    public let environment: GPWEnvironment
 
     public init(
         apns: String,
-        voip: String?
+        voip: String?,
+        environment: GPWEnvironment
     ) {
         self.apns = apns
         self.voip = voip
+        self.environment = environment
     }
 
     var dictionary: [String: Any] {
-        var result = ["apns": apns]
+        var result = ["apns": apns, "environment": environment.rawValue]
         if let voip { result["voip"] = voip }
         return result
+    }
+}
+
+public extension GPWCKUserNotificationDeviceAPNSToken {
+    enum GPWEnvironment: String, GPWCKDataProtocol {
+        case development
+        case production
     }
 }

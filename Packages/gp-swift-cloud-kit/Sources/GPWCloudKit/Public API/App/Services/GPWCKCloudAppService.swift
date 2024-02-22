@@ -82,7 +82,7 @@ public class GPWCKCloudAppService {
 
         // User AppCheck debug when configuration is .local or when running via emulators
         #if canImport(FirebaseAppCheck)
-        if /* emulatorConfig != nil || */ _configuration == .local {
+        if emulatorConfig != nil || _configuration == .local {
             Logger().info("[GPWCKCloudAppService] App check is enabled using debug token")
             let providerFactory = AppCheckDebugProviderFactory()
             AppCheck.setAppCheckProviderFactory(providerFactory)

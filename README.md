@@ -32,6 +32,25 @@ To get started:
   started). It must be stored in the `iOS/Resources` folder.
 - Install `SwiftFormat` by running `brew install swiftformat swiftformat-for-xcode`.
 
+## References
+
+### WebRTC
+
+- [Video Chat using WebRTC and Firestore](https://medium.com/@quangtqag/video-chat-using-webrtc-and-firestore-a925de6f89f4)
+  by Quang Quoc Tran 
+
+### CallKit & PushKit
+
+- [CallKit Tutorial for iOS](https://www.kodeco.com/1276414-callkit-tutorial-for-ios#toc-anchor-005)
+- [Using CallKit: How to Integrate Voice and Video Calling Into iOS Apps](https://getstream.io/blog/integrate-callkit-ios/)
+  by Amos Gyamfi
+- [Using PushKit Notification: How To Show an Incoming Call on a Device](https://getstream.io/blog/pushkit-for-calls/)
+  by Amos Gyamfi
+  
+### APNS Testing
+
+- [Establishing a token-based connection to APNs](https://developer.apple.com/documentation/usernotifications/establishing-a-token-based-connection-to-apns)
+
 ## Contributions
 
 Contributions are welcome, please read our 

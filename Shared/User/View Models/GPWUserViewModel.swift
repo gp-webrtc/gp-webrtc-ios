@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc-ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -25,9 +25,13 @@ import Foundation
 import GPWCloudKit
 import os.log
 
-class GPWUserViewModel: ObservableObject {
+@MainActor
+final class GPWUserViewModel: ObservableObject {
+    @Published var isLoading = true
     @Published var userId: String?
     @Published var displayName: String = ""
+    @Published var settings: GPWCKUserSettings = .default
+    @Published var modelVersion: String = GPWCKCoreModelVersion.v0_0_0_0.rawValue
 
     private let userService = GPWCKUserService.shared
 
@@ -37,20 +41,33 @@ class GPWUserViewModel: ObservableObject {
         if snapshotListner == nil {
             snapshotListner = userService.documentSnapshot(userId) { user, error in
                 if let error {
-                    Logger().error("GPWUserViewModel: Unable to subscribe to user profile changes: \(error.localizedDescription)")
+                    Logger().error("[GPWUserViewModel] Unable to subscribe to user profile changes: \(error.localizedDescription)")
                     return
                 }
 
                 guard let user else {
-                    Logger().error("GPWUserViewModel: Received not user data")
+                    Logger().error("[GPWUserViewModel] Received no user data")
                     return
                 }
 
-                DispatchQueue.main.async {
-                    self.userId = user.userId
-                    self.displayName = user.displayName
-                }
+                self.isLoading = false
+                self.userId = user.userId
+                self.displayName = user.displayName
+                self.settings = user.settings
+                self.modelVersion = user.modelVersion
             }
         }
+    }
+
+    func unsubscribe() {
+        if let snapshotListner {
+            snapshotListner.remove()
+            self.snapshotListner = nil
+        }
+    }
+
+    func updateSettings(_ settings: GPWCKUserSettings) async throws {
+        guard let userId else { return }
+        try await userService.updateSettings(settings, of: userId)
     }
 }

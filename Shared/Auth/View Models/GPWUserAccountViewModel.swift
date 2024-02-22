@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc-ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,10 +22,12 @@
 
 import Combine
 import Foundation
+import GPStorageKit
 import GPWCloudKit
 import os.log
 
-class GPWUserAccountViewModel: ObservableObject {
+@MainActor
+final class GPWUserAccountViewModel: ObservableObject {
     @Published var userId: String?
     @Published var authState: GPWAuthState = .unknown
 
@@ -38,30 +40,37 @@ class GPWUserAccountViewModel: ObservableObject {
     func subscribe() {
         if authStateDidChangeListener == nil {
             authStateDidChangeListener = authService.addStateDidChangeListener { userAccount in
-                DispatchQueue.main.async {
-                    self.authState = userAccount != nil ? .signedIn : .signedOut
-                }
+                self.authState = userAccount != nil ? .signedIn : .signedOut
             }
         }
         if idTokenDidChangeListener == nil {
             idTokenDidChangeListener = authService.addIDTokenDidChangeListener { userAccount in
-                DispatchQueue.main.async {
-                    self.userId = userAccount?.userId
+                self.userId = userAccount?.userId
+                if let userId = userAccount?.userId, userId != GPSCStorageService.shared.userId {
+                    GPSCStorageService.shared.userId = userId
                 }
             }
         }
     }
 
-    func signInAnonymously() async throws {
-        let userAccount = try await authService.signInAnonymously()
+    func unsubscribe() {
+        if let authStateDidChangeListener {
+            authService.removeStateDidChangeListener(authStateDidChangeListener)
+            self.authStateDidChangeListener = nil
+        }
+        if let idTokenDidChangeListener {
+            authService.removeIDTokenDidChangeListener(idTokenDidChangeListener)
+            self.idTokenDidChangeListener = nil
+        }
     }
 
-    func signOut() throws {
-        try authService.signOut()
+    func signInAnonymously() async throws {
+        let _ = try await authService.signInAnonymously()
     }
 
     func delete() async throws {
         try await authService.deleteUser()
+        GPSCStorageService.shared.resetUserData()
     }
 }
 

@@ -1,5 +1,5 @@
 //
-// gp-webrtc/ios
+// gp-webrtc-ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -24,6 +24,7 @@ import AVFoundation
 import os.log
 import SwiftUI
 
+@MainActor
 final class GPWCameraPreviewViewModel: ObservableObject {
     private let cameraService = GPWCameraService()
 
@@ -133,12 +134,12 @@ final class GPWCameraPreviewViewModel: ObservableObject {
 //    }
 }
 
-private struct PhotoData {
-    var thumbnailImage: Image
-    var thumbnailSize: (width: Int, height: Int)
-    var imageData: Data
-    var imageSize: (width: Int, height: Int)
-}
+// private struct PhotoData {
+//    var thumbnailImage: Image
+//    var thumbnailSize: (width: Int, height: Int)
+//    var imageData: Data
+//    var imageSize: (width: Int, height: Int)
+// }
 
 private extension CIImage {
     var image: Image? {

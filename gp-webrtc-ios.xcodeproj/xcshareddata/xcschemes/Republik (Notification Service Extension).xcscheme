@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7991E6F42B8610A700A14484"
-               BuildableName = "Republik (Notification Service Extension).appex"
+               BuildableName = "Republik Notification Service Extension.appex"
                BlueprintName = "Republik (Notification Service Extension)"
                ReferencedContainer = "container:gp-webrtc-ios.xcodeproj">
             </BuildableReference>

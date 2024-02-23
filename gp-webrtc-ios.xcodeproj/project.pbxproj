@@ -17,7 +17,7 @@
 		791755232B77FEBD006A469E /* GPWUserContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755222B77FEBD006A469E /* GPWUserContentView.swift */; };
 		792CDEEC2B74009C0048EB5D /* GPWUserNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEEB2B74009C0048EB5D /* GPWUserNotificationService.swift */; };
 		792CDEEF2B7401210048EB5D /* GPWUserNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEEE2B7401210048EB5D /* GPWUserNotificationViewModel.swift */; };
-		792CDEF32B7401E50048EB5D /* GPUserDefaultValues+userNotificationRegistrationTokenId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userNotificationRegistrationTokenId.swift */; };
+		792CDEF32B7401E50048EB5D /* GPUserDefaultValues+userNotificationTokenId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userNotificationTokenId.swift */; };
 		792CDEF72B742C480048EB5D /* GPWUserNotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEF62B742C480048EB5D /* GPWUserNotificationError.swift */; };
 		79506B6C2B6D0860009AFD76 /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79506B6B2B6D0860009AFD76 /* GPWCloudKit */; };
 		79506B712B6D2E7F009AFD76 /* Tourney-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79506B6F2B6D2E7F009AFD76 /* Tourney-Italic.ttf */; };
@@ -67,7 +67,7 @@
 		79DFFB9C2B5DA5D80052AB59 /* GPWUserDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB9B2B5DA5D80052AB59 /* GPWUserDevice.swift */; };
 		79E31F692B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E31F682B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift */; };
 		79EF64F22B824B9400A63065 /* GPWCoreStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */; };
-		79F885542B86AB78002D935D /* Republik (Notification Service Extension).appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7991E6F52B8610A700A14484 /* Republik (Notification Service Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		79F885542B86AB78002D935D /* Republik Notification Service Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7991E6F52B8610A700A14484 /* Republik Notification Service Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +97,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				79F885542B86AB78002D935D /* Republik (Notification Service Extension).appex in Embed Foundation Extensions */,
+				79F885542B86AB78002D935D /* Republik Notification Service Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,7 +114,7 @@
 		791755222B77FEBD006A469E /* GPWUserContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserContentView.swift; sourceTree = "<group>"; };
 		792CDEEB2B74009C0048EB5D /* GPWUserNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationService.swift; sourceTree = "<group>"; };
 		792CDEEE2B7401210048EB5D /* GPWUserNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationViewModel.swift; sourceTree = "<group>"; };
-		792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userNotificationRegistrationTokenId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPUserDefaultValues+userNotificationRegistrationTokenId.swift"; sourceTree = "<group>"; };
+		792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userNotificationTokenId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPUserDefaultValues+userNotificationTokenId.swift"; sourceTree = "<group>"; };
 		792CDEF62B742C480048EB5D /* GPWUserNotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationError.swift; sourceTree = "<group>"; };
 		79506B6F2B6D2E7F009AFD76 /* Tourney-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tourney-Italic.ttf"; sourceTree = "<group>"; };
 		79506B702B6D2E7F009AFD76 /* Tourney.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tourney.ttf; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		79700E192B6AE5460066F68C /* Saira-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-Italic.ttf"; sourceTree = "<group>"; };
 		79700E202B6AEC5F0066F68C /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		797949E32B5C806900751A42 /* SECURITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SECURITY.md; sourceTree = "<group>"; };
-		7991E6F52B8610A700A14484 /* Republik (Notification Service Extension).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Republik (Notification Service Extension).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7991E6F52B8610A700A14484 /* Republik Notification Service Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Republik Notification Service Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7991E6F72B8610A700A14484 /* GPWNotificationServiceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWNotificationServiceExtension.swift; sourceTree = "<group>"; };
 		7991E6F92B8610A700A14484 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWAppDelegate.swift; sourceTree = "<group>"; };
@@ -346,7 +346,7 @@
 		792CDEF12B7401D80048EB5D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userNotificationRegistrationTokenId.swift */,
+				792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userNotificationTokenId.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -397,7 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				795464032B53FFF500618ACA /* Republik.app */,
-				7991E6F52B8610A700A14484 /* Republik (Notification Service Extension).appex */,
+				7991E6F52B8610A700A14484 /* Republik Notification Service Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -772,7 +772,7 @@
 			);
 			name = "Republik (Notification Service Extension)";
 			productName = "Republik (Notification Service Extension)";
-			productReference = 7991E6F52B8610A700A14484 /* Republik (Notification Service Extension).appex */;
+			productReference = 7991E6F52B8610A700A14484 /* Republik Notification Service Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -858,7 +858,7 @@
 				796F036B2B5B243A00F44E26 /* GPWUserChatListView.swift in Sources */,
 				795464092B53FFF500618ACA /* GPWContentView.swift in Sources */,
 				79DFFB982B5D99720052AB59 /* GPWAboutView.swift in Sources */,
-				792CDEF32B7401E50048EB5D /* GPUserDefaultValues+userNotificationRegistrationTokenId.swift in Sources */,
+				792CDEF32B7401E50048EB5D /* GPUserDefaultValues+userNotificationTokenId.swift in Sources */,
 				791755112B77D05A006A469E /* GPWUserSettingsView.swift in Sources */,
 				79DFFB932B5D99420052AB59 /* GPWUserDeviceListView.swift in Sources */,
 				79E31F692B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift in Sources */,
@@ -978,7 +978,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited) DEVELOPMENT";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited) GPW_DEVELOPMENT";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -1035,7 +1035,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = GPW_RELEASE;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -1050,7 +1050,7 @@
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "iOS/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = DE65J7Y35D;
@@ -1100,7 +1100,7 @@
 				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "iOS/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = DE65J7Y35D;
@@ -1147,7 +1147,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Notification Service Extension/Resources/Entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = DE65J7Y35D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Notification Service Extension/Resources/Info.plist";
@@ -1160,10 +1160,14 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.ext.notificationService;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.notificationServiceExtension;
+				PRODUCT_NAME = "Republik Notification Service Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1176,7 +1180,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Notification Service Extension/Resources/Entitlements.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = DE65J7Y35D;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Notification Service Extension/Resources/Info.plist";
@@ -1189,10 +1193,14 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.ext.notificationService;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.gpfister.republik.notificationServiceExtension;
+				PRODUCT_NAME = "Republik Notification Service Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -1,5 +1,5 @@
 //
-// gp-webrtc-ios/swift-cloud-kit
+// gp-webrtc-ios
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,37 +20,18 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
 import Foundation
+import GPStorageKit
 
-enum GPWCKFirestoreDocumentPath {
-    case coreStatus
-    case coreVersion
-    case user(userId: String)
-    case userDevice(userId: String, deviceId: String)
-    case userNotificationToken(userId: String, tokenId: String)
-    case userPublicKey(userId: String, type: GPWCKUserPublicKey.GPWCKKeyType)
-
-    var string: String {
-        switch self {
-            case .coreStatus:
-                "/core/status"
-            case .coreVersion:
-                "/core/version"
-            case let .user(userId):
-                "/users/\(userId)"
-            case let .userDevice(userId, deviceId):
-                "/users/\(userId)/devices/\(deviceId)"
-            case let .userNotificationToken(userId, tokenId):
-                "/users/\(userId)/notificationTokens/\(tokenId)"
-            case let .userPublicKey(userId, type):
-                "/users/\(userId)/publicKeys/\(type.rawValue)"
-        }
+extension GPSCUserDefaultValues {
+    struct GPWUserNotificationTokenIdKey: GPSCUserDefaultKey {
+        static let key = "user.notificationTokenId"
+        static let defaultValue: String? = nil
+        static let isTiedToUserId = true
     }
 
-    var documentRef: DocumentReference {
-        Firestore.firestore().document(string)
+    var userNotificationTokenId: String? {
+        get { self[GPWUserNotificationTokenIdKey.self] }
+        set { self[GPWUserNotificationTokenIdKey.self] = newValue }
     }
 }
-#endif

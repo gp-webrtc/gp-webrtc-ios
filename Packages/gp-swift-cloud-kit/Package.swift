@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:5.10
 //
 // gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
@@ -27,7 +27,7 @@ let version = "1.0.0"
 
 let package = Package(
     name: "GPWCloudKit",
-    platforms: [.iOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
+    platforms: [.iOS(.v15), .watchOS(.v9), .macCatalyst(.v15), .tvOS(.v15), .macOS(.v12)],
     products: [
         .library(
             name: "GPWCloudKit",
@@ -35,7 +35,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", .upToNextMajor(from: "10.21.0")),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", exact: Version(stringLiteral: "10.19.0")),
+//        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: Version(stringLiteral: "10.22.0"))
     ],
     targets: [
         .target(

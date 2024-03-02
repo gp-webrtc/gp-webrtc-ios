@@ -1,5 +1,6 @@
+// swift-tools-version:5.9
 //
-// gp-webrtc-ios/swift-cloud-kit
+// gp-webrtc-ios/swift-webrtc-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,37 +21,34 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
-import Foundation
+import PackageDescription
 
-enum GPWCKFirestoreDocumentPath {
-    case coreStatus
-    case coreVersion
-    case user(userId: String)
-    case userDevice(userId: String, deviceId: String)
-    case userNotificationToken(userId: String, tokenId: String)
-    case userPublicKey(userId: String, type: GPWCKUserPublicKey.GPWCKKeyType)
+let version = "1.0.0"
 
-    var string: String {
-        switch self {
-            case .coreStatus:
-                "/core/status"
-            case .coreVersion:
-                "/core/version"
-            case let .user(userId):
-                "/users/\(userId)"
-            case let .userDevice(userId, deviceId):
-                "/users/\(userId)/devices/\(deviceId)"
-            case let .userNotificationToken(userId, tokenId):
-                "/users/\(userId)/notificationTokens/\(tokenId)"
-            case let .userPublicKey(userId, type):
-                "/users/\(userId)/publicKeys/\(type.rawValue)"
-        }
-    }
-
-    var documentRef: DocumentReference {
-        Firestore.firestore().document(string)
-    }
-}
-#endif
+let package = Package(
+    name: "GPWWebRTCKit",
+    platforms: [.iOS(.v15), .watchOS(.v9), .macCatalyst(.v15), .tvOS(.v15), .macOS(.v12)],
+    products: [
+        .library(
+            name: "GPWWebRTCKit",
+            targets: ["GPWWebRTCKit"]
+        ),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/stasel/WebRTC.git", exact: Version(stringLiteral: "122.0.0")),
+    ],
+    targets: [
+        .target(
+            name: "GPWWebRTCKit",
+            dependencies: [
+                .product(name: "WebRTC", package: "WebRTC"),
+            ]
+        ),
+        .testTarget(
+            name: "GPWWebRTCKitTests",
+            dependencies: [
+                "GPWWebRTCKit",
+            ]
+        ),
+    ]
+)

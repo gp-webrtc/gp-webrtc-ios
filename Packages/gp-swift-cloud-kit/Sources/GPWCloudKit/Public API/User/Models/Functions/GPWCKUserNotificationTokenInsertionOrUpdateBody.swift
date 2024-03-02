@@ -20,37 +20,32 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
+#if canImport(FirebaseFunctions)
 import Foundation
 
-enum GPWCKFirestoreDocumentPath {
-    case coreStatus
-    case coreVersion
-    case user(userId: String)
-    case userDevice(userId: String, deviceId: String)
-    case userNotificationToken(userId: String, tokenId: String)
-    case userPublicKey(userId: String, type: GPWCKUserPublicKey.GPWCKKeyType)
-
-    var string: String {
-        switch self {
-            case .coreStatus:
-                "/core/status"
-            case .coreVersion:
-                "/core/version"
-            case let .user(userId):
-                "/users/\(userId)"
-            case let .userDevice(userId, deviceId):
-                "/users/\(userId)/devices/\(deviceId)"
-            case let .userNotificationToken(userId, tokenId):
-                "/users/\(userId)/notificationTokens/\(tokenId)"
-            case let .userPublicKey(userId, type):
-                "/users/\(userId)/publicKeys/\(type.rawValue)"
-        }
+struct GPWCKUserNotificationTokenInsertionOrUpdateBody {
+    enum GPWCKDeviceType: String {
+        case iOSApp
+        case androidApp
+        case watchOSApp
+        case safariWebApp
+        case chromeWebApp
+        case firefoxWebApp
+        case edgeWebApp
     }
 
-    var documentRef: DocumentReference {
-        Firestore.firestore().document(string)
+    let userId: String
+    let tokenId: String
+    let deviceToken: GPWCKUserNotificationDeviceToken
+    let deviceType: GPWCKDeviceType
+
+    var dictionary: [String: Any] {
+        [
+            "userId": userId,
+            "tokenId": tokenId,
+            "deviceToken": deviceToken.dictionary,
+            "deviceType": deviceType.rawValue,
+        ]
     }
 }
 #endif

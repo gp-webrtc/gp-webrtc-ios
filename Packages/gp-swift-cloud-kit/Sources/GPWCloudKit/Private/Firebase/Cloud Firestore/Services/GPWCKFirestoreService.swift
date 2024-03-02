@@ -96,7 +96,11 @@ class GPWCKFirestoreService<GPWCKDocument: GPWCKDocumentProtocol> {
                 let document = try snapshot.data(as: GPWCKDocument.self)
                 callback(document, nil)
             } catch {
-                callback(nil, GPWCKFirestoreError.unableToReadData(error: error))
+                callback(nil, GPWCKFirestoreError.unableToReadData(path: documentPath.string, error: error))
+                guard let data = snapshot.data() else { return }
+                data.keys.forEach {
+                    Logger().debug("[GPWCKFirestoreService] \($0) -> \(data[$0] as? String ?? "not convertible")")
+                }
             }
         }
     }

@@ -22,35 +22,14 @@
 
 #if canImport(FirebaseFirestore)
 import FirebaseFirestore
+#endif
 import Foundation
 
-enum GPWCKFirestoreDocumentPath {
-    case coreStatus
-    case coreVersion
-    case user(userId: String)
-    case userDevice(userId: String, deviceId: String)
-    case userNotificationToken(userId: String, tokenId: String)
-    case userPublicKey(userId: String, type: GPWCKUserPublicKey.GPWCKKeyType)
-
-    var string: String {
-        switch self {
-            case .coreStatus:
-                "/core/status"
-            case .coreVersion:
-                "/core/version"
-            case let .user(userId):
-                "/users/\(userId)"
-            case let .userDevice(userId, deviceId):
-                "/users/\(userId)/devices/\(deviceId)"
-            case let .userNotificationToken(userId, tokenId):
-                "/users/\(userId)/notificationTokens/\(tokenId)"
-            case let .userPublicKey(userId, type):
-                "/users/\(userId)/publicKeys/\(type.rawValue)"
-        }
-    }
-
-    var documentRef: DocumentReference {
-        Firestore.firestore().document(string)
-    }
+public struct GPWCKUserNotificationToken: GPWCKDocumentProtocol {
+    public let id: String?
+    public let userId: String
+    public let tokenId: String
+    public let deviceToken: GPWCKUserNotificationDeviceToken
+    public let creationDate: Date?
+    public let modificationDate: Date?
 }
-#endif

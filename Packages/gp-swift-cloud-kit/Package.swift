@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:5.10
 //
 // gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
@@ -27,7 +27,7 @@ let version = "1.0.0"
 
 let package = Package(
     name: "GPWCloudKit",
-    platforms: [.iOS(.v17), .watchOS(.v10), .macCatalyst(.v17)],
+    platforms: [.iOS(.v15), .watchOS(.v9), .macCatalyst(.v15), .tvOS(.v15), .macOS(.v12)],
     products: [
         .library(
             name: "GPWCloudKit",

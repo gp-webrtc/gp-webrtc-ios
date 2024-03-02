@@ -20,37 +20,18 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#if canImport(FirebaseFirestore)
-import FirebaseFirestore
+#if canImport(FirebaseFunctions)
 import Foundation
 
-enum GPWCKFirestoreDocumentPath {
-    case coreStatus
-    case coreVersion
-    case user(userId: String)
-    case userDevice(userId: String, deviceId: String)
-    case userNotificationToken(userId: String, tokenId: String)
-    case userPublicKey(userId: String, type: GPWCKUserPublicKey.GPWCKKeyType)
+struct GPWCKUserNotificationTokenDeletionBody {
+    let userId: String
+    let tokenId: String
 
-    var string: String {
-        switch self {
-            case .coreStatus:
-                "/core/status"
-            case .coreVersion:
-                "/core/version"
-            case let .user(userId):
-                "/users/\(userId)"
-            case let .userDevice(userId, deviceId):
-                "/users/\(userId)/devices/\(deviceId)"
-            case let .userNotificationToken(userId, tokenId):
-                "/users/\(userId)/notificationTokens/\(tokenId)"
-            case let .userPublicKey(userId, type):
-                "/users/\(userId)/publicKeys/\(type.rawValue)"
-        }
-    }
-
-    var documentRef: DocumentReference {
-        Firestore.firestore().document(string)
+    var dictionary: [String: Any] {
+        [
+            "userId": userId,
+            "tokenId": tokenId,
+        ]
     }
 }
 #endif

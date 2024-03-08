@@ -50,6 +50,9 @@
 		79ABED112B55517700C15D0C /* GPWCameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED102B55517700C15D0C /* GPWCameraService.swift */; };
 		79ABED142B5552DE00C15D0C /* GPWCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED132B5552DE00C15D0C /* GPWCameraView.swift */; };
 		79ABED162B55541900C15D0C /* GPWViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED152B55541900C15D0C /* GPWViewfinderView.swift */; };
+		79ACA05F2B9B75EA00E9CDDD /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79ACA05E2B9B75EA00E9CDDD /* GPWCloudKit */; };
+		79ACA0622B9B764D00E9CDDD /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79ACA0612B9B764D00E9CDDD /* GPWCloudKit */; };
+		79ACA0652B9B765800E9CDDD /* GPWWebRTCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79ACA0642B9B765800E9CDDD /* GPWWebRTCKit */; };
 		79C06F312B6CDBAD00C90DC3 /* GPStorageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79C06F302B6CDBAD00C90DC3 /* GPStorageKit */; };
 		79C380232B8508980042A840 /* GPWCallManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C380222B8508980042A840 /* GPWCallManagerService.swift */; };
 		79DFFB862B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB7B2B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift */; };
@@ -69,8 +72,6 @@
 		79DFFB9C2B5DA5D80052AB59 /* GPWUserDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB9B2B5DA5D80052AB59 /* GPWUserDevice.swift */; };
 		79E31F692B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E31F682B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift */; };
 		79EF64F22B824B9400A63065 /* GPWCoreStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */; };
-		79FF61FA2B934D6400246ECE /* GPWWebRTCKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79FF61F92B934D6400246ECE /* GPWWebRTCKit */; };
-		79FF61FD2B934D7C00246ECE /* GPWCloudKit in Frameworks */ = {isa = PBXBuildFile; productRef = 79FF61FC2B934D7C00246ECE /* GPWCloudKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -144,6 +145,8 @@
 		79ABED102B55517700C15D0C /* GPWCameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCameraService.swift; sourceTree = "<group>"; };
 		79ABED132B5552DE00C15D0C /* GPWCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCameraView.swift; sourceTree = "<group>"; };
 		79ABED152B55541900C15D0C /* GPWViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWViewfinderView.swift; sourceTree = "<group>"; };
+		79ACA05C2B9B75CA00E9CDDD /* gp-swift-cloud-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "gp-swift-cloud-kit"; sourceTree = "<group>"; };
+		79ACA05D2B9B75CF00E9CDDD /* gp-swift-webrtc-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "gp-swift-webrtc-kit"; sourceTree = "<group>"; };
 		79C380222B8508980042A840 /* GPWCallManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCallManagerService.swift; sourceTree = "<group>"; };
 		79DFFB7B2B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ButtonStyle+gpwPlain.swift"; sourceTree = "<group>"; };
 		79DFFB7C2B5D4E210052AB59 /* ButtonStyle+gpwBnWFlat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ButtonStyle+gpwBnWFlat.swift"; sourceTree = "<group>"; };
@@ -162,8 +165,6 @@
 		79DFFB9B2B5DA5D80052AB59 /* GPWUserDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserDevice.swift; sourceTree = "<group>"; };
 		79E31F682B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPSCUserDefaultValues+isLocalDeviceRegistered.swift"; sourceTree = "<group>"; };
 		79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCoreStatusViewModel.swift; sourceTree = "<group>"; };
-		79FF61F62B934D4000246ECE /* gp-swift-cloud-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "gp-swift-cloud-kit"; path = "../Packages/gp-swift-cloud-kit"; sourceTree = "<group>"; };
-		79FF61F72B934D4000246ECE /* gp-swift-webrtc-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "gp-swift-webrtc-kit"; path = "../Packages/gp-swift-webrtc-kit"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,9 +172,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79ACA05F2B9B75EA00E9CDDD /* GPWCloudKit in Frameworks */,
+				79ACA0652B9B765800E9CDDD /* GPWWebRTCKit in Frameworks */,
 				79C06F312B6CDBAD00C90DC3 /* GPStorageKit in Frameworks */,
-				79FF61FA2B934D6400246ECE /* GPWWebRTCKit in Frameworks */,
-				79FF61FD2B934D7C00246ECE /* GPWCloudKit in Frameworks */,
+				79ACA0622B9B764D00E9CDDD /* GPWCloudKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +355,8 @@
 		795463FA2B53FFF500618ACA = {
 			isa = PBXGroup;
 			children = (
-				79FF61F42B934A7500246ECE /* Packages */,
+				79AB186F2B9B74FC0014A683 /* External Packages */,
+				79AB186E2B9B74EA0014A683 /* Packages */,
 				795464182B5400FC00618ACA /* Shared */,
 				795464052B53FFF500618ACA /* iOS */,
 				795464042B53FFF500618ACA /* Products */,
@@ -561,6 +564,22 @@
 			path = "Navigation Title";
 			sourceTree = "<group>";
 		};
+		79AB186E2B9B74EA0014A683 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				79ACA05D2B9B75CF00E9CDDD /* gp-swift-webrtc-kit */,
+				79ACA05C2B9B75CA00E9CDDD /* gp-swift-cloud-kit */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		79AB186F2B9B74FC0014A683 /* External Packages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "External Packages";
+			sourceTree = "<group>";
+		};
 		79ABECF32B551A5800C15D0C /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -740,15 +759,6 @@
 			path = "User Notifications";
 			sourceTree = "<group>";
 		};
-		79FF61F42B934A7500246ECE /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				79FF61F62B934D4000246ECE /* gp-swift-cloud-kit */,
-				79FF61F72B934D4000246ECE /* gp-swift-webrtc-kit */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -769,8 +779,9 @@
 			name = "Republik (iOS)";
 			packageProductDependencies = (
 				79C06F302B6CDBAD00C90DC3 /* GPStorageKit */,
-				79FF61F92B934D6400246ECE /* GPWWebRTCKit */,
-				79FF61FC2B934D7C00246ECE /* GPWCloudKit */,
+				79ACA05E2B9B75EA00E9CDDD /* GPWCloudKit */,
+				79ACA0612B9B764D00E9CDDD /* GPWCloudKit */,
+				79ACA0642B9B765800E9CDDD /* GPWWebRTCKit */,
 			);
 			productName = WebRTC;
 			productReference = 795464032B53FFF500618ACA /* Republik.app */;
@@ -805,8 +816,8 @@
 			mainGroup = 795463FA2B53FFF500618ACA;
 			packageReferences = (
 				79C06F2F2B6CDBAD00C90DC3 /* XCRemoteSwiftPackageReference "gp-swift-storage-kit" */,
-				79FF61F82B934D6400246ECE /* XCLocalSwiftPackageReference "../Packages/gp-swift-webrtc-kit" */,
-				79FF61FB2B934D7C00246ECE /* XCLocalSwiftPackageReference "../Packages/gp-swift-cloud-kit" */,
+				79ACA0602B9B764D00E9CDDD /* XCLocalSwiftPackageReference "Packages/gp-swift-cloud-kit" */,
+				79ACA0632B9B765800E9CDDD /* XCLocalSwiftPackageReference "Packages/gp-swift-webrtc-kit" */,
 			);
 			productRefGroup = 795464042B53FFF500618ACA /* Products */;
 			projectDirPath = "";
@@ -1146,13 +1157,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		79FF61F82B934D6400246ECE /* XCLocalSwiftPackageReference "../Packages/gp-swift-webrtc-kit" */ = {
+		79ACA0602B9B764D00E9CDDD /* XCLocalSwiftPackageReference "Packages/gp-swift-cloud-kit" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../Packages/gp-swift-webrtc-kit";
+			relativePath = "Packages/gp-swift-cloud-kit";
 		};
-		79FF61FB2B934D7C00246ECE /* XCLocalSwiftPackageReference "../Packages/gp-swift-cloud-kit" */ = {
+		79ACA0632B9B765800E9CDDD /* XCLocalSwiftPackageReference "Packages/gp-swift-webrtc-kit" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../Packages/gp-swift-cloud-kit";
+			relativePath = "Packages/gp-swift-webrtc-kit";
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -1168,18 +1179,22 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		79ACA05E2B9B75EA00E9CDDD /* GPWCloudKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GPWCloudKit;
+		};
+		79ACA0612B9B764D00E9CDDD /* GPWCloudKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GPWCloudKit;
+		};
+		79ACA0642B9B765800E9CDDD /* GPWWebRTCKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GPWWebRTCKit;
+		};
 		79C06F302B6CDBAD00C90DC3 /* GPStorageKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 79C06F2F2B6CDBAD00C90DC3 /* XCRemoteSwiftPackageReference "gp-swift-storage-kit" */;
 			productName = GPStorageKit;
-		};
-		79FF61F92B934D6400246ECE /* GPWWebRTCKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GPWWebRTCKit;
-		};
-		79FF61FC2B934D7C00246ECE /* GPWCloudKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GPWCloudKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

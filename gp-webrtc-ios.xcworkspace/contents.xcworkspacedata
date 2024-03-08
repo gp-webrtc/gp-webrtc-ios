@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:App/gp-webrtc-ios.xcodeproj">
+      location = "container:gp-webrtc-ios.xcodeproj">
    </FileRef>
 </Workspace>

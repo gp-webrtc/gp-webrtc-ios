@@ -71,7 +71,7 @@ struct GPWUserAccountView: View {
             accountDetailSection
             dangerSection
         }
-        .navigationTitle("Account")
+        .gpwNavigationTitle("Account")
         .confirmationDialog("Are you sure ?", isPresented: $showDeleteUserAccountConfirmationDialog) {
             Button("Delete my account !!", role: .destructive, action: deleteUserAccount)
             Button("Please cancel", role: .cancel, action: {})

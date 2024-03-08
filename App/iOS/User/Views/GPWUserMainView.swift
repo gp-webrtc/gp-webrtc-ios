@@ -28,7 +28,8 @@ struct GPWUserMainView: View {
     @StateObject private var userNotification = GPWUserNotificationViewModel()
     @StateObject private var userLocalDevice = GPWUserLocalDeviceViewModel()
 
-    @State private var selectedTab = GPWTab.contactList
+    @State private var title = GPWTab.contactList.rawValue
+    @SceneStorage("selectedTab") private var selectedTab = GPWTab.contactList
 
     @EnvironmentObject private var user: GPWUserViewModel
     @EnvironmentObject private var userAccount: GPWUserAccountViewModel
@@ -53,16 +54,9 @@ struct GPWUserMainView: View {
         }
         .environmentObject(userLocalDevice)
         .environmentObject(userNotification)
-        .navigationTitle(selectedTab.rawValue)
-        .toolbar(.hidden, for: .navigationBar)
-        .navigationDestination(for: GPWNavigationDestination.self) { destination in
-            switch destination {
-                case .userAccount: GPWUserAccountView()
-                case let .userDeviceList(userId: userId): GPWUserDeviceListView(userId: userId)
-                case .userNotificationsSettings: GPWUserNotificationsSettingsView()
-                case .userSettings: GPWUserSettingsView()
-                case .about: GPWAboutView()
-            }
+        .gpwNavigationTitle($title)
+        .onChange(of: selectedTab) { _, new in
+            title = new.rawValue
         }
     }
 

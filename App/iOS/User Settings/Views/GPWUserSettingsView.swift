@@ -53,7 +53,7 @@ struct GPWUserSettingsView: View {
         List {
             privacySection
         }
-        .navigationTitle("Settings")
+        .gpwNavigationTitle("Settings")
     }
 }
 

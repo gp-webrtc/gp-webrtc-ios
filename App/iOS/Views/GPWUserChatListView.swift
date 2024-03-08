@@ -25,7 +25,7 @@ import SwiftUI
 struct GPWUserChatListView: View {
     var body: some View {
         Text("Chats")
-            .navigationTitle("Chats")
+            .gpwNavigationTitle("Chats")
     }
 }
 

@@ -25,15 +25,15 @@ import SwiftUI
 
 struct GPWUserContentView: View {
     let userId: String
-
+    
     @ScaledMetric(relativeTo: .body) private var spacing = 16
-
+    
     @State private var isUpdating = false
     @State private var path = NavigationPath()
-
+    
     @StateObject private var coreVersion = GPWCoreVersionViewModel()
     @StateObject private var user = GPWUserViewModel()
-
+    
     private var mustUpdateApp: some View {
         VStack(spacing: spacing) {
             Image(systemName: "cloud.bolt")
@@ -45,7 +45,7 @@ struct GPWUserContentView: View {
                 .multilineTextAlignment(.center)
         }
     }
-
+    
     private var mustUpdateData: some View {
         VStack(spacing: spacing) {
             Image(systemName: "exclamationmark.shield.fill")
@@ -76,7 +76,7 @@ struct GPWUserContentView: View {
             }
         }
     }
-
+    
     var body: some View {
         ZStack {
             if user.isLoading || coreVersion.isLoading {
@@ -89,9 +89,18 @@ struct GPWUserContentView: View {
                     mustUpdateData
                         .padding()
                 } else {
-                    NavigationStack(path: $path) {
-                        GPWUserMainView(userId: userId)
-                            .environmentObject(user)
+                    GPWNavigationStack(root: GPWNavigationDestination.root) { destination in
+                        ZStack {
+                            switch (destination) {
+                                case .root: GPWUserMainView(userId: userId)
+                                case .userAccount: GPWUserAccountView()
+                                case let .userDeviceList(userId: userId): GPWUserDeviceListView(userId: userId)
+                                case .userNotificationsSettings: GPWUserNotificationsSettingsView()
+                                case .userSettings: GPWUserSettingsView()
+                                case .about: GPWAboutView()
+                            }
+                        }
+                        .environmentObject(user)
                     }
                 }
             }

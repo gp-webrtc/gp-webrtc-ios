@@ -31,7 +31,7 @@ struct GPWUserNotificationsSettingsView: View {
         ZStack {
             GPWForm(settings: $user.settings)
         }
-        .navigationTitle("Notifications")
+        .gpwNavigationTitle("Notifications")
     }
 }
 

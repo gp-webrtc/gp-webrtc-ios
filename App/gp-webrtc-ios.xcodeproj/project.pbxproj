@@ -37,6 +37,11 @@
 		79700E1A2B6AE5460066F68C /* Saira.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E182B6AE5460066F68C /* Saira.ttf */; };
 		79700E1B2B6AE5460066F68C /* Saira-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E192B6AE5460066F68C /* Saira-Italic.ttf */; };
 		79700E212B6AEC5F0066F68C /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79700E202B6AEC5F0066F68C /* Font.swift */; };
+		79A05BE82B9375C600A55C81 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A05BE72B9375C600A55C81 /* Color.swift */; };
+		79A05BEF2B93804700A55C81 /* GPWNavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A05BEB2B93804700A55C81 /* GPWNavigationStack.swift */; };
+		79A05BF02B93804700A55C81 /* GPWNavigationStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A05BED2B93804700A55C81 /* GPWNavigationStackViewModel.swift */; };
+		79A05BF42B9380B800A55C81 /* View+gpwNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A05BF32B9380B800A55C81 /* View+gpwNavigationTitle.swift */; };
+		79A05BF62B9380CD00A55C81 /* GPWNavigationTitleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A05BF52B9380CD00A55C81 /* GPWNavigationTitleModifier.swift */; };
 		79ABECF22B5519EA00C15D0C /* GPWAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */; };
 		79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79ABECFD2B552ABE00C15D0C /* GoogleService-Info.plist */; };
 		79ABED0B2B55457400C15D0C /* GPWUserMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ABED0A2B55457400C15D0C /* GPWUserMainView.swift */; };
@@ -111,7 +116,7 @@
 		795464082B53FFF500618ACA /* GPWContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWContentView.swift; sourceTree = "<group>"; };
 		7954640A2B53FFF500618ACA /* GPWItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWItem.swift; sourceTree = "<group>"; };
 		7954640C2B53FFF600618ACA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7954640E2B53FFF600618ACA /* Entitlements.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.entitlements; sourceTree = "<group>"; };
+		7954640E2B53FFF600618ACA /* Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Development.entitlements; sourceTree = "<group>"; };
 		795464102B53FFF600618ACA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		795464172B5400C200618ACA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		796464862B7A2FF500EC913D /* GPSCUserDefaultValues+userLocalDeviceId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPSCUserDefaultValues+userLocalDeviceId.swift"; sourceTree = "<group>"; };
@@ -125,6 +130,13 @@
 		79700E182B6AE5460066F68C /* Saira.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Saira.ttf; sourceTree = "<group>"; };
 		79700E192B6AE5460066F68C /* Saira-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-Italic.ttf"; sourceTree = "<group>"; };
 		79700E202B6AEC5F0066F68C /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		79A05BE32B93717200A55C81 /* gp-swift-storage-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "gp-swift-storage-kit"; path = "../../gp-swift-storage-kit"; sourceTree = "<group>"; };
+		79A05BE52B93736C00A55C81 /* Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Release.entitlements; sourceTree = "<group>"; };
+		79A05BE72B9375C600A55C81 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		79A05BEB2B93804700A55C81 /* GPWNavigationStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWNavigationStack.swift; sourceTree = "<group>"; };
+		79A05BED2B93804700A55C81 /* GPWNavigationStackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWNavigationStackViewModel.swift; sourceTree = "<group>"; };
+		79A05BF32B9380B800A55C81 /* View+gpwNavigationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+gpwNavigationTitle.swift"; sourceTree = "<group>"; };
+		79A05BF52B9380CD00A55C81 /* GPWNavigationTitleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWNavigationTitleModifier.swift; sourceTree = "<group>"; };
 		79ABECF12B5519EA00C15D0C /* GPWAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWAppDelegate.swift; sourceTree = "<group>"; };
 		79ABECFD2B552ABE00C15D0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79ABED0A2B55457400C15D0C /* GPWUserMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserMainView.swift; sourceTree = "<group>"; };
@@ -151,7 +163,6 @@
 		79DFFB9B2B5DA5D80052AB59 /* GPWUserDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserDevice.swift; sourceTree = "<group>"; };
 		79E31F682B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPSCUserDefaultValues+isLocalDeviceRegistered.swift"; sourceTree = "<group>"; };
 		79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCoreStatusViewModel.swift; sourceTree = "<group>"; };
-		79FF61F52B934C7900246ECE /* gp-swift-storage-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "gp-swift-storage-kit"; path = "../../../gpfister/gp-swift-storage-kit"; sourceTree = "<group>"; };
 		79FF61F62B934D4000246ECE /* gp-swift-cloud-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "gp-swift-cloud-kit"; path = "../Packages/gp-swift-cloud-kit"; sourceTree = "<group>"; };
 		79FF61F72B934D4000246ECE /* gp-swift-webrtc-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "gp-swift-webrtc-kit"; path = "../Packages/gp-swift-webrtc-kit"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -276,6 +287,7 @@
 		7917551C2B77D3AB006A469E /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				79A05BF72B9381D700A55C81 /* Navigation Title */,
 				7917551D2B77D3B2006A469E /* Views */,
 			);
 			path = UI;
@@ -492,6 +504,64 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		79A05BE62B9375B700A55C81 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				79A05BE72B9375C600A55C81 /* Color.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		79A05BEA2B937FDF00A55C81 /* Navigation Stack */ = {
+			isa = PBXGroup;
+			children = (
+				79A05BEE2B93804700A55C81 /* View Models */,
+				79A05BEC2B93804700A55C81 /* Views */,
+			);
+			path = "Navigation Stack";
+			sourceTree = "<group>";
+		};
+		79A05BEC2B93804700A55C81 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				79A05BEB2B93804700A55C81 /* GPWNavigationStack.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		79A05BEE2B93804700A55C81 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				79A05BED2B93804700A55C81 /* GPWNavigationStackViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		79A05BF12B93809100A55C81 /* View Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				79A05BF52B9380CD00A55C81 /* GPWNavigationTitleModifier.swift */,
+			);
+			path = "View Modifiers";
+			sourceTree = "<group>";
+		};
+		79A05BF22B93809C00A55C81 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				79A05BF32B9380B800A55C81 /* View+gpwNavigationTitle.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79A05BF72B9381D700A55C81 /* Navigation Title */ = {
+			isa = PBXGroup;
+			children = (
+				79A05BF22B93809C00A55C81 /* Extensions */,
+				79A05BF12B93809100A55C81 /* View Modifiers */,
+			);
+			path = "Navigation Title";
+			sourceTree = "<group>";
+		};
 		79ABECF32B551A5800C15D0C /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,7 +602,8 @@
 			isa = PBXGroup;
 			children = (
 				7954640C2B53FFF600618ACA /* Assets.xcassets */,
-				7954640E2B53FFF600618ACA /* Entitlements.entitlements */,
+				7954640E2B53FFF600618ACA /* Development.entitlements */,
+				79A05BE52B93736C00A55C81 /* Release.entitlements */,
 				79ABECFD2B552ABE00C15D0C /* GoogleService-Info.plist */,
 				795464172B5400C200618ACA /* Info.plist */,
 				7954640F2B53FFF600618ACA /* Preview Content */,
@@ -610,6 +681,8 @@
 		79DFFB782B5D4D810052AB59 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				79A05BEA2B937FDF00A55C81 /* Navigation Stack */,
+				79A05BE62B9375B700A55C81 /* Color */,
 				79700E1C2B6AEBFA0066F68C /* Fonts */,
 				79DFFB792B5D4D8A0052AB59 /* Buttons */,
 			);
@@ -672,7 +745,7 @@
 			isa = PBXGroup;
 			children = (
 				79FF61F62B934D4000246ECE /* gp-swift-cloud-kit */,
-				79FF61F52B934C7900246ECE /* gp-swift-storage-kit */,
+				79A05BE32B93717200A55C81 /* gp-swift-storage-kit */,
 				79FF61F72B934D4000246ECE /* gp-swift-webrtc-kit */,
 			);
 			name = Packages;
@@ -770,10 +843,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				79EF64F22B824B9400A63065 /* GPWCoreStatusViewModel.swift in Sources */,
+				79A05BF02B93804700A55C81 /* GPWNavigationStackViewModel.swift in Sources */,
 				796F03692B5B241400F44E26 /* GPWUserContactListView.swift in Sources */,
 				796464892B7A30D100EC913D /* GPWUserLocalDeviceViewModel.swift in Sources */,
 				790857022B815F6D00209111 /* GPWCoreVersionViewModel.swift in Sources */,
 				79DFFB892B5D4E210052AB59 /* ButtonStyle+gpwBnWBordered.swift in Sources */,
+				79A05BF62B9380CD00A55C81 /* GPWNavigationTitleModifier.swift in Sources */,
 				796F036B2B5B243A00F44E26 /* GPWUserChatListView.swift in Sources */,
 				795464092B53FFF500618ACA /* GPWContentView.swift in Sources */,
 				79DFFB982B5D99720052AB59 /* GPWAboutView.swift in Sources */,
@@ -792,6 +867,7 @@
 				79DFFB8B2B5D4E210052AB59 /* GPWBnWBorderedButtonStyle.swift in Sources */,
 				79DFFB882B5D4E210052AB59 /* ButtonStyle+gpwFlat.swift in Sources */,
 				7954640B2B53FFF500618ACA /* GPWItem.swift in Sources */,
+				79A05BE82B9375C600A55C81 /* Color.swift in Sources */,
 				79DFFB9C2B5DA5D80052AB59 /* GPWUserDevice.swift in Sources */,
 				79DFFB912B5D96B10052AB59 /* GPWUserAccountView.swift in Sources */,
 				791755232B77FEBD006A469E /* GPWUserContentView.swift in Sources */,
@@ -809,9 +885,11 @@
 				79DFFB8F2B5D4E210052AB59 /* GPWBnWPlainButtonStyle.swift in Sources */,
 				79DFFB8D2B5D4E210052AB59 /* GPWPlainButtonStyle.swift in Sources */,
 				79ABED142B5552DE00C15D0C /* GPWCameraView.swift in Sources */,
+				79A05BF42B9380B800A55C81 /* View+gpwNavigationTitle.swift in Sources */,
 				79DFFB8C2B5D4E210052AB59 /* GPWBnWFlatButtonStyle.swift in Sources */,
 				796F036D2B5B245500F44E26 /* GPWUserProfileView.swift in Sources */,
 				79DFFB8A2B5D4E210052AB59 /* ButtonStyle+gpwBnWPlain.swift in Sources */,
+				79A05BEF2B93804700A55C81 /* GPWNavigationStack.swift in Sources */,
 				79700E212B6AEC5F0066F68C /* Font.swift in Sources */,
 				792CDEEC2B74009C0048EB5D /* GPWUserNotificationService.swift in Sources */,
 				79DFFB862B5D4E210052AB59 /* ButtonStyle+gpwPlain.swift in Sources */,
@@ -950,10 +1028,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Development.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "iOS/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = DE65J7Y35D;
@@ -972,6 +1050,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -990,7 +1069,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1000,10 +1079,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Entitlements.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iOS/Resources/Release.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "iOS/Resources/Preview\\ Content";
 				DEVELOPMENT_TEAM = DE65J7Y35D;
@@ -1022,6 +1101,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1040,7 +1120,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -130,7 +130,6 @@
 		79700E182B6AE5460066F68C /* Saira.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Saira.ttf; sourceTree = "<group>"; };
 		79700E192B6AE5460066F68C /* Saira-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-Italic.ttf"; sourceTree = "<group>"; };
 		79700E202B6AEC5F0066F68C /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		79A05BE32B93717200A55C81 /* gp-swift-storage-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "gp-swift-storage-kit"; path = "../../gp-swift-storage-kit"; sourceTree = "<group>"; };
 		79A05BE52B93736C00A55C81 /* Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Release.entitlements; sourceTree = "<group>"; };
 		79A05BE72B9375C600A55C81 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		79A05BEB2B93804700A55C81 /* GPWNavigationStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWNavigationStack.swift; sourceTree = "<group>"; };
@@ -745,7 +744,6 @@
 			isa = PBXGroup;
 			children = (
 				79FF61F62B934D4000246ECE /* gp-swift-cloud-kit */,
-				79A05BE32B93717200A55C81 /* gp-swift-storage-kit */,
 				79FF61F72B934D4000246ECE /* gp-swift-webrtc-kit */,
 			);
 			name = Packages;

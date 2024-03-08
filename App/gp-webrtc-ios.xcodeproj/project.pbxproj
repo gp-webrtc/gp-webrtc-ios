@@ -1163,8 +1163,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gpfister/gp-swift-storage-kit.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				branch = feature/user;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

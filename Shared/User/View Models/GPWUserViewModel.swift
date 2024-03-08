@@ -31,7 +31,7 @@ final class GPWUserViewModel: ObservableObject {
     @Published var userId: String?
     @Published var displayName: String = ""
     @Published var settings: GPWCKUserSettings = .default
-    @Published var modelVersion: String = GPWCKCoreModelVersion.v0_0_0_0.rawValue
+    @Published var modelVersion: String = GPWCKCoreModelVersion.v1.rawValue
 
     private let userService = GPWCKUserService.shared
 
@@ -50,6 +50,7 @@ final class GPWUserViewModel: ObservableObject {
                     return
                 }
 
+                Logger().debug("[GPWUserViewModel] User id: \(user.userId)")
                 self.isLoading = false
                 self.userId = user.userId
                 self.displayName = user.displayName

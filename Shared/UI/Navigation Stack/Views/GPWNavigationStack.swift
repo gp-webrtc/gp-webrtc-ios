@@ -25,16 +25,16 @@ public struct GPWNavigationStack<OSKUINavigationRoute: Hashable, OSKDestination:
         self.root = root
         self.destination = destination
         
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.configureWithTransparentBackground()
-        coloredAppearance.backgroundColor = .clear
-        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor(.gpwOnPrimary)]
-        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(.gpwOnPrimary)]
-        
-        UINavigationBar.appearance().standardAppearance = coloredAppearance
-        UINavigationBar.appearance().compactAppearance = coloredAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-        UINavigationBar.appearance().tintColor = UIColor(.gpwPrimary)
+//        let coloredAppearance = UINavigationBarAppearance()
+//        coloredAppearance.configureWithTransparentBackground()
+//        coloredAppearance.backgroundColor = .clear
+//        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor(.gpwOnPrimary)]
+//        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(.gpwOnPrimary)]
+//        
+//        UINavigationBar.appearance().standardAppearance = coloredAppearance
+//        UINavigationBar.appearance().compactAppearance = coloredAppearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+//        UINavigationBar.appearance().tintColor = UIColor(.gpwPrimary)
     }
 
     public var body: some View {

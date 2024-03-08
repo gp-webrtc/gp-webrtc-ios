@@ -25,18 +25,18 @@ import FirebaseFirestore
 #endif
 import Foundation
 
-public enum GPWCKCoreIOSVersion: String, GPWCKDataProtocol, Comparable {
-    case v0_0_0_0 = "0.0.0(0)"
-    case v0_1_0_1 = "0.1.0(1)"
-
-    public static func < (lhs: GPWCKCoreIOSVersion, rhs: GPWCKCoreIOSVersion) -> Bool {
-        lhs.rawValue < rhs.rawValue
-    }
-}
+//public enum GPWCKCoreIOSVersion: String, GPWCKDataProtocol, Comparable {
+//    case v0_0_0 = "0"
+//    case v0_1_0 = "0.1.0"
+//
+//    public static func < (lhs: GPWCKCoreIOSVersion, rhs: GPWCKCoreIOSVersion) -> Bool {
+//        lhs.rawValue < rhs.rawValue
+//    }
+//}
 
 public enum GPWCKCoreModelVersion: String, GPWCKDataProtocol, Comparable {
-    case v0_0_0_0 = "0.0.0(0)"
-    case v0_1_0_1 = "0.1.0(1)"
+    case v0 = "0.0.0"
+    case v1 = "0.1.0"
 
     public static func < (lhs: GPWCKCoreModelVersion, rhs: GPWCKCoreModelVersion) -> Bool {
         lhs.rawValue < rhs.rawValue

@@ -36,6 +36,7 @@ struct GPWNavigationTitleModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarBackground(Color.gpwPrimary, for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)

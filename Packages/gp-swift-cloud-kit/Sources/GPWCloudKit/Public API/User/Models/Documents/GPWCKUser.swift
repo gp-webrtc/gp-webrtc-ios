@@ -49,7 +49,7 @@ public struct GPWCKUser: GPWCKDocumentProtocol {
         pinHash = user.pinHash
         creationDate = user.creationDate
         modificationDate = user.modificationDate
-        modelVersion = user.modelVersion ?? GPWCKCoreIOSVersion.v0_0_0_0.rawValue
+        modelVersion = user.modelVersion ?? GPWCKCoreModelVersion.v1.rawValue
     }
 
     static func base64Decode(encrypted: String) throws -> GPWCKEncryptedUserData {

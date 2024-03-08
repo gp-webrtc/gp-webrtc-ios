@@ -48,10 +48,9 @@ brew install swiftformat
 # Mandatory files
 echo "===== Firebase requirements ====================================================="
 echo "OSKFirebaseEmulator.plist"
-(cd $CI_PRIMARY_REPOSITORY_PATH/iOS/Resources && cp OSKFirebaseEmulator.plist.dist OSKFirebaseEmulator.plist)
 if [ -z $FIREBASE_GOOGLE_SERVICE ]; then
     echo "Ignoring GoogleService-Info.plist"
 else
     echo "GoogleService-Info.plist"
-    (cd $CI_PRIMARY_REPOSITORY_PATH/iOS/Resources && echo $FIREBASE_GOOGLE_SERVICE_DEV | base64 --decode > GoogleService-Info.plist)
+    (cd $CI_PRIMARY_REPOSITORY_PATH/iOS/Resources && echo $FIREBASE_GOOGLE_SERVICE | base64 --decode > GoogleService-Info.plist)
 fi

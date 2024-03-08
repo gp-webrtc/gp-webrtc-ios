@@ -55,6 +55,15 @@
       }
     },
     {
+      "identity" : "gp-swift-storage-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gpfister/gp-swift-storage-kit.git",
+      "state" : {
+        "branch" : "feature/user",
+        "revision" : "a2f95fedf27b77b86566d381fd978c9eea754902"
+      }
+    },
+    {
       "identity" : "grpc-binary",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/grpc-binary.git",

@@ -25,4 +25,4 @@ set -e
 
 echo "===== Check==============s ====================================================="
 echo "Code linting (dry run)"
-swiftformat --lint --dry-run .
+swiftformat --lint --dryrun .

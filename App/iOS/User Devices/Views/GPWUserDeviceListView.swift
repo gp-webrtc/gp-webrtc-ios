@@ -35,7 +35,7 @@ struct GPWUserDeviceListView: View {
                 Image(systemName: "iphone.gen3")
             }
         }
-        .navigationTitle("Devices")
+        .gpwNavigationTitle("Devices")
         .onAppear {
             userDevices.subscribe(userId: userId)
         }

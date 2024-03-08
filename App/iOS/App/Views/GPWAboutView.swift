@@ -25,7 +25,7 @@ import SwiftUI
 struct GPWAboutView: View {
     var body: some View {
         Text("About")
-            .navigationTitle("About")
+            .gpwNavigationTitle("About")
     }
 }
 

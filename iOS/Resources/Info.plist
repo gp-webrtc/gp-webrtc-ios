@@ -10,15 +10,15 @@
 	<string>Republik uses notifications to alert you when someone is calling you or messaging you.</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Tourney.ttf</string>
-		<string>Tourney-Italic.ttf</string>
-		<string>Saira.ttf</string>
-		<string>Saira-Italic.ttf</string>
+		<string>Baloo-2.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>remote-notification</string>
 		<string>voip</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

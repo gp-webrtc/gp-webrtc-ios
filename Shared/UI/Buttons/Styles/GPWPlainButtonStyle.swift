@@ -37,11 +37,11 @@ public struct GPWPlainButtonStyle: ButtonStyle {
                     case .destructive:
                         Color.white
                     case .cancel:
-                        Color.white
+                        Color.gpwPrimary
                     default:
-                        Color.white
+                        Color.gpwOnPrimary
                 }
-            } else { Color.white }
+            } else { Color.gpwOnPrimary }
         }
 
         var backgroundColor: some View {
@@ -51,11 +51,11 @@ public struct GPWPlainButtonStyle: ButtonStyle {
                         case .destructive:
                             Color.red
                         case .cancel:
-                            Color.accentColor
+                            Color.gpwOnPrimary
                         default:
-                            Color.accentColor
+                            Color.gpwPrimary
                     }
-                } else { Color.accentColor }
+                } else { Color.gpwPrimary }
             } else { Color.gray }
         }
 

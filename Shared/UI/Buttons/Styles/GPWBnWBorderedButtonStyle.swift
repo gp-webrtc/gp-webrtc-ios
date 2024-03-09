@@ -39,11 +39,11 @@ public struct GPWBnWBorderedButtonStyle: ButtonStyle {
                         case ButtonRole.destructive:
                             Color.red
                         case ButtonRole.cancel:
-                            colorScheme == .dark ? Color.white : Color.black
+                            colorScheme == .dark ? Color.gpwOnPrimary : Color.gpwPrimary
                         default:
-                            colorScheme == .dark ? Color.white : Color.black
+                            colorScheme == .dark ? Color.gpwOnPrimary : Color.gpwPrimary
                     }
-                } else { colorScheme == .dark ? Color.white : Color.black }
+                } else { colorScheme == .dark ? Color.gpwOnPrimary : Color.gpwPrimary }
             } else { Color.gray }
         }
 
@@ -54,11 +54,11 @@ public struct GPWBnWBorderedButtonStyle: ButtonStyle {
                         case ButtonRole.destructive:
                             Color.red
                         case ButtonRole.cancel:
-                            colorScheme == .dark ? Color.white : Color.black
+                            colorScheme == .dark ? Color.gpwOnPrimary : Color.gpwPrimary
                         default:
-                            colorScheme == .dark ? Color.white : Color.black
+                            colorScheme == .dark ? Color.gpwOnPrimary : Color.gpwPrimary
                     }
-                } else { colorScheme == .dark ? Color.white : Color.black }
+                } else { colorScheme == .dark ? Color.gpwOnPrimary : Color.gpwPrimary }
             } else { Color.gray }
         }
 

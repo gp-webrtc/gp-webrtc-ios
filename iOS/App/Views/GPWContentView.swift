@@ -25,26 +25,27 @@ import SwiftUI
 
 struct GPWContentView: View {
     @StateObject private var coreStatus = GPWCoreStatusViewModel()
-
+    
     var body: some View {
         ZStack {
             if coreStatus.hasTimedOut {
                 GPWSplashView {
                     Text("Something went wrong...")
-                        .foregroundStyle(.white)
+                        .foregroundColor(.gpwOnPrimary)
                 }
             } else if coreStatus.isLoading {
                 GPWSplashView {
                     ProgressView {
                         Text("Loading app...")
-                            .foregroundStyle(.white)
+                            .foregroundColor(.gpwOnPrimary)
                     }
+                    .tint(.gpwOnPrimary)
                 }
             } else if coreStatus.maintenanceMode {
                 GPWSplashView {
                     Text("Sorry, the app is undergoing some maintanance. Please wait a few minutes.")
                         .multilineTextAlignment(.center)
-                        .foregroundStyle(.white)
+                        .foregroundColor(.gpwOnPrimary)
                         .bold()
                 }
             } else {
@@ -62,9 +63,9 @@ struct GPWContentView: View {
 
 struct GPWAuthView: View {
     @State private var path = NavigationPath()
-
+    
     @StateObject private var userAccount = GPWUserAccountViewModel()
-
+    
     private func signInAnonymously() {
         Task {
             do {
@@ -74,7 +75,7 @@ struct GPWAuthView: View {
             }
         }
     }
-
+    
     var body: some View {
         ZStack {
             if userAccount.authState == .signedIn, let userId = userAccount.userId {
@@ -84,7 +85,7 @@ struct GPWAuthView: View {
                 GPWSplashView {
                     ZStack {
                         if userAccount.authState == .signedOut {
-                            Button(action: signInAnonymously) {
+                            Button(role: .cancel, action: signInAnonymously) {
                                 HStack {
                                     Spacer()
                                     Text("Join now, we need you !")
@@ -95,7 +96,7 @@ struct GPWAuthView: View {
                         } else {
                             ProgressView {
                                 Text("Loading authentication...")
-                                    .foregroundStyle(.white)
+                                    .foregroundColor(.gpwOnPrimary)
                             }
                         }
                     }
@@ -113,36 +114,35 @@ struct GPWAuthView: View {
 
 struct GPWSplashView<GPWContent: View>: View {
     @ViewBuilder var content: () -> GPWContent
-
+    
     var body: some View {
         VStack {
-            ZStack {
-                HStack {
-                    Text("Republik\nof free speech")
-                        .font(.custom("Tourney", size: 34, relativeTo: .largeTitle))
-                        .foregroundStyle(.accent)
-                    Spacer()
-                }
-                .padding()
-            }
-            .background(Color.white)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .overlay {
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(style: StrokeStyle(lineWidth: 1))
-                    .shadow(radius: 1)
+            Spacer()
+            
+            
+            HStack {
+                Spacer()
+                content()
+                Spacer()
             }
             .padding()
-            .padding(.top, 48)
-
-            Spacer()
-
-            content()
-
-                .padding()
-                .padding(.bottom)
+            .padding(.bottom)
         }
-        .background(Image("GPWSplashScreen").resizable().scaledToFill())
+        .background {
+            ZStack {
+                Color.gpwPrimary
+                VStack {
+                    Spacer()
+                    
+                    Image("Logo")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.horizontal, 32)
+                    
+                    Spacer()
+                }
+            }
+        }
         .ignoresSafeArea()
     }
 }

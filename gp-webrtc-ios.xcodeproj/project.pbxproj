@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790576CD2B9D05BF00B07ABF /* Baloo-2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 790576CC2B9D05BF00B07ABF /* Baloo-2.ttf */; };
 		790857022B815F6D00209111 /* GPWCoreVersionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790857012B815F6D00209111 /* GPWCoreVersionViewModel.swift */; };
 		791755112B77D05A006A469E /* GPWUserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755102B77D05A006A469E /* GPWUserSettingsView.swift */; };
 		791755132B77D10C006A469E /* GPWUserNotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755122B77D10C006A469E /* GPWUserNotificationsSettingsView.swift */; };
@@ -18,8 +19,6 @@
 		792CDEEF2B7401210048EB5D /* GPWUserNotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEEE2B7401210048EB5D /* GPWUserNotificationViewModel.swift */; };
 		792CDEF32B7401E50048EB5D /* GPUserDefaultValues+userNotificationTokenId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userNotificationTokenId.swift */; };
 		792CDEF72B742C480048EB5D /* GPWUserNotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792CDEF62B742C480048EB5D /* GPWUserNotificationError.swift */; };
-		79506B712B6D2E7F009AFD76 /* Tourney-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79506B6F2B6D2E7F009AFD76 /* Tourney-Italic.ttf */; };
-		79506B722B6D2E7F009AFD76 /* Tourney.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79506B702B6D2E7F009AFD76 /* Tourney.ttf */; };
 		7952559B2B855A7700218973 /* UIDevice+pushEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7952559A2B855A7700218973 /* UIDevice+pushEnvironment.swift */; };
 		795464072B53FFF500618ACA /* GPWApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464062B53FFF500618ACA /* GPWApp.swift */; };
 		795464092B53FFF500618ACA /* GPWContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795464082B53FFF500618ACA /* GPWContentView.swift */; };
@@ -34,8 +33,6 @@
 		796F036B2B5B243A00F44E26 /* GPWUserChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F036A2B5B243A00F44E26 /* GPWUserChatListView.swift */; };
 		796F036D2B5B245500F44E26 /* GPWUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F036C2B5B245500F44E26 /* GPWUserProfileView.swift */; };
 		796F03722B5B257400F44E26 /* GPWUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F03712B5B257400F44E26 /* GPWUserViewModel.swift */; };
-		79700E1A2B6AE5460066F68C /* Saira.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E182B6AE5460066F68C /* Saira.ttf */; };
-		79700E1B2B6AE5460066F68C /* Saira-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79700E192B6AE5460066F68C /* Saira-Italic.ttf */; };
 		79700E212B6AEC5F0066F68C /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79700E202B6AEC5F0066F68C /* Font.swift */; };
 		79A05BE82B9375C600A55C81 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A05BE72B9375C600A55C81 /* Color.swift */; };
 		79A05BEF2B93804700A55C81 /* GPWNavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A05BEB2B93804700A55C81 /* GPWNavigationStack.swift */; };
@@ -98,6 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		790576CC2B9D05BF00B07ABF /* Baloo-2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Baloo-2.ttf"; path = "../../../../../../../../Downloads/Baloo_2/Baloo-2.ttf"; sourceTree = "<group>"; };
 		790857012B815F6D00209111 /* GPWCoreVersionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCoreVersionViewModel.swift; sourceTree = "<group>"; };
 		791755102B77D05A006A469E /* GPWUserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserSettingsView.swift; sourceTree = "<group>"; };
 		791755122B77D10C006A469E /* GPWUserNotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationsSettingsView.swift; sourceTree = "<group>"; };
@@ -109,8 +107,6 @@
 		792CDEEE2B7401210048EB5D /* GPWUserNotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationViewModel.swift; sourceTree = "<group>"; };
 		792CDEF22B7401E50048EB5D /* GPUserDefaultValues+userNotificationTokenId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPUserDefaultValues+userNotificationTokenId.swift"; sourceTree = "<group>"; };
 		792CDEF62B742C480048EB5D /* GPWUserNotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationError.swift; sourceTree = "<group>"; };
-		79506B6F2B6D2E7F009AFD76 /* Tourney-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tourney-Italic.ttf"; sourceTree = "<group>"; };
-		79506B702B6D2E7F009AFD76 /* Tourney.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tourney.ttf; sourceTree = "<group>"; };
 		7952559A2B855A7700218973 /* UIDevice+pushEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+pushEnvironment.swift"; sourceTree = "<group>"; };
 		795464032B53FFF500618ACA /* Republik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Republik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		795464062B53FFF500618ACA /* GPWApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWApp.swift; sourceTree = "<group>"; };
@@ -128,8 +124,6 @@
 		796F036A2B5B243A00F44E26 /* GPWUserChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserChatListView.swift; sourceTree = "<group>"; };
 		796F036C2B5B245500F44E26 /* GPWUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserProfileView.swift; sourceTree = "<group>"; };
 		796F03712B5B257400F44E26 /* GPWUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserViewModel.swift; sourceTree = "<group>"; };
-		79700E182B6AE5460066F68C /* Saira.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Saira.ttf; sourceTree = "<group>"; };
-		79700E192B6AE5460066F68C /* Saira-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Saira-Italic.ttf"; sourceTree = "<group>"; };
 		79700E202B6AEC5F0066F68C /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		79A05BE52B93736C00A55C81 /* Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Release.entitlements; sourceTree = "<group>"; };
 		79A05BE72B9375C600A55C81 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -498,10 +492,7 @@
 		79700E1F2B6AEC430066F68C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				79506B6F2B6D2E7F009AFD76 /* Tourney-Italic.ttf */,
-				79506B702B6D2E7F009AFD76 /* Tourney.ttf */,
-				79700E192B6AE5460066F68C /* Saira-Italic.ttf */,
-				79700E182B6AE5460066F68C /* Saira.ttf */,
+				790576CC2B9D05BF00B07ABF /* Baloo-2.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -834,13 +825,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				796F03662B5B18D900F44E26 /* Shared Assets.xcassets in Resources */,
-				79700E1B2B6AE5460066F68C /* Saira-Italic.ttf in Resources */,
 				795464112B53FFF600618ACA /* Preview Assets.xcassets in Resources */,
 				7954640D2B53FFF600618ACA /* Assets.xcassets in Resources */,
 				79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */,
-				79700E1A2B6AE5460066F68C /* Saira.ttf in Resources */,
-				79506B722B6D2E7F009AFD76 /* Tourney.ttf in Resources */,
-				79506B712B6D2E7F009AFD76 /* Tourney-Italic.ttf in Resources */,
+				790576CD2B9D05BF00B07ABF /* Baloo-2.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1059,7 +1047,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1110,7 +1098,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

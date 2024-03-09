@@ -9,47 +9,47 @@
 import SwiftUI
 
 extension Color {
-    static var gpwPrimary: Color { Color(hex: "#5383ec" ) }
-    static var gpwOnPrimary: Color { .white }
+    static var gpwPrimary: Color { Color(hex: "#f63943" ) }
+    static var gpwOnPrimary: Color { Color(hex: "#f4eff0") }
     
-    static var gpwSecondary: Color { Color(hex: "#fd731e") }
-    static var gpwOnSecondary: Color { .white }
+//    static var gpwSecondary: Color { Color(hex: "#f4eff0") }
+//    static var gpwOnSecondary: Color { Color(hex: "#060203") }
     
-    static var gpwPrimary50: Color { Color(hex: "#e5f2ff") }
-    static var gpwPrimary100: Color { Color(hex: "#c1ddff") }
-    static var gpwPrimary200: Color { Color(hex: "#9bc8ff") }
-    static var gpwPrimary300: Color { Color(hex: "#77b3fe") }
-    static var gpwPrimary400: Color { Color(hex: "#61a2fe") }
-    static var gpwPrimary500: Color { Color(hex: "#5592fb") }
-    static var gpwPrimary600: Color { Color(hex: "#5383ec") }
-    static var gpwPrimary700: Color { Color(hex: "#4f71d8") }
-    static var gpwPrimary800: Color { Color(hex: "#4a5fc5") }
-    static var gpwPrimary900: Color { Color(hex: "#4340a4") }
+    static var gpwPrimary50: Color { Color(hex: "#ffe9ed") }
+    static var gpwPrimary100: Color { Color(hex: "#ffc8cf") }
+    static var gpwPrimary200: Color { Color(hex: "#f59193") }
+    static var gpwPrimary300: Color { Color(hex: "#ec6469") }
+    static var gpwPrimary400: Color { Color(hex: "#f63942") } // Primary
+    static var gpwPrimary500: Color { Color(hex: "#fb1523") }
+    static var gpwPrimary600: Color { Color(hex: "#ec0024") }
+    static var gpwPrimary700: Color { Color(hex: "#da001f") }
+    static var gpwPrimary800: Color { Color(hex: "#ce0017") }
+    static var gpwPrimary900: Color { Color(hex: "#be0008") }
     
-    static var gpwSecondary50: Color { Color(hex: "#fff8e2") }
-    static var gpwSecondary100: Color { Color(hex: "#ffecb6") }
-    static var gpwSecondary200: Color { Color(hex: "#ffe188") }
-    static var gpwSecondary300: Color { Color(hex: "#ffd659") }
-    static var gpwSecondary400: Color { Color(hex: "#ffcb39") }
-    static var gpwSecondary500: Color { Color(hex: "#ffc229") }
-    static var gpwSecondary600: Color { Color(hex: "#ffb525") }
-    static var gpwSecondary700: Color { Color(hex: "#ffa222") }
-    static var gpwSecondary800: Color { Color(hex: "#ff9221") }
-    static var gpwSecondary900: Color { Color(hex: "#fd731e") }
+//    static var gpwSecondary50: Color { Color(hex: "#fff8e2") }
+//    static var gpwSecondary100: Color { Color(hex: "#ffecb6") }
+//    static var gpwSecondary200: Color { Color(hex: "#ffe188") }
+//    static var gpwSecondary300: Color { Color(hex: "#ffd659") }
+//    static var gpwSecondary400: Color { Color(hex: "#ffcb39") }
+//    static var gpwSecondary500: Color { Color(hex: "#ffc229") }
+//    static var gpwSecondary600: Color { Color(hex: "#ffb525") }
+//    static var gpwSecondary700: Color { Color(hex: "#ffa222") }
+//    static var gpwSecondary800: Color { Color(hex: "#ff9221") }
+//    static var gpwSecondary900: Color { Color(hex: "#fd731e") }
     
-    static var gpwGray50: Color { Color(hex: "#ECEFF1") }
-    static var gpwGray100: Color { Color(hex: "#CFD8DC") }
-    static var gpwGray200: Color { Color(hex: "#B0BEC5") }
-    static var gpwGray300: Color { Color(hex: "#90A4AE") }
-    static var gpwGray400: Color { Color(hex: "#78909C") }
-    static var gpwGray500: Color { Color(hex: "#607D8B") }
-    static var gpwGray600: Color { Color(hex: "#546E7A") }
-    static var gpwGray700: Color { Color(hex: "#455A64") }
-    static var gpwGray800: Color { Color(hex: "#37474F") }
-    static var gpwGray900: Color { Color(hex: "#263238") }
+    static var gpwGray50: Color { Color(hex: "#fbf6f8") }
+    static var gpwGray100: Color { Color(hex: "#f3eeef") }
+    static var gpwGray200: Color { Color(hex: "#e7e2e4") }
+    static var gpwGray300: Color { Color(hex: "#d6d1d2") }
+    static var gpwGray400: Color { Color(hex: "#b1acad") }
+    static var gpwGray500: Color { Color(hex: "#908c8d") }
+    static var gpwGray600: Color { Color(hex: "#686465") }
+    static var gpwGray700: Color { Color(hex: "#555152") }
+    static var gpwGray800: Color { Color(hex: "#373334") }
+    static var gpwGray900: Color { Color(hex: "#171314") }
     
-//    var gpwBackground: Color { Color("BackgroundColor") }
-//    var gpwOnBackground: Color { Color("OnBackgroundColor") }
+    var gpwBackground: Color { Color("BackgroundColor") }
+    var gpwOnBackground: Color { Color("OnBackgroundColor") }
     
     static var gpwCardBackground: Color { Color("CardBackgroundColor") }
     static var gpwOnCardBackground: Color { Color("OnCardBackgroundColor") }

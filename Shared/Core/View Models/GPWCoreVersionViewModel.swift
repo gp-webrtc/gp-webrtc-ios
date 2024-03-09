@@ -64,14 +64,11 @@ final class GPWCoreVersionViewModel: ObservableObject {
                 guard !isLoading, let modelVersion, let coreVersion else { return }
 
                 // Get the app version
-                guard let shortVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String,
-                      let version = Bundle.main.infoDictionary!["CFBundleVersion"] as? String
+                guard let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
                 else {
                     Logger().error("[GPWCoreVersionViewModel] Unable to determine app version")
                     return
                 }
-
-                let appVersion = "\(shortVersion)(\(version))"
 
                 // Is the app up to date
                 if coreVersion.minimalIOSVersion > appVersion {

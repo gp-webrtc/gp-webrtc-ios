@@ -65,7 +65,12 @@ final class GPWUserAccountViewModel: ObservableObject {
     }
 
     func signInAnonymously() async throws {
-        let _ = try await authService.signInAnonymously()
+        let userAccount = try await authService.signInAnonymously()
+        try await userService.create(
+            userAccount.userId,
+            displayName: "John Doe",
+            settings: GPWCKUserSettings()
+        )
     }
 
     func delete() async throws {

@@ -63,7 +63,7 @@ struct GPWUserProfileView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: 256, maxHeight: 256)
-                .foregroundColor(.accentColor)
+                .foregroundColor(.gpwGray500)
 
             Text(user.displayName)
                 .font(.gpwTitle)

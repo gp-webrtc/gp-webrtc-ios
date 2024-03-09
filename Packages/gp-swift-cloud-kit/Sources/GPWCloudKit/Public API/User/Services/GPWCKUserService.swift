@@ -65,6 +65,19 @@ public struct GPWCKUserService {
         }
         return snapshotListener
     }
+    
+    public func create(_ userId: String, displayName: String, settings: GPWCKUserSettings) async throws {
+        try await firestoreService.create(
+            GPWCKEncryptedUser(
+                from:GPWCKUser(
+                    userId: userId,
+                    displayName: displayName,
+                    settings: settings
+                )
+            ),                                
+            atPath: .user(userId: userId)
+        )
+    }
 
     public func updateSettings(_ settings: GPWCKUserSettings, of userId: String) async throws {
         try await firestoreService.update(from: GPWCKUserSettingsUpdate(settings: settings), atPath: .user(userId: userId))

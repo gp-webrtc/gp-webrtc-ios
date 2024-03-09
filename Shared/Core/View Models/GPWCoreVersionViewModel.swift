@@ -30,7 +30,7 @@ final class GPWCoreVersionViewModel: ObservableObject {
     @Published var isLoading = true
     @Published var mustUpdateData = false
     @Published var mustUpdateApp = false
-    @Published var modelVersion: String?
+    @Published var modelVersion: GPWCKCoreModelVersion?
     @Published var targetIOSVersion: String?
     @Published var targetModelVersion: String?
 
@@ -78,7 +78,7 @@ final class GPWCoreVersionViewModel: ObservableObject {
                 }
 
                 // Is the model up to date
-                if coreVersion.minimalModelVersion > modelVersion {
+                if coreVersion.minimalModelVersion > modelVersion.rawValue {
                     guard let modelVersionData = coreVersion.model[coreVersion.minimalModelVersion] else {
                         Logger().error("[GPWCoreVersionViewModel] Missing model version data for \(coreVersion.minimalModelVersion)")
                         return
@@ -98,7 +98,7 @@ final class GPWCoreVersionViewModel: ObservableObject {
                 }
                 let maxSupportedModelVersion = currentIOSVersionData.supportedModelVersions.max()!
 
-                if maxSupportedModelVersion > modelVersion {
+                if maxSupportedModelVersion > modelVersion.rawValue {
                     self.mustUpdateData = true
                     self.targetModelVersion = maxSupportedModelVersion
                     return

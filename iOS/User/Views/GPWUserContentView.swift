@@ -33,6 +33,15 @@ struct GPWUserContentView: View {
     
     @StateObject private var coreVersion = GPWCoreVersionViewModel()
     @StateObject private var user = GPWUserViewModel()
+    @EnvironmentObject private var userAccount: GPWUserAccountViewModel
+    
+    #if DEBUG
+    func deleteAccount() {
+        Task {
+            try? await userAccount.delete()
+        }
+    }
+    #endif
     
     private var mustUpdateApp: some View {
         VStack(spacing: spacing) {
@@ -80,7 +89,18 @@ struct GPWUserContentView: View {
     var body: some View {
         ZStack {
             if user.isLoading || coreVersion.isLoading {
-                ProgressView("We are sorting out your citizenship...")
+                VStack {
+                    Spacer()
+                    ProgressView("We are sorting out your citizenship...")
+                    Spacer()
+                    #if DEBUG
+                    Divider()
+                    Button(role: .destructive) { deleteAccount() } label: {
+                        Text("Delete account")
+                    }
+                    .buttonStyle(.gpwFlat)
+                    #endif
+                }
             } else {
                 if coreVersion.mustUpdateApp {
                     mustUpdateApp

@@ -48,8 +48,8 @@ extension Color {
     static var gpwGray800: Color { Color(hex: "#373334") }
     static var gpwGray900: Color { Color(hex: "#171314") }
     
-    var gpwBackground: Color { Color("BackgroundColor") }
-    var gpwOnBackground: Color { Color("OnBackgroundColor") }
+    static var gpwBackground: Color { Color("BackgroundColor") }
+    static var gpwOnBackground: Color { Color("OnBackgroundColor") }
     
     static var gpwCardBackground: Color { Color("CardBackgroundColor") }
     static var gpwOnCardBackground: Color { Color("OnCardBackgroundColor") }

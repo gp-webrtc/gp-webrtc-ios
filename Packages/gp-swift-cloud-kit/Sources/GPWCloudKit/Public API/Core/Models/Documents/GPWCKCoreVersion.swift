@@ -35,8 +35,7 @@ import Foundation
 //}
 
 public enum GPWCKCoreModelVersion: String, GPWCKDataProtocol, Comparable {
-    case v0 = "0.0.0"
-    case v1 = "0.1.0"
+    case v1 = "1"
 
     public static func < (lhs: GPWCKCoreModelVersion, rhs: GPWCKCoreModelVersion) -> Bool {
         lhs.rawValue < rhs.rawValue

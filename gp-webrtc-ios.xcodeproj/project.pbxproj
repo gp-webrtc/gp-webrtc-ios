@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		790576CD2B9D05BF00B07ABF /* Baloo-2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 790576CC2B9D05BF00B07ABF /* Baloo-2.ttf */; };
+		790576D12B9D14FE00B07ABF /* Baloo-2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 790576D02B9D14FE00B07ABF /* Baloo-2.ttf */; };
 		790857022B815F6D00209111 /* GPWCoreVersionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790857012B815F6D00209111 /* GPWCoreVersionViewModel.swift */; };
 		791755112B77D05A006A469E /* GPWUserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755102B77D05A006A469E /* GPWUserSettingsView.swift */; };
 		791755132B77D10C006A469E /* GPWUserNotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791755122B77D10C006A469E /* GPWUserNotificationsSettingsView.swift */; };
@@ -95,7 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		790576CC2B9D05BF00B07ABF /* Baloo-2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Baloo-2.ttf"; path = "../../../../../../../../Downloads/Baloo_2/Baloo-2.ttf"; sourceTree = "<group>"; };
+		790576D02B9D14FE00B07ABF /* Baloo-2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Baloo-2.ttf"; sourceTree = "<group>"; };
 		790857012B815F6D00209111 /* GPWCoreVersionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCoreVersionViewModel.swift; sourceTree = "<group>"; };
 		791755102B77D05A006A469E /* GPWUserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserSettingsView.swift; sourceTree = "<group>"; };
 		791755122B77D10C006A469E /* GPWUserNotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserNotificationsSettingsView.swift; sourceTree = "<group>"; };
@@ -176,6 +176,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		790576CE2B9D14DF00B07ABF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				790576D02B9D14FE00B07ABF /* Baloo-2.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		790857002B815F4E00209111 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,7 +483,7 @@
 		79700E1C2B6AEBFA0066F68C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				79700E1F2B6AEC430066F68C /* Resources */,
+				790576CE2B9D14DF00B07ABF /* Resources */,
 				79700E1E2B6AEC3D0066F68C /* Extensions */,
 			);
 			path = Fonts;
@@ -487,14 +495,6 @@
 				79700E202B6AEC5F0066F68C /* Font.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		79700E1F2B6AEC430066F68C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				790576CC2B9D05BF00B07ABF /* Baloo-2.ttf */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		79A05BE62B9375B700A55C81 /* Color */ = {
@@ -825,10 +825,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				796F03662B5B18D900F44E26 /* Shared Assets.xcassets in Resources */,
+				790576D12B9D14FE00B07ABF /* Baloo-2.ttf in Resources */,
 				795464112B53FFF600618ACA /* Preview Assets.xcassets in Resources */,
 				7954640D2B53FFF600618ACA /* Assets.xcassets in Resources */,
 				79ABECFE2B552ABE00C15D0C /* GoogleService-Info.plist in Resources */,
-				790576CD2B9D05BF00B07ABF /* Baloo-2.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

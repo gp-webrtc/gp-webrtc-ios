@@ -47,10 +47,9 @@ brew install swiftformat
 
 # Mandatory files
 echo "===== Firebase requirements ====================================================="
-echo "GoogleService-Info.plist"
 if [ -z $FIREBASE_GOOGLESERVICE_PLIST ]; then
     echo "Ignoring GoogleService-Info.plist"
 else
-    echo "GoogleService-Info.plist"
-    (cd $CI_PRIMARY_REPOSITORY_PATH/iOS/Resources && echo $FIREBASE_GOOGLE_SERVICE | base64 --decode > GoogleService-Info.plist)
+    echo "Generate GoogleService-Info.plist"
+    (cd $CI_PRIMARY_REPOSITORY_PATH/iOS/Resources && echo $FIREBASE_GOOGLESERVICE_PLIST | base64 --decode > GoogleService-Info.plist)
 fi

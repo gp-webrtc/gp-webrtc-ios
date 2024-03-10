@@ -52,10 +52,9 @@ struct GPWContentView: View {
                 GPWAuthView()
             }
         }
-        .onAppear {
+        .gpwSubscriber {
             coreStatus.subscribe()
-        }
-        .onDisappear {
+        } unsubscribe: {
             coreStatus.unsubscribe()
         }
     }
@@ -103,10 +102,9 @@ struct GPWAuthView: View {
                 }
             }
         }
-        .onAppear {
+        .gpwSubscriber {
             userAccount.subscribe()
-        }
-        .onDisappear {
+        } unsubscribe: {
             userAccount.unsubscribe()
         }
     }

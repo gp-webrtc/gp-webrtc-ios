@@ -64,12 +64,11 @@ struct GPWUserMainView: View {
         ZStack {
             if let userId = userAccount.userId {
                 tabView
-                    .onAppear {
-//                        userLocalDevice.subscribe(userId: userId)
+                    .gpwSubscriber {
+                        //                        userLocalDevice.subscribe(userId: userId)
                         userNotification.subscribe(userId: userId)
-                    }
-                    .onDisappear {
-//                        userLocalDevice.unsubscribe()
+                    } unsubscribe: {
+                        //                        userLocalDevice.unsubscribe()
                         userNotification.unsubcribe()
                     }
             } else {

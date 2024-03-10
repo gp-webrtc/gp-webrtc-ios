@@ -22,26 +22,8 @@
 
 import SwiftUI
 
-struct GPWUserDeviceListView: View {
-    let userId: String
-
-    @StateObject private var userDevices = GPWUserDeviceListViewModel()
-
-    var body: some View {
-        ZStack {
-            List(userDevices.devices) { userDevice in
-                GPWCell {
-                    Text(userDevice.displayName)
-                } leading: {
-                    Image(systemName: "iphone.gen3")
-                }
-            }
-        }
-        .gpwNavigationTitle("Devices")
-        .gpwSubscriber {
-            userDevices.subscribe(userId: userId)
-        } unsubscribe: {
-            userDevices.unsubscribe()
-        }
+extension View {
+    func gpwSubscriber(subscribe: @escaping () -> Void, unsubscribe: @escaping () -> Void = { }) -> some View {
+        self.modifier(GPWSubscribingViewViewModifier(subscribe: subscribe, unsubcribe: unsubscribe))
     }
 }

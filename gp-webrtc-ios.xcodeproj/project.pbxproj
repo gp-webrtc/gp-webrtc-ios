@@ -69,6 +69,8 @@
 		79DFFB9C2B5DA5D80052AB59 /* GPWUserDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DFFB9B2B5DA5D80052AB59 /* GPWUserDevice.swift */; };
 		79E31F692B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E31F682B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift */; };
 		79EF64F22B824B9400A63065 /* GPWCoreStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */; };
+		79FF0CC32B9E4CBD006BF64F /* View+gpwSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF0CBE2B9E4CBD006BF64F /* View+gpwSubscriber.swift */; };
+		79FF0CC42B9E4CBD006BF64F /* GPWSubscribingViewViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF0CC02B9E4CBD006BF64F /* GPWSubscribingViewViewModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -159,6 +161,8 @@
 		79DFFB9B2B5DA5D80052AB59 /* GPWUserDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserDevice.swift; sourceTree = "<group>"; };
 		79E31F682B7D36EA000FCB84 /* GPSCUserDefaultValues+isLocalDeviceRegistered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPSCUserDefaultValues+isLocalDeviceRegistered.swift"; sourceTree = "<group>"; };
 		79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWCoreStatusViewModel.swift; sourceTree = "<group>"; };
+		79FF0CBE2B9E4CBD006BF64F /* View+gpwSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+gpwSubscriber.swift"; sourceTree = "<group>"; };
+		79FF0CC02B9E4CBD006BF64F /* GPWSubscribingViewViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWSubscribingViewViewModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -690,10 +694,11 @@
 		79DFFB782B5D4D810052AB59 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				79A05BEA2B937FDF00A55C81 /* Navigation Stack */,
+				79DFFB792B5D4D8A0052AB59 /* Buttons */,
 				79A05BE62B9375B700A55C81 /* Color */,
 				79700E1C2B6AEBFA0066F68C /* Fonts */,
-				79DFFB792B5D4D8A0052AB59 /* Buttons */,
+				79A05BEA2B937FDF00A55C81 /* Navigation Stack */,
+				79FF0CC22B9E4CBD006BF64F /* Subscribing View */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -748,6 +753,31 @@
 				792CDEF02B7401380048EB5D /* View Models */,
 			);
 			path = "User Notifications";
+			sourceTree = "<group>";
+		};
+		79FF0CBF2B9E4CBD006BF64F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				79FF0CBE2B9E4CBD006BF64F /* View+gpwSubscriber.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		79FF0CC12B9E4CBD006BF64F /* View Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				79FF0CC02B9E4CBD006BF64F /* GPWSubscribingViewViewModifier.swift */,
+			);
+			path = "View Modifiers";
+			sourceTree = "<group>";
+		};
+		79FF0CC22B9E4CBD006BF64F /* Subscribing View */ = {
+			isa = PBXGroup;
+			children = (
+				79FF0CBF2B9E4CBD006BF64F /* Extensions */,
+				79FF0CC12B9E4CBD006BF64F /* View Modifiers */,
+			);
+			path = "Subscribing View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -844,6 +874,7 @@
 				796F03692B5B241400F44E26 /* GPWUserContactListView.swift in Sources */,
 				796464892B7A30D100EC913D /* GPWUserLocalDeviceViewModel.swift in Sources */,
 				790857022B815F6D00209111 /* GPWCoreVersionViewModel.swift in Sources */,
+				79FF0CC32B9E4CBD006BF64F /* View+gpwSubscriber.swift in Sources */,
 				79DFFB892B5D4E210052AB59 /* ButtonStyle+gpwBnWBordered.swift in Sources */,
 				79A05BF62B9380CD00A55C81 /* GPWNavigationTitleModifier.swift in Sources */,
 				796F036B2B5B243A00F44E26 /* GPWUserChatListView.swift in Sources */,
@@ -867,6 +898,7 @@
 				79A05BE82B9375C600A55C81 /* Color.swift in Sources */,
 				79DFFB9C2B5DA5D80052AB59 /* GPWUserDevice.swift in Sources */,
 				79DFFB912B5D96B10052AB59 /* GPWUserAccountView.swift in Sources */,
+				79FF0CC42B9E4CBD006BF64F /* GPWSubscribingViewViewModifier.swift in Sources */,
 				791755232B77FEBD006A469E /* GPWUserContentView.swift in Sources */,
 				792CDEEF2B7401210048EB5D /* GPWUserNotificationViewModel.swift in Sources */,
 				795464072B53FFF500618ACA /* GPWApp.swift in Sources */,

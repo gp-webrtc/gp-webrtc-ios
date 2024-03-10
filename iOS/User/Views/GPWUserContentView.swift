@@ -125,11 +125,10 @@ struct GPWUserContentView: View {
                 }
             }
         }
-        .onAppear {
+        .gpwSubscriber {
             user.subscribe(userId: userId)
             coreVersion.subscribe(userId: userId)
-        }
-        .onDisappear {
+        } unsubscribe: {
             user.unsubscribe()
             coreVersion.unsubscribe()
         }

@@ -135,4 +135,15 @@ public class GPWCKCloudAppService {
             #endif
         }
     }
+    
+    public func prepareForBackground() {
+        #if canImport(FirebaseFirestore)
+        Task {
+            let db = Firestore.firestore()
+            do {
+                try? await db.terminate()
+            }
+        }
+        #endif
+    }
 }

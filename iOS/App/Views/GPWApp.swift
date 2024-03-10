@@ -20,13 +20,16 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+import GPWCloudKit
 import SwiftData
 import SwiftUI
+import os.log
 
 /// NavigationBar styling: https://swiftuirecipes.com/blog/navigation-bar-styling-in-swiftui
 
 @main
 struct GPWApp: App {
+    @Environment(\.scenePhase) private var scenePhase
     @UIApplicationDelegateAdaptor(GPWAppDelegate.self) var delegate
 
 //    var sharedModelContainer: ModelContainer = {
@@ -47,6 +50,24 @@ struct GPWApp: App {
             GPWContentView()
                 .environment(\.font, .gpwBody)
         }
+        .onChange(of: scenePhase) { old, new in
+            Logger().debug("[GPWApp] Change of scene phase: \(old.string) -> \(new.string)")
+            if new == .background {
+                GPWCKCloudAppService.shared.prepareForBackground()
+            }
+        }
 //        .modelContainer(sharedModelContainer)
+    }
+}
+
+extension ScenePhase {
+    var string: String {
+        switch(self) {
+        case .active: "Active"
+        case .background: "Background"
+        case .inactive: "Inactive"
+        @unknown default:
+            fatalError("Scene phase \(self) is not handled")
+        }
     }
 }

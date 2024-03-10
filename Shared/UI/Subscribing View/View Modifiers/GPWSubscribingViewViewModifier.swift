@@ -22,26 +22,27 @@
 
 import SwiftUI
 
-struct GPWUserDeviceListView: View {
-    let userId: String
 
-    @StateObject private var userDevices = GPWUserDeviceListViewModel()
-
-    var body: some View {
-        ZStack {
-            List(userDevices.devices) { userDevice in
-                GPWCell {
-                    Text(userDevice.displayName)
-                } leading: {
-                    Image(systemName: "iphone.gen3")
+struct GPWSubscribingViewViewModifier: ViewModifier {
+    @Environment(\.scenePhase) private var scenePhase
+    
+    let subscribe: () -> Void
+    let unsubcribe: () -> Void
+    
+    func body(content: Content) -> some View {
+        content
+            .onAppear {
+                subscribe()
+            }
+            .onDisappear {
+                unsubcribe()
+            }
+            .onChange(of: scenePhase) { old, new in
+                if new == .active {
+                    subscribe()
+                } else if new == .inactive, old == .active {
+                    unsubcribe()
                 }
             }
-        }
-        .gpwNavigationTitle("Devices")
-        .gpwSubscriber {
-            userDevices.subscribe(userId: userId)
-        } unsubscribe: {
-            userDevices.unsubscribe()
-        }
     }
 }

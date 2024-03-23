@@ -20,10 +20,11 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
+import CallKit
 import UserNotifications
+import os.log
 
 class GPWNotificationService: UNNotificationServiceExtension {
-
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?
 
@@ -31,11 +32,58 @@ class GPWNotificationService: UNNotificationServiceExtension {
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
         
-        if let bestAttemptContent = bestAttemptContent {
-            // Modify the notification content here...
-            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
+        // If unencrypted, simply forward
+        guard request.content.categoryIdentifier == "org.gpfister.republik.encrypted"  else {
+            contentHandler(request.content)
+            return
+        }
+        
+        // Decrypt category identifier
+        guard let content = bestAttemptContent,
+              let encryptedCategoryIdentifier = content.userInfo["encryptedCategoryIdentifier"] as? String,
+              let categoryIdentifierData = Data(base64Encoded: encryptedCategoryIdentifier),
+              let categoryIdentifier = String(data: categoryIdentifierData, encoding: .utf8)
+        else {
+            Logger().error("[GPWNotificationService] Unable to decrypt encryptedCategoryIdentifier")
+            return
+        }
+        
+        guard let encryptedPayload = content.userInfo["encryptedPayload"] as? String,
+              let encryptedPayloadData = encryptedPayload.data(using: .utf8),
+              let payloadData = Data(base64Encoded: encryptedPayloadData)
+        else {
+            Logger().error("[GPWNotificationService] Unable to process encryptedPayload of notification with category \(categoryIdentifier)")
+            return
+        }
+        
+        
+        if categoryIdentifier == "org.gpfister.republik.userDeviceAdded",
+           let payload = try? JSONDecoder().decode(GPWEncryptedUserDeviceAddedNotificationContent.self, from: payloadData),
+           let userInfoData = try? JSONEncoder().encode(payload.userInfo),
+           let userInfo = try? JSONSerialization.jsonObject(with: userInfoData, options: []) as? [String: Any] {
             
-            contentHandler(bestAttemptContent)
+            content.categoryIdentifier = categoryIdentifier
+            content.title = payload.title
+            content.subtitle = payload.subtitle
+            content.userInfo = userInfo
+            
+            // Pass to the app user notification, unencrypted
+            contentHandler(content)
+        } else if categoryIdentifier == "org.gpfister.republik.userCallReceived",
+                  let payload = try? JSONDecoder().decode(GPWEncryptedUserDeviceAddedNotificationContent.self, from: payloadData),
+                  let userInfoData = try? JSONEncoder().encode(payload.userInfo),
+                  let userInfo = try? JSONSerialization.jsonObject(with: userInfoData, options: []) as? [String: Any] {
+                
+            // Pass to the app push kit voip notification, unencrypted
+            CXProvider.reportNewIncomingVoIPPushPayload(userInfo) { error in
+                if let error {
+                    Logger().error("[GPWNotificationService] Unable to report notification to CXProvider: \(error.localizedDescription)")
+                    return
+                }
+            }
+        } else {
+            Logger().error("[GPWNotificationService] Unable to process payload of notification \(categoryIdentifier)")
+            return
         }
     }
     

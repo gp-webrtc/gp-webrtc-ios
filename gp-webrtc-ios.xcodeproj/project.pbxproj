@@ -71,6 +71,8 @@
 		79EF64F22B824B9400A63065 /* GPWCoreStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EF64F12B824B9400A63065 /* GPWCoreStatusViewModel.swift */; };
 		79FEC6E42BAECE6300BFE994 /* GPWNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FEC6E32BAECE6300BFE994 /* GPWNotificationService.swift */; };
 		79FEC6E82BAECE6300BFE994 /* Republik (Notification Service Extension).appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 79FEC6E12BAECE6300BFE994 /* Republik (Notification Service Extension).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		79FEC6F02BAF35EF00BFE994 /* GPWEncryptedUserDeviceAddedNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FEC6EE2BAF356600BFE994 /* GPWEncryptedUserDeviceAddedNotificationContent.swift */; };
+		79FEC6F32BAF397800BFE994 /* GPWEncryptedUserCallReceivedNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FEC6F12BAF38CA00BFE994 /* GPWEncryptedUserCallReceivedNotificationContent.swift */; };
 		79FF0CC32B9E4CBD006BF64F /* View+gpwSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF0CBE2B9E4CBD006BF64F /* View+gpwSubscriber.swift */; };
 		79FF0CC42B9E4CBD006BF64F /* GPWSubscribingViewViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FF0CC02B9E4CBD006BF64F /* GPWSubscribingViewViewModifier.swift */; };
 /* End PBXBuildFile section */
@@ -178,6 +180,8 @@
 		79FEC6E12BAECE6300BFE994 /* Republik (Notification Service Extension).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Republik (Notification Service Extension).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79FEC6E32BAECE6300BFE994 /* GPWNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWNotificationService.swift; sourceTree = "<group>"; };
 		79FEC6E52BAECE6300BFE994 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79FEC6EE2BAF356600BFE994 /* GPWEncryptedUserDeviceAddedNotificationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWEncryptedUserDeviceAddedNotificationContent.swift; sourceTree = "<group>"; };
+		79FEC6F12BAF38CA00BFE994 /* GPWEncryptedUserCallReceivedNotificationContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWEncryptedUserCallReceivedNotificationContent.swift; sourceTree = "<group>"; };
 		79FF0CBE2B9E4CBD006BF64F /* View+gpwSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+gpwSubscriber.swift"; sourceTree = "<group>"; };
 		79FF0CC02B9E4CBD006BF64F /* GPWSubscribingViewViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPWSubscribingViewViewModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -785,6 +789,7 @@
 		79FEC6E22BAECE6300BFE994 /* Notification Service Extension */ = {
 			isa = PBXGroup;
 			children = (
+				79FEC6ED2BAF355600BFE994 /* Models */,
 				79FEC6EC2BAECF3E00BFE994 /* Resources */,
 				79FEC6E32BAECE6300BFE994 /* GPWNotificationService.swift */,
 			);
@@ -797,6 +802,15 @@
 				79FEC6E52BAECE6300BFE994 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		79FEC6ED2BAF355600BFE994 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79FEC6EE2BAF356600BFE994 /* GPWEncryptedUserDeviceAddedNotificationContent.swift */,
+				79FEC6F12BAF38CA00BFE994 /* GPWEncryptedUserCallReceivedNotificationContent.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		79FF0CBF2B9E4CBD006BF64F /* Extensions */ = {
@@ -1004,7 +1018,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79FEC6F02BAF35EF00BFE994 /* GPWEncryptedUserDeviceAddedNotificationContent.swift in Sources */,
 				79FEC6E42BAECE6300BFE994 /* GPWNotificationService.swift in Sources */,
+				79FEC6F32BAF397800BFE994 /* GPWEncryptedUserCallReceivedNotificationContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

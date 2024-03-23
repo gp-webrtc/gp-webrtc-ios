@@ -135,6 +135,7 @@
 		795464172B5400C200618ACA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		796464862B7A2FF500EC913D /* GPSCUserDefaultValues+userLocalDeviceId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPSCUserDefaultValues+userLocalDeviceId.swift"; sourceTree = "<group>"; };
 		796464882B7A30D100EC913D /* GPWUserLocalDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserLocalDeviceViewModel.swift; sourceTree = "<group>"; };
+		7968A8732BAF8ADD003639FE /* Republik (Notification Service Extension).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Republik (Notification Service Extension).entitlements"; sourceTree = "<group>"; };
 		796F03602B5B15E200F44E26 /* GPWUserAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserAccountViewModel.swift; sourceTree = "<group>"; };
 		796F03652B5B18D900F44E26 /* Shared Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Shared Assets.xcassets"; sourceTree = "<group>"; };
 		796F03682B5B241400F44E26 /* GPWUserContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPWUserContactListView.swift; sourceTree = "<group>"; };
@@ -389,6 +390,7 @@
 		795463FA2B53FFF500618ACA = {
 			isa = PBXGroup;
 			children = (
+				7968A8732BAF8ADD003639FE /* Republik (Notification Service Extension).entitlements */,
 				79AB186F2B9B74FC0014A683 /* External Packages */,
 				79AB186E2B9B74EA0014A683 /* Packages */,
 				795464182B5400FC00618ACA /* Shared */,
@@ -1271,6 +1273,7 @@
 		79FEC6EA2BAECE6300BFE994 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Republik (Notification Service Extension).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
@@ -1304,6 +1307,7 @@
 		79FEC6EB2BAECE6300BFE994 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Republik (Notification Service Extension).entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;

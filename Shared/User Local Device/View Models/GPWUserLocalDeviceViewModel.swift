@@ -34,8 +34,8 @@ final class GPWUserLocalDeviceViewModel: ObservableObject {
     @Published var displayName = ""
     @Published var isDeleted = false
 
-    @GPSCPublishedUserDefault(\.userLocalDeviceId) private var userLocalDeviceId
-    @GPSCPublishedUserDefault(\.isLocalDeviceRegistered) private var isLocalDeviceRegistered
+    @GPSKPublishedUserDefault(\.userLocalDeviceId) private var userLocalDeviceId
+    @GPSKPublishedUserDefault(\.isLocalDeviceRegistered) private var isLocalDeviceRegistered
 
     private let userDevicesSubject = CurrentValueSubject<[GPWCKUserDevice], Never>([])
     private let userDeviceService = GPWCKUserDeviceService.shared

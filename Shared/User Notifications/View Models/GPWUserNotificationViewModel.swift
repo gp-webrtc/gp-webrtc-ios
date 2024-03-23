@@ -32,7 +32,7 @@ import UserNotifications
 final class GPWUserNotificationViewModel: ObservableObject {
     @Published var isLoading = true
     
-    @GPSCPublishedUserDefault(\.userNotificationTokenId) private var userNotificationTokenId
+    @GPSKPublishedUserDefault(\.userNotificationTokenId) private var userNotificationTokenId
     
     private var snapshotListener: GPWCKSnapshotListener?
     private var cancellables = Set<AnyCancellable>()

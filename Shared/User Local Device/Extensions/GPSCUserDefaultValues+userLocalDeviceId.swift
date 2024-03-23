@@ -23,11 +23,11 @@
 import Foundation
 import GPStorageKit
 
-extension GPSCUserDefaultValues {
-    struct GPWUserLocalDeviceIdKey: GPSCUserDefaultCodableKey {
+extension GPSKUserDefaultValues {
+    struct GPWUserLocalDeviceIdKey: GPSKUserDefaultCodableKey {
         static let defaultValue: String? = nil
         static let key = "localDeviceId"
-        static let isTiedToUserId = true
+        static let isLinkedToUserId = true
     }
 
     var userLocalDeviceId: String? {

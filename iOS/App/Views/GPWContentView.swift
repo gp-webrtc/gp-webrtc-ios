@@ -52,6 +52,7 @@ struct GPWContentView: View {
                 GPWAuthView()
             }
         }
+        .environmentObject(coreStatus)
         .gpwSubscriber {
             coreStatus.subscribe()
         } unsubscribe: {
@@ -60,88 +61,90 @@ struct GPWContentView: View {
     }
 }
 
-struct GPWAuthView: View {
-    @State private var path = NavigationPath()
-    
-    @StateObject private var userAccount = GPWUserAccountViewModel()
-    
-    private func signInAnonymously() {
-        Task {
-            do {
-                try await userAccount.signInAnonymously()
-            } catch {
-                Logger().error("GPWContentView: Unable to sign in anonymously: \(error.localizedDescription)")
+private extension GPWContentView {    
+    struct GPWAuthView: View {
+        @State private var path = NavigationPath()
+        
+        @StateObject private var userAccount = GPWUserAccountViewModel()
+        
+        private func signInAnonymously() {
+            Task {
+                do {
+                    try await userAccount.signInAnonymously()
+                } catch {
+                    Logger().error("GPWContentView: Unable to sign in anonymously: \(error.localizedDescription)")
+                }
             }
         }
-    }
-    
-    var body: some View {
-        ZStack {
-            if userAccount.authState == .signedIn, let userId = userAccount.userId {
-                GPWUserContentView(userId: userId)
-                    .environmentObject(userAccount)
-            } else {
-                GPWSplashView {
-                    ZStack {
-                        if userAccount.authState == .signedOut {
-                            Button(role: .cancel, action: signInAnonymously) {
-                                HStack {
-                                    Spacer()
-                                    Text("Join now, we need you !")
-                                    Spacer()
+        
+        var body: some View {
+            ZStack {
+                if userAccount.authState == .signedIn, let userId = userAccount.userId {
+                    GPWUserContentView(userId: userId)
+                        .environmentObject(userAccount)
+                } else {
+                    GPWSplashView {
+                        ZStack {
+                            if userAccount.authState == .signedOut {
+                                Button(role: .cancel, action: signInAnonymously) {
+                                    HStack {
+                                        Spacer()
+                                        Text("Join now, we need you !")
+                                        Spacer()
+                                    }
                                 }
-                            }
-                            .buttonStyle(.gpwPlain)
-                        } else {
-                            ProgressView {
-                                Text("Loading authentication...")
-                                    .foregroundColor(.gpwOnPrimary)
+                                .buttonStyle(.gpwPlain)
+                            } else {
+                                ProgressView {
+                                    Text("Loading authentication...")
+                                        .foregroundColor(.gpwOnPrimary)
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        .gpwSubscriber {
-            userAccount.subscribe()
-        } unsubscribe: {
-            userAccount.unsubscribe()
+            .gpwSubscriber {
+                userAccount.subscribe()
+            } unsubscribe: {
+                userAccount.unsubscribe()
+            }
         }
     }
-}
-
-struct GPWSplashView<GPWContent: View>: View {
-    @ViewBuilder var content: () -> GPWContent
     
-    var body: some View {
-        VStack {
-            Spacer()
-            
-            
-            HStack {
+    struct GPWSplashView<GPWContent: View>: View {
+        @ViewBuilder var content: () -> GPWContent
+        
+        var body: some View {
+            VStack {
                 Spacer()
-                content()
-                Spacer()
-            }
-            .padding()
-            .padding(.bottom)
-        }
-        .background {
-            ZStack {
-                Color.gpwPrimary
-                VStack {
+                
+                
+                HStack {
                     Spacer()
-                    
-                    Image("Logo")
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.horizontal, 32)
-                    
+                    content()
                     Spacer()
                 }
+                .padding()
+                .padding(.bottom)
             }
+            .background {
+                ZStack {
+                    Color.gpwPrimary
+                    VStack {
+                        Spacer()
+                        
+                        Image("Logo")
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.horizontal, 32)
+                        
+                        Spacer()
+                    }
+                }
+            }
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
 }
 

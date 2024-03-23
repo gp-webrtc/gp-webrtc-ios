@@ -35,13 +35,13 @@ struct GPWUserContentView: View {
     @StateObject private var user = GPWUserViewModel()
     @EnvironmentObject private var userAccount: GPWUserAccountViewModel
     
-    #if DEBUG
+#if DEBUG
     func deleteAccount() {
         Task {
             try? await userAccount.delete()
         }
     }
-    #endif
+#endif
     
     private var mustUpdateApp: some View {
         VStack(spacing: spacing) {
@@ -93,13 +93,13 @@ struct GPWUserContentView: View {
                     Spacer()
                     ProgressView("We are sorting out your citizenship...")
                     Spacer()
-                    #if DEBUG
+#if DEBUG
                     Divider()
                     Button(role: .destructive) { deleteAccount() } label: {
                         Text("Delete account")
                     }
                     .buttonStyle(.gpwFlat)
-                    #endif
+#endif
                 }
             } else {
                 if coreVersion.mustUpdateApp {
@@ -109,19 +109,8 @@ struct GPWUserContentView: View {
                     mustUpdateData
                         .padding()
                 } else {
-                    GPWNavigationStack(root: GPWNavigationDestination.root) { destination in
-                        ZStack {
-                            switch (destination) {
-                                case .root: GPWUserMainView(userId: userId)
-                                case .userAccount: GPWUserAccountView()
-                                case let .userDeviceList(userId: userId): GPWUserDeviceListView(userId: userId)
-                                case .userNotificationsSettings: GPWUserNotificationsSettingsView()
-                                case .userSettings: GPWUserSettingsView()
-                                case .about: GPWAboutView()
-                            }
-                        }
+                    GPWUserContextView(userId: userId)
                         .environmentObject(user)
-                    }
                 }
             }
         }
@@ -134,6 +123,41 @@ struct GPWUserContentView: View {
         }
         .onReceive(user.$modelVersion) { modelVersion in
             coreVersion.modelVersion = modelVersion
+        }
+    }
+}
+
+private extension GPWUserContentView {
+    struct GPWUserContextView: View {
+        let userId: String
+        
+        @StateObject private var userNotification = GPWUserNotificationViewModel()
+//        @StateObject private var userLocalDevice = GPWUserLocalDeviceViewModel()
+        
+        var body: some View {
+            ZStack {
+                GPWNavigationStack(root: GPWNavigationDestination.root) { destination in
+                    ZStack {
+                        switch (destination) {
+                        case .root: GPWUserMainView(userId: userId)
+                        case .userAccount: GPWUserAccountView()
+                        case let .userDeviceList(userId: userId): GPWUserDeviceListView(userId: userId)
+                        case .userNotificationsSettings: GPWUserNotificationsSettingsView()
+                        case .userSettings: GPWUserSettingsView()
+                        case .about: GPWAboutView()
+                        }
+                    }
+                }
+            }
+            .gpwSubscriber {
+                //                        userLocalDevice.subscribe(userId: userId)
+                userNotification.subscribe(userId: userId)
+            } unsubscribe: {
+                //                        userLocalDevice.unsubscribe()
+                userNotification.unsubcribe()
+            }
+//            .environmentObject(userLocalDevice)
+            .environmentObject(userNotification)
         }
     }
 }

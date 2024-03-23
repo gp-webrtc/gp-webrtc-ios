@@ -34,6 +34,7 @@ final class GPWUserDeviceListViewModel: ObservableObject {
     private var snapshotListner: GPWCKSnapshotListener?
 
     func subscribe(userId: String) {
+        Logger().debug("[GPWUserDeviceListViewModel] Subscribing")
         if snapshotListner == nil {
             snapshotListner = userDeviceService.collectionSnapshot(userId) { userDevices, error in
                 if let error {
@@ -47,6 +48,7 @@ final class GPWUserDeviceListViewModel: ObservableObject {
     }
 
     func unsubscribe() {
+        Logger().debug("[GPWUserDeviceListViewModel] Unsubscribing")
         if let snapshotListner {
             snapshotListner.remove()
             self.snapshotListner = nil

@@ -38,6 +38,7 @@ final class GPWUserAccountViewModel: ObservableObject {
     private var idTokenDidChangeListener: GPWCKIDTokenDidChangeListener?
 
     func subscribe() {
+        Logger().debug("[GPWUserAccountViewModel] Subscribing")
         if authStateDidChangeListener == nil {
             authStateDidChangeListener = authService.addStateDidChangeListener { userAccount in
                 self.authState = userAccount != nil ? .signedIn : .signedOut
@@ -46,14 +47,15 @@ final class GPWUserAccountViewModel: ObservableObject {
         if idTokenDidChangeListener == nil {
             idTokenDidChangeListener = authService.addIDTokenDidChangeListener { userAccount in
                 self.userId = userAccount?.userId
-                if let userId = userAccount?.userId, userId != GPSCStorageService.shared.userId {
-                    GPSCStorageService.shared.userId = userId
+                if let userId = userAccount?.userId, userId != GPSKStorageService.shared.userId {
+                    GPSKStorageService.shared.userId = userId
                 }
             }
         }
     }
 
     func unsubscribe() {
+        Logger().debug("[GPWUserAccountViewModel] Unsubscribing")
         if let authStateDidChangeListener {
             authService.removeStateDidChangeListener(authStateDidChangeListener)
             self.authStateDidChangeListener = nil
@@ -75,7 +77,7 @@ final class GPWUserAccountViewModel: ObservableObject {
 
     func delete() async throws {
         try await authService.deleteUser()
-        GPSCStorageService.shared.resetUserData()
+        GPSKStorageService.shared.resetUserData()
     }
 }
 

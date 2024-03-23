@@ -24,17 +24,17 @@ import SwiftUI
 
 struct GPWUserMainView: View {
     let userId: String
-
-    @StateObject private var userNotification = GPWUserNotificationViewModel()
-    @StateObject private var userLocalDevice = GPWUserLocalDeviceViewModel()
-
+    
+    //    @StateObject private var userNotification = GPWUserNotificationViewModel()
+    //    @StateObject private var userLocalDevice = GPWUserLocalDeviceViewModel()
+    
     @State private var title = GPWTab.contactList.rawValue
     @SceneStorage("selectedTab") private var selectedTab = GPWTab.contactList
-
+    
     @EnvironmentObject private var user: GPWUserViewModel
     @EnvironmentObject private var userAccount: GPWUserAccountViewModel
-
-    private var tabView: some View {
+    
+    var body: some View {
         TabView(selection: $selectedTab) {
             GPWTabItem(tag: .contactList) {
                 GPWUserContactListView()
@@ -52,30 +52,9 @@ struct GPWUserMainView: View {
                 Label("Profile", systemImage: "person.crop.circle.fill")
             }
         }
-        .environmentObject(userLocalDevice)
-        .environmentObject(userNotification)
         .gpwNavigationTitle($title)
         .onChange(of: selectedTab) { _, new in
             title = new.rawValue
-        }
-    }
-
-    var body: some View {
-        ZStack {
-            if let userId = userAccount.userId {
-                tabView
-                    .gpwSubscriber {
-                        //                        userLocalDevice.subscribe(userId: userId)
-                        userNotification.subscribe(userId: userId)
-                    } unsubscribe: {
-                        //                        userLocalDevice.unsubscribe()
-                        userNotification.unsubcribe()
-                    }
-            } else {
-                ProgressView {
-                    Text("Loading ...")
-                }
-            }
         }
     }
 }
@@ -83,10 +62,10 @@ struct GPWUserMainView: View {
 private extension GPWUserMainView {
     struct GPWTabItem<GPWContent: View, GPWLabel: View>: View {
         let tag: GPWTab
-
+        
         @ViewBuilder let content: () -> GPWContent
         @ViewBuilder let label: () -> GPWLabel
-
+        
         var body: some View {
             ZStack {
                 ZStack {

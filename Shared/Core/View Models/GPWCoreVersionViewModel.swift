@@ -42,6 +42,8 @@ final class GPWCoreVersionViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     func subscribe(userId _: String) {
+        Logger().debug("[GPWCoreVersionViewModel] Subscribing")
+        isLoading = true
         guard snapshotListner == nil, cancellables.isEmpty else { return }
 
         snapshotListner = coreVersionService.documentSnapshot { coreVersion, error in
@@ -114,6 +116,7 @@ final class GPWCoreVersionViewModel: ObservableObject {
     }
 
     func unsubscribe() {
+        Logger().debug("[GPWCoreVersionViewModel] Unsubscribing")
         if let snapshotListner {
             snapshotListner.remove()
             self.snapshotListner = nil

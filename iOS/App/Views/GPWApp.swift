@@ -47,8 +47,12 @@ struct GPWApp: App {
 
     var body: some Scene {
         WindowGroup {
-            GPWContentView()
-                .environment(\.font, .gpwBody)
+            if scenePhase == .active {
+                GPWContentView()
+                    .environment(\.font, .gpwBody)
+            } else {
+                EmptyView()
+            }
         }
         .onChange(of: scenePhase) { old, new in
             Logger().debug("[GPWApp] Change of scene phase: \(old.string) -> \(new.string)")

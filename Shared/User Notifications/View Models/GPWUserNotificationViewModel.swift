@@ -29,24 +29,35 @@ import UIKit
 import UserNotifications
 
 @MainActor
-final class GPWUserNotificationViewModel: ObservableObject {
+final class GPWUserNotificationViewModel: GPWCKUserObservableObject {
     @Published var isLoading = true
     
-    @GPSCPublishedUserDefault(\.userNotificationTokenId) private var userNotificationTokenId
+    @GPSKPublishedUserDefault(\.userNotificationTokenId) private var userNotificationTokenId
     
     private var snapshotListener: GPWCKSnapshotListener?
     private var cancellables = Set<AnyCancellable>()
+    
+    private var authService = GPWCKAuthService.shared
     private var userNotificationService = GPWUserNotificationService.shared
     private var userNotificationTokenService = GPWCKUserNotificationTokenService.shared
     private var userNotificationTokenSubject = CurrentValueSubject<GPWCKUserNotificationToken?, Never>(nil)
     
+    deinit {
+        DispatchQueue.main.async { [weak self] in
+            self?.unsubcribe()
+        }
+    }
+    
     func subscribe(userId: String) {
+        Logger().debug("[GPWUserNotificationViewModel] Subscribing")
+        isLoading = true
         Publishers.CombineLatest(userNotificationService.authorizationStatus, $userNotificationTokenId)
             .sink { authorizationStatus, userNotificationTokenId in
                 if let authorizationStatus {
                     
                     switch authorizationStatus {
                     case .authorized:
+                        Logger().debug("[GPWUserNotificationViewModel] Notification are authorized")
                         if userNotificationTokenId == nil {
                             if let snapshotListener = self.snapshotListener {
                                 snapshotListener.remove()
@@ -55,7 +66,9 @@ final class GPWUserNotificationViewModel: ObservableObject {
                             self.userNotificationTokenId = UUID().uuidString
                         }
                         
-                        guard let userNotificationTokenId else { return }
+                        guard let userNotificationTokenId = userNotificationTokenId ?? self.userNotificationTokenId else {
+                            return
+                        }
                         
                         Logger().debug("[GPWUserNotificationViewModel] User notification token id: \(userNotificationTokenId)")
                         
@@ -70,16 +83,17 @@ final class GPWUserNotificationViewModel: ObservableObject {
                                 
                                 self.isLoading = false
                                 
-//                                if let userNotificationToken {
-//                                    Logger().debug("[GPWUserNotificationViewModel] Received user notification registration token \(userNotificationToken.tokenId)")
-//                                } else {
-//                                    Logger().debug("[GPWUserNotificationViewModel] No user notification registration token")
-//                                }
+                                if let userNotificationToken {
+                                    Logger().debug("[GPWUserNotificationViewModel] Received user notification registration token \(userNotificationToken.tokenId)")
+                                } else {
+                                    Logger().debug("[GPWUserNotificationViewModel] No user notification registration token")
+                                }
                             }
                         }
                         
                         break
                     case .denied:
+                        Logger().debug("[GPWUserNotificationViewModel] Notification are denied")
                         if let userNotificationTokenId {
                             Task {
                                 do {
@@ -92,6 +106,7 @@ final class GPWUserNotificationViewModel: ObservableObject {
                             self.userNotificationTokenId = nil
                         }
                     default:
+                        Logger().debug("[GPWUserNotificationViewModel] Notification status is neither authorized nor denied")
                         break
                     }
                 }
@@ -114,7 +129,11 @@ final class GPWUserNotificationViewModel: ObservableObject {
                   let apnsToken,
                   let voipToken
             else {
-                Logger().debug("[GPWUserNotificationViewModel] Some conditions not met to upload user notification token: isLoading = \(isLoading), tokenId = \(userNotificationTokenId ?? "nil"), apnsToken: \(apnsToken ?? "nil"), voipToken: \(voipToken ?? "nil")")
+                Logger().debug("[GPWUserNotificationViewModel] Some conditions not met to upload user notification token")
+                Logger().debug("[GPWUserNotificationViewModel]   - isLoading = \(isLoading ? "true" : "false") (should be 'false')")
+                Logger().debug("[GPWUserNotificationViewModel]   - userNotificationTokenId = \(userNotificationTokenId ?? "nil") (should not be 'nil')")
+                Logger().debug("[GPWUserNotificationViewModel]   - apnsToken: \(apnsToken ?? "nil") (should not be 'nil')")
+                Logger().debug("[GPWUserNotificationViewModel]   - voipToken: \(voipToken ?? "nil") (should not be 'nil')")
                 return
             }
             
@@ -124,7 +143,7 @@ final class GPWUserNotificationViewModel: ObservableObject {
                     if let userNotificationToken,
                        (    apnsToken != userNotificationToken.deviceToken.apnsToken.apns ||
                             voipToken != userNotificationToken.deviceToken.apnsToken.voip ||
-                            (userNotificationToken.modificationDate ?? Date.now) <= (Date.now - (7 * 24 * 3600))
+                            (userNotificationToken.modificationDate ?? Date.now) <= (Date.now - (7 * 24 * 3600)) // 7 days
                        ) {
                         Logger().debug("[GPWUserNotificationViewModel] Updating existing user notification token \(userNotificationTokenId)")
                         try await self.insertOrUpdateUserNotificationToken(userNotificationTokenId, for: userId, apnsToken: apnsToken, voipToken: voipToken)
@@ -141,8 +160,14 @@ final class GPWUserNotificationViewModel: ObservableObject {
     }
     
     func unsubcribe() {
+        Logger().debug("[GPWUserNotificationViewModel] Unsubscribing")
         for cancellable in cancellables {
             cancellable.cancel()
+        }
+        
+        if let snapshotListener {
+            snapshotListener.remove()
+            self.snapshotListener = nil
         }
     }
     
@@ -159,5 +184,12 @@ final class GPWUserNotificationViewModel: ObservableObject {
                 userId: userId,
                 tokenId: tokenId
             )
+    }
+    
+    func authServiceWillDeleteUser(_ authService: GPWCloudKit.GPWCKAuthService) throws {
+        if let snapshotListener {
+            snapshotListener.remove()
+            self.snapshotListener = nil
+        }
     }
 }

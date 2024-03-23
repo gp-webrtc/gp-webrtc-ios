@@ -23,11 +23,11 @@
 import Foundation
 import GPStorageKit
 
-extension GPSCUserDefaultValues {
-    struct GPWUserNotificationTokenIdKey: GPSCUserDefaultKey {
+extension GPSKUserDefaultValues {
+    struct GPWUserNotificationTokenIdKey: GPSKUserDefaultKey {
         static let key = "user.notificationTokenId"
         static let defaultValue: String? = nil
-        static let isTiedToUserId = true
+        static let isLinkedToUserId = true
     }
 
     var userNotificationTokenId: String? {

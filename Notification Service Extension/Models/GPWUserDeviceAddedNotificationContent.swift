@@ -21,17 +21,16 @@
 //
 
 import Foundation
-import GPStorageKit
 
-extension GPSKUserDefaultValues {
-    struct GPWUserLocalDeviceIdKey: GPSKUserDefaultCodableKey {
-        static let defaultValue: String? = nil
-        static let key = "localDeviceId"
-        static let isLinkedToUserId = true
-    }
+struct GPWUserDeviceAddedNotificationContent: Codable {
+    let title: String
+    let subtitle: String
+    let userInfo: GPWUserInfo
+}
 
-    var userLocalDeviceId: String? {
-        get { self[GPWUserLocalDeviceIdKey.self] }
-        set { self[GPWUserLocalDeviceIdKey.self] = newValue }
+extension GPWUserDeviceAddedNotificationContent {
+    struct GPWUserInfo: Codable {
+        let userId: String
+        let deviceId: String
     }
 }

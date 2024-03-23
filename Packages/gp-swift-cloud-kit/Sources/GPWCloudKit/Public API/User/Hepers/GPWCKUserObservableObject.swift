@@ -1,5 +1,5 @@
 //
-// gp-webrtc-ios
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -21,17 +21,8 @@
 //
 
 import Foundation
-import GPStorageKit
 
-extension GPSKUserDefaultValues {
-    struct GPWUserLocalDeviceIdKey: GPSKUserDefaultCodableKey {
-        static let defaultValue: String? = nil
-        static let key = "localDeviceId"
-        static let isLinkedToUserId = true
-    }
-
-    var userLocalDeviceId: String? {
-        get { self[GPWUserLocalDeviceIdKey.self] }
-        set { self[GPWUserLocalDeviceIdKey.self] = newValue }
-    }
+@MainActor
+public protocol GPWCKUserObservableObject: ObservableObject {
+    func authServiceWillDeleteUser(_ authService: GPWCKAuthService) throws
 }

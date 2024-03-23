@@ -38,6 +38,7 @@ final class GPWUserAccountViewModel: ObservableObject {
     private var idTokenDidChangeListener: GPWCKIDTokenDidChangeListener?
 
     func subscribe() {
+        Logger().debug("[GPWUserAccountViewModel] Subscribing")
         if authStateDidChangeListener == nil {
             authStateDidChangeListener = authService.addStateDidChangeListener { userAccount in
                 self.authState = userAccount != nil ? .signedIn : .signedOut
@@ -54,6 +55,7 @@ final class GPWUserAccountViewModel: ObservableObject {
     }
 
     func unsubscribe() {
+        Logger().debug("[GPWUserAccountViewModel] Unsubscribing")
         if let authStateDidChangeListener {
             authService.removeStateDidChangeListener(authStateDidChangeListener)
             self.authStateDidChangeListener = nil

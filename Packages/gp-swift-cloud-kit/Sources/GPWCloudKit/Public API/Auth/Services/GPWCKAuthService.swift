@@ -23,6 +23,7 @@
 #if canImport(FirebaseAuth)
 import FirebaseAuth
 import Foundation
+import os.log
 
 public class GPWCKAuthService {
     public typealias GPWCKAuthStateDidChangeBlock = (GPWCKUserAccount?) -> Void
@@ -41,6 +42,7 @@ public class GPWCKAuthService {
     private static var instance: GPWCKAuthService?
 
     private let auth = Auth.auth()
+    private var registeredUserDataObservers: [String: any GPWCKUserObservableObject] = [:]
 
     public var currentUser: GPWCKUserAccount? {
         guard let user = auth.currentUser else { return nil }
@@ -117,6 +119,16 @@ public class GPWCKAuthService {
     }
 
     public func deleteUser() async throws {
+        registeredUserDataObservers.forEach { (key, userDataObserver) in
+            DispatchQueue.main.async {
+                do {
+                    try userDataObserver.authServiceWillDeleteUser(self)
+                } catch {
+                    Logger().error("[GPWCKAuthService] Unable to notify user deletion to user data observer with id: \(key)")
+                }
+            }
+        }
+        
         if let user = auth.currentUser {
             try await user.delete()
         } else {
@@ -125,5 +137,20 @@ public class GPWCKAuthService {
     }
 
     #endif
+    
+    public func registerUserDataObserver(_ userDataObserver: any GPWCKUserObservableObject) -> String {
+        let uuid = UUID().uuidString
+        
+        if registeredUserDataObservers[uuid] == nil {
+            registeredUserDataObservers[uuid] = userDataObserver
+            return uuid
+        } else {
+            return registerUserDataObserver(userDataObserver)
+        }
+    }
+    
+    public func unregisterUserDataObserver(withId id: String) {
+        registeredUserDataObservers.removeValue(forKey: id)
+    }
 }
 #endif

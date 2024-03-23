@@ -59,7 +59,7 @@ extension GPWCKFirestoreError: CustomStringConvertible {
             case let .unableToGetQueryDocuments(query: query):
                 "Unable to get documents for query \(query)"
             case let .unableToListenToDocumentChanges(path: path):
-                "Unable to listen to changes on document at path \(path)"
+            "Unable to listen to changes on document at path \(path)"
             case let .unableToListenToCollectionChanges(path: path):
                 "Unable to listen to changes on collection at path \(path)"
             case let .unableToListenToQueryChanges(query: query):

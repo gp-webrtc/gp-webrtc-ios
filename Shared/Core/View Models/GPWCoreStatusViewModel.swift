@@ -36,16 +36,18 @@ final class GPWCoreStatusViewModel: ObservableObject {
     private var timeoutTimer: Timer?
 
     func subscribe() {
+        Logger().debug("[GPWCoreStatusViewModel] Subscribing")
+        isLoading = true
         guard snapshotListner == nil, timeoutTimer == nil else { return }
 
         snapshotListner = coreStatusService.documentSnapshot { coreStatus, error in
             if let error {
-                Logger().error("[GPWCoreVersionViewModel] Unable to get to core version matrix changes: \(error.localizedDescription)")
+                Logger().error("[GPWCoreStatusViewModel] Unable to get to core version matrix changes: \(error.localizedDescription)")
                 return
             }
 
             guard let coreStatus else {
-                Logger().error("[GPWCoreVersionViewModel] Received no data")
+                Logger().error("[GPWCoreStatusViewModel] Received no data")
                 return
             }
 
@@ -58,11 +60,13 @@ final class GPWCoreStatusViewModel: ObservableObject {
         timeoutTimer = .scheduledTimer(withTimeInterval: 15, repeats: false) { _ in
             DispatchQueue.main.async {
                 self.hasTimedOut = true
+                self.timeoutTimer = nil
             }
         }
     }
 
     func unsubscribe() {
+        Logger().debug("[GPWCoreStatusViewModel] Unsubscribing")
         if let snapshotListner {
             snapshotListner.remove()
             self.snapshotListner = nil

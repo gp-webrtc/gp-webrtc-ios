@@ -7,7 +7,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.usernotifications.service</string>
 		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).GPWNotificationService</string>
+		<string>$(PRODUCT_MODULE_NAME).GPWUserNotificationService</string>
 	</dict>
 </dict>
 </plist>

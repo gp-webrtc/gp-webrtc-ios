@@ -43,6 +43,8 @@ final class GPWUserLocalDeviceViewModel: ObservableObject {
     private var snapshotListener: GPWCKSnapshotListener? = nil
 
     func subscribe(userId: String) {
+        Logger().debug("[GPWUserLocalDeviceViewModel] Subscribing")
+        isLoading = true
         guard snapshotListener == nil else { return }
 
         snapshotListener = userDeviceService.collectionSnapshot(userId) { userDevices, error in
@@ -93,6 +95,7 @@ final class GPWUserLocalDeviceViewModel: ObservableObject {
     }
 
     func unsubscribe() {
+        Logger().debug("[GPWUserLocalDeviceViewModel] Unsubscribing")
         if let snapshotListener {
             snapshotListener.remove()
             self.snapshotListener = nil

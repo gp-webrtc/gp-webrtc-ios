@@ -22,12 +22,14 @@
 
 import Foundation
 
-struct GPWEncryptedUserCallReceivedNotificationContent: Codable {
+struct GPWUserCallReceivedNotificationContent: Codable {
     let userInfo: GPWUserInfo
 }
 
-extension GPWEncryptedUserCallReceivedNotificationContent {
+extension GPWUserCallReceivedNotificationContent {
     struct GPWUserInfo: Codable {
         let callId: String
+        let callerId: String
+        let displayName: String
     }
 }

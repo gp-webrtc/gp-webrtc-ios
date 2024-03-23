@@ -32,12 +32,14 @@ final class GPWUserViewModel: ObservableObject {
     @Published var displayName: String = ""
     @Published var settings: GPWCKUserSettings = .default
     @Published var modelVersion: GPWCKCoreModelVersion?
-
+    
     private let userService = GPWCKUserService.shared
 
     private var snapshotListner: GPWCKSnapshotListener?
 
     func subscribe(userId: String) {
+        Logger().debug("[GPWUserViewModel] Subscribing")
+        isLoading = true
         if snapshotListner == nil {
             snapshotListner = userService.documentSnapshot(userId) { user, error in
                 if let error {
@@ -61,6 +63,7 @@ final class GPWUserViewModel: ObservableObject {
     }
 
     func unsubscribe() {
+        Logger().debug("[GPWUserViewModel] Unsubscribing")
         if let snapshotListner {
             snapshotListner.remove()
             self.snapshotListner = nil

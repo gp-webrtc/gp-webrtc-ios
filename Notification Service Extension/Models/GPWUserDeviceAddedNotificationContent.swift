@@ -20,38 +20,17 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-import Combine
 import Foundation
-import GPWCloudKit
-import os.log
 
-@MainActor
-final class GPWUserDeviceListViewModel: ObservableObject {
-    @Published var devices: [GPWCKUserDevice] = []
+struct GPWUserDeviceAddedNotificationContent: Codable {
+    let title: String
+    let subtitle: String
+    let userInfo: GPWUserInfo
+}
 
-    private let userDeviceService = GPWCKUserDeviceService.shared
-
-    private var snapshotListner: GPWCKSnapshotListener?
-
-    func subscribe(userId: String) {
-        Logger().debug("[GPWUserDeviceListViewModel] Subscribing")
-        if snapshotListner == nil {
-            snapshotListner = userDeviceService.collectionSnapshot(userId) { userDevices, error in
-                if let error {
-                    Logger().error("GPWUserDeviceListViewModel: Unable to subscribe to user device list changes: \(error.localizedDescription)")
-                    return
-                }
-
-                self.devices = userDevices
-            }
-        }
-    }
-
-    func unsubscribe() {
-        Logger().debug("[GPWUserDeviceListViewModel] Unsubscribing")
-        if let snapshotListner {
-            snapshotListner.remove()
-            self.snapshotListner = nil
-        }
+extension GPWUserDeviceAddedNotificationContent {
+    struct GPWUserInfo: Codable {
+        let userId: String
+        let deviceId: String
     }
 }

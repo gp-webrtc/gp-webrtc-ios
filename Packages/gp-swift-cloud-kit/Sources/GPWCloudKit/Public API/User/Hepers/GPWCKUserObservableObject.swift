@@ -1,5 +1,5 @@
 //
-// gp-webrtc-ios
+// gp-webrtc-ios/swift-cloud-kit
 // Copyright (c) 2024, Greg PFISTER. MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -22,15 +22,7 @@
 
 import Foundation
 
-struct GPWEncryptedUserDeviceAddedNotificationContent: Codable {
-    let title: String
-    let subtitle: String
-    let userInfo: GPWUserInfo
-}
-
-extension GPWEncryptedUserDeviceAddedNotificationContent {
-    struct GPWUserInfo: Codable {
-        let userId: String
-        let deviceId: String
-    }
+@MainActor
+public protocol GPWCKUserObservableObject: ObservableObject {
+    func authServiceWillDeleteUser(_ authService: GPWCKAuthService) throws
 }

@@ -24,7 +24,7 @@ import CallKit
 import UserNotifications
 import os.log
 
-class GPWNotificationService: UNNotificationServiceExtension {
+class GPWUserNotificationService: UNNotificationServiceExtension {
     var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?
 
@@ -56,9 +56,12 @@ class GPWNotificationService: UNNotificationServiceExtension {
             return
         }
         
+        Logger().debug("[GPWNotificationService] Processing notification \(categoryIdentifier)")
+        Logger().debug("[GPWNotificationService] Received encryptedPayload \(encryptedPayload)")
+        Logger().debug("[GPWNotificationService] Received payload \(String(data: payloadData, encoding: .utf8) ?? "nil")")
         
         if categoryIdentifier == "org.gpfister.republik.userDeviceAdded",
-           let payload = try? JSONDecoder().decode(GPWEncryptedUserDeviceAddedNotificationContent.self, from: payloadData),
+           let payload = try? JSONDecoder().decode(GPWUserDeviceAddedNotificationContent.self, from: payloadData),
            let userInfoData = try? JSONEncoder().encode(payload.userInfo),
            let userInfo = try? JSONSerialization.jsonObject(with: userInfoData, options: []) as? [String: Any] {
             
@@ -70,7 +73,7 @@ class GPWNotificationService: UNNotificationServiceExtension {
             // Pass to the app user notification, unencrypted
             contentHandler(content)
         } else if categoryIdentifier == "org.gpfister.republik.userCallReceived",
-                  let payload = try? JSONDecoder().decode(GPWEncryptedUserDeviceAddedNotificationContent.self, from: payloadData),
+                  let payload = try? JSONDecoder().decode(GPWUserCallReceivedNotificationContent.self, from: payloadData),
                   let userInfoData = try? JSONEncoder().encode(payload.userInfo),
                   let userInfo = try? JSONSerialization.jsonObject(with: userInfoData, options: []) as? [String: Any] {
                 
